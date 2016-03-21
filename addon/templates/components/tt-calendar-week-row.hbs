@@ -1,0 +1,8 @@
+<div class="week-days">
+  {{#each days as |day|}}
+    {{tt-calendar-weekrow-day day=day}}
+  {{/each}}
+</div>
+{{#if hasBlock}}
+  {{yield events}}
+{{/if}}
