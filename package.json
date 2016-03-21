@@ -1,7 +1,7 @@
 {
   "name": "ember-time-tools",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Time and date tools for ember.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/lozjackson/ember-time-tools",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Loz Jackson",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -30,7 +30,7 @@
     "ember-cli-release": "0.2.8",
     "ember-cli-sri": "^2.0.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.3.0",
+    "ember-data": "^2.4.2",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
