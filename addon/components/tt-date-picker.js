@@ -182,12 +182,7 @@ export default Ember.Component.extend({
       dailyNextMonth = 1,
       weeksArray = Ember.A(),
       daysOfWeek = this.get('daysOfWeek.length'),
-      {
-        month,
-        year,
-        numberOfWeeks,
-        startDay
-      } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
+      { month, year, numberOfWeeks, startDay } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
       daysInMonth = getDays({ year, month });
 
     for (intWeek = 0; intWeek < numberOfWeeks;  intWeek++) {
