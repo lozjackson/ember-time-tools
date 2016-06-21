@@ -1,0 +1,1 @@
+export { default } from 'ember-time-tools/components/tt-date-field';

@@ -1,0 +1,10 @@
+<div class="header">
+  <button type="button" class="close-button" {{action "close"}}>x</button>
+</div>
+<div class="time-select">
+  <ul>
+    {{#each times as |time|}}
+      {{tt-time-slot model=time timeSelected=selectedTime select="selectTime"}}
+    {{/each}}
+  </ul>
+</div>

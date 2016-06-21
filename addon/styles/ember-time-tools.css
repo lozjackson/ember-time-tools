@@ -237,3 +237,176 @@ overflow: hidden;
     bottom:0;
 }
 */
+
+
+
+
+
+/*
+  date picker
+*/
+.date-field, .tt-time-field {
+	cursor: pointer;
+}
+
+.tt-date-picker.container,
+.time-picker.container {
+	margin-top: 5px;
+    position: absolute;
+    z-index: 4;
+
+	background: #FFFFFF;
+    border: 1px solid black;
+    padding:0px;
+
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-top-left-radius:4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+			0 25px 50px 0 rgba(0, 0, 0, 0.15);
+}
+
+.time-picker.container {
+	height: 300px;
+	width: 120px;
+}
+
+.tt-date-picker > .header {
+	width:100%;
+    height:60px;
+    border-bottom:1px solid #ccc;
+	cursor: default;
+}
+
+.tt-date-picker .day-letters {
+	background: rgba(235, 242, 255, 0.5);
+}
+
+.tt-date-picker > .header > .top-panel {
+    position: absolute;
+	width: 100%;
+    overflow: visible;
+	height:60px;
+	text-align: center;
+}
+
+.tt-date-picker > .header > .top-panel > .date {
+    text-align: left;
+	float:left;
+    font-size:18px;
+	position: absolute;
+	top: 5px;
+	left:5px;
+	width: calc(100% - 40px);
+}
+
+.tt-date-picker > .header > .top-panel > .navigation {
+	margin-top: 35px;
+}
+
+.tt-date-picker > .header > .top-panel > .navigation button {
+	float: none;
+	margin: 0px;
+	background: none;
+	cursor: pointer;
+	border:  none;
+}
+
+.tt-date-picker > .header > .top-panel > .navigation button:hover {
+	border: none;
+}
+
+
+.tt-date-picker.container .close-button,
+.time-picker.container .close-button {
+    position:absolute;
+    top:5px;
+    right:5px;
+    width:22px;
+    height:22px;
+}
+
+.tt-date-picker.container > table {
+    border-spacing: 0px;
+    font-family: arial;
+}
+
+.tt-date-picker.container > table > .date-picker-select, .tt-date-picker.container > table > .days {
+	background-color: rgb(255,255,255);
+}
+
+.tt-date-picker.container > table td,
+.time-picker .time-select ul > li {
+    padding: 10px;
+    cursor: default;
+}
+
+.tt-date-picker.container > table td.day,
+.time-picker .time-select ul > li.day {
+    cursor: pointer;
+}
+
+.tt-date-picker.container > table td.day {
+	text-align: right;
+}
+
+.tt-date-picker.container > table td.day.weekend {
+    background: rgba(235, 242, 255, 0.5);
+}
+
+.tt-date-picker.container > table td.day.today {
+    color:#fff;
+    background: rgba(14, 61, 145, 0.24);
+}
+
+.tt-date-picker.container > table td.day.day-selected,
+.time-picker .time-select ul > li.time-selected {
+    color:#ffffff;
+    background: rgba(56, 88, 255, 0.81);
+}
+
+.tt-date-picker.container > table td.day:hover,
+.time-picker .time-select ul > li:hover {
+    background: rgba(139, 171, 242, 1);
+	color: #fff;
+}
+
+.tt-date-picker.container > table tr.day-letters {
+    cursor: default;
+}
+
+.tt-date-picker.container .out-of-range {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+input.date-field {
+	text-align: right;
+}
+
+.time-picker.container > .header {
+	height: 35px;
+	border-bottom:1px solid #ccc;
+}
+.time-picker .time-select {
+	height: calc(100% - 50px);
+	overflow-y: scroll;
+}
+
+.time-picker .time-select ul {
+	margin:0px;
+	padding: 0px;
+}
+
+.time-picker .time-select ul > li {
+	margin:0px;
+	list-style: none;
+	vertical-align: middle;
+	cursor: pointer;
+	font-size: 11px;
+}
