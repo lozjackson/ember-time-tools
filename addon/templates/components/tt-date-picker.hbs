@@ -21,7 +21,12 @@
     {{#each weeks as |week|}}
       <tr>
         {{#each week as |day index|}}
-          {{tt-picker-item model=day class="day" datePicker=this select="selectDay"}}
+        {{log day}}
+          {{tt-picker-item
+            model=day
+            class="day"
+            selectedDate=selectedDate
+            select="selectDay"}}
         {{/each}}
       </tr>
     {{/each}}
