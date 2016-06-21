@@ -1,3 +1,9 @@
 body {
   font-family: sans-serif;
 }
+.dashboard-calendar {
+  position: relative;
+  max-width: 500px;
+  height: 300px;
+  margin: 10px;
+}
