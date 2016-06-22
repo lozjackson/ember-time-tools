@@ -32,11 +32,12 @@ export default Ember.Component.extend({
 
   /**
     @method _selectDate
-    @param {Object} date
+    @param {Object} date should be a js `Date` object
     @private
   */
   _selectDate(date) {
-    this.set('value', new Date(date.year, date.month, date.date));
+    Ember.assert(`'date' should be a javascript 'Date()' object.`, Ember.typeOf(date) === 'date');
+    this.set('value', date);
   },
 
   /**
