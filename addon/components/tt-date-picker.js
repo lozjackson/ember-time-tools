@@ -36,33 +36,6 @@ function getDays(date) {
   }
 }
 
-// /*
-//   @method Today
-//     Generate today's date.  if the `date` param is provided then use that date.
-//
-//     Create an instance of Today. and it will have the properties date, day, month, year.
-//
-//     var today = new Today(); // 25/03/2015
-//     console.log(today.day); // 25
-// */
-// function Today (date) {
-//   if (!date) {
-//     this.date = new Date();
-//   } else {
-//     if (typeof date === 'number') {
-//       this.date = new Date(date);
-//     } else if (typeof date === 'string') {
-//       date = date.replace(/-/g, '/');
-//       this.date = new Date(date);
-//     }  else {
-//       this.date = date;
-//     }
-//   }
-//   this.year = this.date.getFullYear();
-//   this.month = this.date.getMonth();
-//   this.day = this.date.getDate();
-// }
-
 /**
   @class DatePickerComponent
   @namespace DateTime
@@ -268,11 +241,49 @@ export default Ember.Component.extend({
   },
 
   /**
+    Options:
+    
+    * date - javascript `Date` object.
+    * timestamp - number of seconds.
+    * object - `Ember.Object` with `year`, `month` and `date` properties.
+
+    @property output
+    @type {String}
+    @default 'date'
+  */
+  output: 'date',
+
+  /**
+    `day` is an object with `date`, `month` and `year` properties.
+
     @method _selectDay
     @param {Object} day
     @private
   */
   _selectDay(day) {
+    let output = this.get('output');
+    let date = new Date(day.year, day.month, day.date);
+
+    if (output) {
+      switch(output) {
+        case 'date':
+          day = date;
+          break;
+        case 'timestamp':
+          day = date.getTime();
+          break;
+        case 'object':
+        default:
+          day = Ember.Object.create({
+            year: day.year,
+            month: day.month,
+            date: day.date,
+            _date: date,
+            timestamp: date.getTime()
+          });
+          break;
+      }
+    }
     this.sendAction('select', day);
   },
 
