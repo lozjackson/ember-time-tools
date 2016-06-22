@@ -1,7 +1,7 @@
 {
   "name": "ember-time-tools",
   "version": "0.0.0",
-  "description": "Time and date tools for ember.",
+  "description": "Time and date tools for Ember applications.",
   "directories": {
     "doc": "doc",
     "test": "tests"
