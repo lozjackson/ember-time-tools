@@ -7,6 +7,7 @@ import DateObject from 'ember-time-tools/utils/date';
 
 const { computed } = Ember;
 const { readOnly } = computed;
+
 /*
   @param daysInMonth
     The number of days in each month.
@@ -79,6 +80,21 @@ export default Ember.Component.extend({
     @default 6
   */
   numberOfWeeks: 6,
+  
+   /**
+    ### Output
+    
+    Options:
+    
+    * date - javascript `Date` object.
+    * timestamp - number of seconds.
+    * object - `Ember.Object` with `year`, `month` and `date` properties.
+
+    @property output
+    @type {String}
+    @default 'date'
+  */
+  output: 'date',
 
   /**
     @property selectedDate
@@ -244,19 +260,6 @@ export default Ember.Component.extend({
   setViewDate(date) {
     this.set('viewDate.date', date);
   },
-
-  /**
-    Options:
-    
-    * date - javascript `Date` object.
-    * timestamp - number of seconds.
-    * object - `Ember.Object` with `year`, `month` and `date` properties.
-
-    @property output
-    @type {String}
-    @default 'date'
-  */
-  output: 'date',
 
   /**
     `day` is an object with `date`, `month` and `year` properties.
