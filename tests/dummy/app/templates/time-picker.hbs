@@ -36,7 +36,7 @@
 <p>
   You can choose to output the time as a javascript <code>Date</code> object (the
   default), a timestamp, or an <code>Ember.Object</code> with properties for
-  <code>hour</code> and <code>min</code>.
+  <code>hours</code> and <code>mins</code>.
 </p>
 
 <h3><code>output="date"</code></h3>
@@ -62,7 +62,7 @@
 <p><code>selection</code>: {{selection}}</p>
 
 <h3><code>output="object"</code></h3>
-<p>An <code>Ember.Object</code> with <code>hour</code> and <code>min</code> properties.</p>
+<p>An <code>Ember.Object</code> with <code>hours</code> and <code>mins</code> properties.</p>
 {{code-snippet name="time-picker-output-object.hbs"}}
 
 <div class="time-picker-container">
@@ -71,6 +71,6 @@
   {{! END-SNIPPET }}
 </div>
 <p>
-  <code>selection.hour</code>: {{selection.hour}}<br>
-  <code>selection.min</code>: {{selection.min}}
+  <code>selection.hours</code>: {{selection.hours}}<br>
+  <code>selection.mins</code>: {{selection.mins}}
 </p>
