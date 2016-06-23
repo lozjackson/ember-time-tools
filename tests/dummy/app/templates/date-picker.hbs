@@ -74,3 +74,39 @@
   <code>selection.month</code>: {{selection.month}} (<code>month</code> counts from 0)<br>
   <code>selection.year</code>: {{selection.year}}
 </p>
+
+<hr>
+
+<h2>selectedDate</h2>
+
+<p>
+  To highlight the selected date, you can bind the <code>selectedDate</code>
+  property to the <code>selection</code>.
+</p>
+
+{{code-snippet name="date-picker-selected-date.hbs"}}
+
+<div class="date-picker-container">
+  {{! BEGIN-SNIPPET date-picker-selected-date }}
+  {{date-picker selectedDate=selection select="selectDate"}}
+  {{! END-SNIPPET }}
+</div>
+<p><code>selection</code>: {{selection}}</p>
+
+<hr>
+
+<h2>close</h2>
+<p>Provide an action to the date-picker's <code>close</code> action</p>
+
+<p>controller/component.js</p>
+{{!code-snippet name="date-picker-actions.js"}}
+
+<p>template.hbs</p>
+{{code-snippet name="date-picker-close.hbs"}}
+
+
+<div class="date-picker-container">
+  {{! BEGIN-SNIPPET date-picker-close }}
+  {{date-picker close="closeDatePicker"}}
+  {{! END-SNIPPET }}
+</div>
