@@ -1,37 +1,30 @@
 <h2><code>&#123;&#123;time-picker&#125;&#125;</code></h2>
 
-<p>You can create a date-picker with the DatePickerComponent.</p>
+<p>You can create a time-picker with the TimePickerComponent.</p>
+
 {{code-snippet name="time-picker.hbs"}}
 
+<div class="time-picker-container">
 {{! BEGIN-SNIPPET time-picker }}
 {{time-picker}}
 {{! END-SNIPPET }}
-
-
-
-{{code-snippet name="date-picker.hbs"}}
-
-<div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker }}
-  {{date-picker}}
-  {{! END-SNIPPET }}
 </div>
 
 <hr>
 
 <h2>select</h2>
-<p>Provide an action to the date-picker's <code>select</code> action</p>
+<p>Provide an action to the time-picker's <code>select</code> action</p>
 
 <p>controller/component.js</p>
-{{code-snippet name="date-picker-actions.js"}}
+{{code-snippet name="time-picker-actions.js"}}
 
 <p>template.hbs</p>
-{{code-snippet name="date-picker-select.hbs"}}
+{{code-snippet name="time-picker-select.hbs"}}
 
 
-<div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-select }}
-  {{date-picker select="selectDate"}}
+<div class="time-picker-container">
+  {{! BEGIN-SNIPPET time-picker-select }}
+  {{time-picker select="selectTime"}}
   {{! END-SNIPPET }}
 </div>
 <p><code>selection</code>: {{selection}}</p>
@@ -41,44 +34,43 @@
 <h2>output</h2>
 
 <p>
-  You can choose to output the date as a javascript <code>Date</code> object (the
+  You can choose to output the time as a javascript <code>Date</code> object (the
   default), a timestamp, or an <code>Ember.Object</code> with properties for
-  <code>year</code>, <code>month</code> and <code>date</code>.
+  <code>hour</code> and <code>min</code>.
 </p>
 
 <h3><code>output="date"</code></h3>
 <p>A javascript <code>Date()</code> object. This is the default.</p>
-{{code-snippet name="date-picker-output-date.hbs"}}
+{{code-snippet name="time-picker-output-date.hbs"}}
 
-<div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-output-date }}
-  {{date-picker output="date" select="selectDate"}}
+<div class="time-picker-container">
+  {{! BEGIN-SNIPPET time-picker-output-date }}
+  {{time-picker output="date" select="selectTime"}}
   {{! END-SNIPPET }}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
 <h3><code>output="timestamp"</code></h3>
 <p>An Integer timestamp.  Number of seconds.</p>
-{{code-snippet name="date-picker-output-timestamp.hbs"}}
+{{code-snippet name="time-picker-output-timestamp.hbs"}}
 
-<div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-output-timestamp }}
-  {{date-picker output="timestamp" select="selectDate"}}
+<div class="time-picker-container">
+  {{! BEGIN-SNIPPET time-picker-output-timestamp }}
+  {{time-picker output="timestamp" select="selectTime"}}
   {{! END-SNIPPET }}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
 <h3><code>output="object"</code></h3>
-<p>An <code>Ember.Object</code> with <code>date</code>, <code>month</code> and <code>year</code> properties.</p>
-{{code-snippet name="date-picker-output-object.hbs"}}
+<p>An <code>Ember.Object</code> with <code>hour</code> and <code>min</code> properties.</p>
+{{code-snippet name="time-picker-output-object.hbs"}}
 
-<div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-output-object }}
-  {{date-picker output="object" select="selectDate"}}
+<div class="time-picker-container">
+  {{! BEGIN-SNIPPET time-picker-output-object }}
+  {{time-picker output="object" select="selectTime"}}
   {{! END-SNIPPET }}
 </div>
 <p>
-  <code>selection.date</code>: {{selection.date}}<br>
-  <code>selection.month</code>: {{selection.month}} (<code>month</code> counts from 0)<br>
-  <code>selection.year</code>: {{selection.year}}
+  <code>selection.hour</code>: {{selection.hour}}<br>
+  <code>selection.min</code>: {{selection.min}}
 </p>
