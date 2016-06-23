@@ -289,7 +289,13 @@ export default Ember.Component.extend({
           break;
       }
     }
-    this.sendAction('select', day);
+    
+    if (this.get('select')) {
+      this.sendAction('select', day);
+    } else {
+      this.set('selectedDate', day)
+    }
+    
   },
 
   /**
