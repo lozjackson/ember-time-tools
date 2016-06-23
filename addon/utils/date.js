@@ -81,10 +81,14 @@ export default Ember.Object.extend({
     @param {Object} date
   */
   setDate(date) {
-    if (typeof date === 'number') {
-      date = new Date(date);
-    } else if (typeof date === 'string') {
-      date = new Date(date.replace(/-/g, '/'));
+    if (Ember.typeOf(date) !== 'date') {
+      if (Ember.typeOf(date) === 'number') {
+        date = new Date(date);
+      } else if (Ember.typeOf(date) === 'string') {
+        date = new Date(date.replace(/-/g, '/'));
+      } else if (Ember.typeOf(date) === 'instance') {
+        date = new Date(date.get('year'), date.get('month'), date.get('date'));
+      }
     }
     return this._setDate(date);
   },
