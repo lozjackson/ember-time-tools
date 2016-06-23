@@ -196,6 +196,11 @@ export default Ember.Component.extend({
     return weeksArray;
   }),
 
+   /**
+    @property startDay
+    @type {Integer}
+    @private
+  */
   startDay: computed( 'year', 'month', 'weekStart', function () {
     let { month, year } = this.getProperties('month', 'year'),
       newCal = new Date(year, month, 1),
