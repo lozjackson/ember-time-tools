@@ -80,12 +80,12 @@ export default Ember.Component.extend({
     @default 6
   */
   numberOfWeeks: 6,
-  
+
    /**
     ### Output
-    
+
     Options:
-    
+
     * date - javascript `Date` object.
     * timestamp - number of seconds.
     * object - `Ember.Object` with `year`, `month` and `date` properties.
@@ -292,13 +292,13 @@ export default Ember.Component.extend({
           break;
       }
     }
-    
+
     if (this.get('select')) {
       this.sendAction('select', day);
     } else {
       this.set('selectedDate', day)
     }
-    
+
   },
 
   /**
