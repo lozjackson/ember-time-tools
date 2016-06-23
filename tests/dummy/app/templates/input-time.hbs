@@ -1,7 +1,38 @@
 <h2><code>&#123;&#123;input-time&#125;&#125;</code></h2>
 
+<p>
+  The InputDateComponent provides an <code>input</code> element and a <a href="date-picker">DatePickerComponent</a> in one.
+</p>
 {{code-snippet name="input-time.hbs"}}
 
 {{! BEGIN-SNIPPET input-time }}
 {{input-time}}
 {{! END-SNIPPET }}
+
+
+<h2><code>&#123;&#123;input-date&#125;&#125;</code></h2>
+
+
+{{code-snippet name="input-date.hbs"}}
+
+{{! BEGIN-SNIPPET input-date }}
+{{input-date}}
+{{! END-SNIPPET }}
+
+<hr>
+
+<h2>value</h2>
+
+<p>
+  You can bind to the <code>value</code> property of the InputDateComponent as you would with any HTML <code>input</code> element.
+</p>
+
+{{code-snippet name="input-date-value.hbs"}}
+
+{{! BEGIN-SNIPPET input-date-value }}
+{{input-date value=date}}
+{{! END-SNIPPET }}
+
+<p>
+  <code>date</code>:{{date}}
+</p>
