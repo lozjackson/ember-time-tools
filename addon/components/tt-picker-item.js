@@ -37,12 +37,23 @@ export default Ember.Component.extend({
   */
   daySelected: computed( 'selectedDate', 'model.year', 'model.month', 'model.date', function () {
     let selectedDate = this.get('selectedDate');
-    if (typeof selectedDate === 'string') {
-      selectedDate = selectedDate.replace(/-/g, '/');
+    let selectedDateType = Ember.typeOf(selectedDate);
+    let selected;
+
+    if (selectedDateType === 'date') {
+      selected = selectedDate;
+    } else {
+      if (selectedDateType === 'number') {
+        selected = new Date(selectedDate);
+      } else if (selectedDateType === 'string') {
+        selected = new Date(selectedDate.replace(/-/g, '/'));
+      } else if (selectedDateType === 'instance') {
+        selected = new Date(selectedDate.get('year'), selectedDate.get('month'), selectedDate.get('date'));
+      }
     }
-    let selected = new Date(selectedDate);
+
     let model = this.get('model');
-    if (!model) { return false; }
+    if (!selected || !model) { return false; }
     let { year, month, date } = model.getProperties('year', 'month', 'date');
 		return (selected.getDate() === date && selected.getMonth() === month && selected.getFullYear() === year) ? true : false;
 	}),
