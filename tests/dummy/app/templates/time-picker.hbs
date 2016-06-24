@@ -31,46 +31,78 @@
 
 <hr>
 
+<h2>seletedTime</h2>
+
+<p>
+  To highlight the selected time, you can bind the <code>selectedTime</code>
+  property to the <code>selection</code>.
+</p>
+
+{{code-snippet name="time-picker-selected-time.hbs"}}
+
+<div class="time-picker-container">
+  {{! BEGIN-SNIPPET time-picker-selected-time }}
+  {{time-picker selectedTime=selection select="selectTime"}}
+  {{! END-SNIPPET }}
+</div>
+<p><code>selection</code>: {{selection}}</p>
+
+<hr>
+
 <h2>output</h2>
 
 <p>
   You can choose to output the time as a javascript <code>Date</code> object (the
   default), a timestamp, or an <code>Ember.Object</code> with properties for
-  <code>hours</code> and <code>mins</code>.
+  <code>hour</code> and <code>minute</code>.
 </p>
 
-<h3><code>output="date"</code></h3>
-<p>A javascript <code>Date()</code> object. This is the default.</p>
-{{code-snippet name="time-picker-output-date.hbs"}}
+<ul>
+  <li>
+    <h3><code>output="date"</code></h3>
+    <p>A javascript <code>Date()</code> object. This is the default.</p>
+    {{code-snippet name="time-picker-output-date.hbs"}}
 
-<div class="time-picker-container">
-  {{! BEGIN-SNIPPET time-picker-output-date }}
-  {{time-picker output="date" select="selectTime"}}
-  {{! END-SNIPPET }}
-</div>
-<p><code>selection</code>: {{selection}}</p>
+    <div class="time-picker-container">
+      {{! BEGIN-SNIPPET time-picker-output-date }}
+      {{time-picker output="date" select="selectTime"}}
+      {{! END-SNIPPET }}
+    </div>
+    <p><code>selection</code>: {{selection}}</p>
+    <hr>
+  </li>
+  <li>
+    <h3><code>output="timestamp"</code></h3>
+    <p>An Integer timestamp.  Number of seconds.</p>
+    {{code-snippet name="time-picker-output-timestamp.hbs"}}
 
-<h3><code>output="timestamp"</code></h3>
-<p>An Integer timestamp.  Number of seconds.</p>
-{{code-snippet name="time-picker-output-timestamp.hbs"}}
+    <div class="time-picker-container">
+      {{! BEGIN-SNIPPET time-picker-output-timestamp }}
+      {{time-picker output="timestamp" select="selectTime"}}
+      {{! END-SNIPPET }}
+    </div>
+    <p><code>selection</code>: {{selection}}</p>
+    <hr>
+  </li>
+  <li>
+    <h3><code>output="object"</code></h3>
+    <p>An <code>Ember.Object</code> with <code>hour</code> and <code>minute</code> properties.</p>
+    {{code-snippet name="time-picker-output-object.hbs"}}
 
-<div class="time-picker-container">
-  {{! BEGIN-SNIPPET time-picker-output-timestamp }}
-  {{time-picker output="timestamp" select="selectTime"}}
-  {{! END-SNIPPET }}
-</div>
-<p><code>selection</code>: {{selection}}</p>
+    <div class="time-picker-container">
+      {{! BEGIN-SNIPPET time-picker-output-object }}
+      {{time-picker output="object" select="selectTime"}}
+      {{! END-SNIPPET }}
+    </div>
+    <p>
+      <code>selection.hour</code>: {{selection.hour}}<br>
+      <code>selection.minute</code>: {{selection.minute}}
+    </p>
+  </li>
+</ul>
 
-<h3><code>output="object"</code></h3>
-<p>An <code>Ember.Object</code> with <code>hours</code> and <code>mins</code> properties.</p>
-{{code-snippet name="time-picker-output-object.hbs"}}
+<hr>
 
-<div class="time-picker-container">
-  {{! BEGIN-SNIPPET time-picker-output-object }}
-  {{time-picker output="object" select="selectTime"}}
-  {{! END-SNIPPET }}
-</div>
-<p>
-  <code>selection.hours</code>: {{selection.hours}}<br>
-  <code>selection.mins</code>: {{selection.mins}}
-</p>
+<h2>close</h2>
+
+{{time-picker-close}}

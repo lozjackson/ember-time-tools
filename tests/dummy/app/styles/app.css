@@ -26,6 +26,16 @@ code {
   height: 500px;
   /*margin: 10px;*/
 }
-.date-picker-container {
+.date-picker-container,
+.time-picker-container {
   height: 350px;
+}
+li > hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #efefef;
+  margin: 1em 0;
+  padding: 0;
+  width: 70%;
 }
