@@ -8,6 +8,12 @@ p {
   line-height: 1.5;
   vertical-align: baseline;
 }
+p.version {
+  float: right;
+  font-size: 0.7rem;
+  margin: 10px;
+  padding: 0px;
+}
 code {
   color: #333;
   background: rgba(0,0,0,0.04);
