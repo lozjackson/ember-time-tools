@@ -50,8 +50,8 @@ test('timeIsSelected', function(assert) {
 
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 15,
-    mins: 30
+    hour: 15,
+    minute: 30
   })));
   assert.equal(component.get('timeIsSelected'), false);
 
@@ -80,8 +80,8 @@ test('displayText 24 hour clock', function(assert) {
   });
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 15,
-    mins: 30
+    hour: 15,
+    minute: 30
   })));
   assert.equal(component.get('displayText'), '15:30');
 });
@@ -92,8 +92,8 @@ test('displayText 24 hour clock should add leading zeros to the hour', function(
   });
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 2,
-    mins: 30
+    hour: 2,
+    minute: 30
   })));
   assert.equal(component.get('displayText'), '02:30');
 });
@@ -104,8 +104,8 @@ test('displayText 24 hour clock should add leading zeros to the minutes', functi
   });
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 12,
-    mins: 3
+    hour: 12,
+    minute: 3
   })));
   assert.equal(component.get('displayText'), '12:03');
 });
@@ -114,8 +114,8 @@ test('displayText 12 hour clock converts to 12-hour time', function(assert) {
   var component = this.subject();
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 22,
-    mins: 30
+    hour: 22,
+    minute: 30
   })));
   assert.equal(component.get('displayText'), '10:30 pm');
 });
@@ -124,8 +124,8 @@ test('displayText 12 hour clock converts 00:00 to 12:00 am', function(assert) {
   var component = this.subject();
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 0,
-    mins: 0
+    hour: 0,
+    minute: 0
   })));
   assert.equal(component.get('displayText'), '12:00 am');
 });
@@ -134,8 +134,8 @@ test('displayText 12 hour clock converts 12:00 to 12:00 pm', function(assert) {
   var component = this.subject();
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 12,
-    mins: 0
+    hour: 12,
+    minute: 0
   })));
   assert.equal(component.get('displayText'), '12:00 pm');
 });
@@ -144,8 +144,8 @@ test('displayText 12 hour clock should display meridian', function(assert) {
   var component = this.subject();
   this.render();
   run(() => component.set('model', Ember.Object.create({
-    hours: 10,
-    mins: 30
+    hour: 10,
+    minute: 30
   })));
   assert.equal(component.get('displayText'), '10:30 am');
 });
