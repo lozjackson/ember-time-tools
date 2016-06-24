@@ -264,11 +264,11 @@ export default Ember.Component.extend({
   /**
     `day` is an object with `date`, `month` and `year` properties.
 
-    @method _selectDay
+    @method _selectDate
     @param {Object} day
     @private
   */
-  _selectDay(day) {
+  _selectDate(day) {
     let output = this.get('output');
     let date = new Date(day.year, day.month, day.date);
 
@@ -326,7 +326,7 @@ export default Ember.Component.extend({
       @param {Object} day
     */
     selectDay(day) {
-      this._selectDay(day)
+      this._selectDate(day)
     },
 
     /**

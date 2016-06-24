@@ -54,6 +54,13 @@ test('numberOfWeeks should be 6', function(assert) {
   assert.equal(component.get('numberOfWeeks'), 6);
 });
 
+test('output should be date', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('output'), 'date');
+});
+
 test('year should be viewDate.year', function(assert) {
   assert.expect(2);
   var component = this.subject();
@@ -150,6 +157,68 @@ test('setViewDate() method', function(assert) {
   run(() => component.setViewDate('1982/5/13'));
   assert.equal(component.get('month'), 4);
   assert.equal(component.get('year'), 1982);
+});
+
+test('_selectDate() method - select action', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24);
+  let component = this.subject({
+    select: time => assert.deepEqual(time, date)
+  });
+  this.render();
+  component._selectDate({year: 1977, month: 7, date: 24});
+});
+
+test('_selectDate() method - selectedDate property', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24);
+
+  let component = this.subject();
+  this.render();
+  run(() => component._selectDate({year: 1977, month: 7, date: 24}));
+  assert.deepEqual(component.get('selectedDate'), date);
+});
+
+test('_selectDate() method - output = date', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24);
+  let component = this.subject({
+    output: 'date',
+    select: time => assert.deepEqual(time, date)
+  });
+  this.render();
+  component._selectDate({year: 1977, month: 7, date: 24});
+});
+
+test('_selectTime() method - output = timestamp', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24);
+
+  let component = this.subject({
+    output: 'timestamp',
+    select: time => assert.deepEqual(time, date.getTime())
+  });
+  this.render();
+  component._selectDate({year: 1977, month: 7, date: 24});
+});
+
+test('_selectDate() method - output = object', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24);
+  let object = Ember.Object.create({
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    date: date.getDate(),
+    _date: date,
+    timestamp: date.getTime()
+  });
+
+  let component = this.subject({
+    output: 'object',
+    select: time => assert.deepEqual(time, object)
+  });
+  this.render();
+  component._selectDate({year: 1977, month: 7, date: 24});
 });
 
 test('_prevMonth() method', function(assert) {
