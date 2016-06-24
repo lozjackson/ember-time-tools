@@ -1,11 +1,11 @@
 <header>
   <div class="top-panel">
     <div class="date">{{monthName}} {{year}}</div>
-    <div class="navigation">
-      <button {{action "prevMonth"}}>{{svg-triangle direction="left"}}</button>
-      <button {{action "today"}}>Today</button>
-      <button {{action "nextMonth"}}>{{svg-triangle direction="right"}}</button>
-    </div>
+    {{#uic-button-group class="navigation extra-small"}}
+      {{#uic-button action="prevMonth"}}{{svg-triangle direction="left"}}{{/uic-button}}
+      {{#uic-button action="today"}}Today{{/uic-button}}
+      {{#uic-button action="nextMonth"}}{{svg-triangle direction="right"}}{{/uic-button}}
+    {{/uic-button-group}}
   </div>
   <div class="day-names-row">
     {{#each dayNames as |dayName|}}
