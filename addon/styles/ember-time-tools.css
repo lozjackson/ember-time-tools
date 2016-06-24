@@ -32,7 +32,23 @@
 }
 
 .tt-calendar-month > header > .top-panel > .navigation {
-  float:right;
+  float: right;
+}
+
+.tt-calendar-month > header > .top-panel > .navigation button:focus {
+  outline: none;
+}
+
+.tt-calendar-month > header > .top-panel > .navigation button {
+	float: none;
+	margin: 0px;
+	background: none;
+	cursor: pointer;
+	border:  none;
+}
+
+.tt-calendar-month > header > .top-panel > .navigation button:hover {
+	border: none;
 }
 
 .tt-calendar-month > header > .day-names-row {
@@ -320,6 +336,10 @@ overflow: hidden;
 
 .tt-date-picker > .header > .top-panel > .navigation button:hover {
 	border: none;
+}
+
+.tt-date-picker > .header > .top-panel > .navigation button:focus {
+  outline: none;
 }
 
 
