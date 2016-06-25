@@ -53,7 +53,6 @@ export default Ember.Component.extend({
     if (Ember.typeOf(selectedTime) === 'null') { return false; }
 
     selectedTime = new Date(selectedTime);
-      Ember.Logger.debug('message', selectedTime, this.get('timeSelected'));
     return (selectedTime.getHours() === hour && selectedTime.getMinutes() === minute) ? true : false;
   }),
 
