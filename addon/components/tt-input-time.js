@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   /**
     @property showTimePicker
     @type {Boolean}
+    @private
     @default false
   */
   showTimePicker: false,

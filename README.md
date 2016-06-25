@@ -1,26 +1,50 @@
 # Ember-time-tools
 
-This README outlines the details of collaborating on this Ember addon.
+This Ember-cli addon provides date and time related tools for Ember applications.
+The primary components consist of a date-picker, time-picker and a calendar.
+
+## Demo
+
+http://lozjackson.github.io/ember-time-tools/
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+* `ember install ember-time-tools`
 
-## Running
+## Use
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+##DatePicker
 
-## Running Tests
+Create a DatePickerComponent using the following example:
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```
+{{date-picker selectedDate=selectedDate select="select"}}
+```
 
-## Building
+You can use the InputDateComponent to create a html `input` element and a DatePickerComponent in one.
 
-* `ember build`
+```
+{{input-date value=date}}
+```
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+##TimePicker
+
+Create a TimePickerComponent using the following example:
+
+```
+{{time-picker selectedTime=selectedTime select="select"}}
+```
+
+You can use the InputTimeComponent to create a html `input` element and a TimePickerComponent in one.
+
+```
+{{input-time value=time}}
+```
+
+##Calendar
+
+You can create a CalendarMonthComponent using the following example:
+
+```
+{{calendar-month events=model}}
+```

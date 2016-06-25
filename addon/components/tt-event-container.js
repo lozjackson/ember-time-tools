@@ -14,12 +14,14 @@ export default Ember.Component.extend({
   /**
     @property classNames
     @type {Array}
+    @private
     @default `[ 'event-container' ]`
   */
   classNames: [ 'event-container' ],
 
   /**
     @event click
+    @private
   */
   click() {
     this.select( null );

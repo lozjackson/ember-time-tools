@@ -76,6 +76,7 @@ export default Ember.Component.extend({
     @property sortProperties
     @type {Array}
     @default `['start:asc', 'end:asc']`
+    @private
   */
   sortProperties: ['start:asc', 'end:asc'],
 
@@ -84,6 +85,7 @@ export default Ember.Component.extend({
 
     @property sortedEvents
     @type {Array}
+    @private
   */
   sortedEvents: computed.sort('events', 'sortProperties'),
 
@@ -117,6 +119,7 @@ export default Ember.Component.extend({
 
     @property year
     @type {Number}
+    @private
   */
   year: computed( 'selectedDate', function() {
     var date = this.get('selectedDate') || new Date();
@@ -128,6 +131,7 @@ export default Ember.Component.extend({
 
     @property month
     @type {Number}
+    @private
   */
   month: computed( 'selectedDate', function() {
     var date = this.get('selectedDate') || new Date();
@@ -139,6 +143,7 @@ export default Ember.Component.extend({
 
     @property monthName
     @type {String}
+    @private
   */
   monthName: computed( 'month', 'monthNames', function () {
     var { month, monthNames } = this.getProperties([ 'month', 'monthNames' ]);
@@ -151,6 +156,7 @@ export default Ember.Component.extend({
 
     @property startDay
     @type {Number}
+    @private
   */
   startDay: computed( 'year', 'month', function () {
     var month = this.get('month'),
@@ -168,6 +174,7 @@ export default Ember.Component.extend({
   /**
     @property weeks
     @type {Array}
+    @private
   */
   weeks: computed( 'month', 'year', 'startDay', function () {
 
@@ -242,6 +249,7 @@ export default Ember.Component.extend({
 
     @method getLastMonth
     @param {Integer} month starting at 0 = January
+    @private
     @return {Integer}
   */
   getLastMonth(month) {
@@ -267,6 +275,7 @@ export default Ember.Component.extend({
 
     @method getDaysInMonth
     @param {Object} date
+    @private
     @return {Integer} The number of days in the month
   */
   getDaysInMonth(date) {
@@ -289,6 +298,7 @@ export default Ember.Component.extend({
 
     @method select
     @param {Object} model
+    @private
   */
   select( model ) {
     this.set( 'selected', model );
@@ -302,6 +312,7 @@ export default Ember.Component.extend({
     The function will be called when an event is double-clicked.
 
     @method dblClick
+    @private
     @return {Boolean} false
   */
   dblClick() {
@@ -310,6 +321,7 @@ export default Ember.Component.extend({
 
   /**
     @method setToday
+    @private
     @param {Object} date (optional) a `Date` object.
   */
   setToday: function (date) {
