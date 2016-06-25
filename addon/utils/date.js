@@ -77,7 +77,7 @@ export default Ember.Object.extend({
     dateObject.setDate(new Date(2016, 6, 22));
     dateObject.setDate(1469142000000);
     ```
-    @method _setDate
+    @method setDate
     @param {Object} date
     @return {Object} A javascript `Date` object
   */

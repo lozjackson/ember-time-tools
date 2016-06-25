@@ -99,7 +99,6 @@ export default Ember.Component.extend({
   /**
     @property selectedDate
     @type {Number}
-    @private
   */
   selectedDate: null,
 

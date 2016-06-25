@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   /**
     @property classNames
     @type {Array}
+    @private
     @default `[ 'day-cell' ]`
   */
   classNames: [ 'day-cell' ],
@@ -24,6 +25,7 @@ export default Ember.Component.extend({
   /**
     @property classNameBindings
     @type {Array}
+    @private
     @default `[ 'today:calendar-today', 'weekend' ]`
   */
   classNameBindings: [ 'today:calendar-today', 'weekend' ],
@@ -49,6 +51,7 @@ export default Ember.Component.extend({
 
     @property date
     @type {Number}
+    @private
   */
   date: alias('day.date'),
 
@@ -57,6 +60,7 @@ export default Ember.Component.extend({
 
     @property month
     @type {Number}
+    @private
   */
   month: alias('day.month'),
 
@@ -65,6 +69,7 @@ export default Ember.Component.extend({
 
     @property year
     @type {Number}
+    @private
   */
   year: alias('day.year'),
 
@@ -73,6 +78,7 @@ export default Ember.Component.extend({
 
     @property today
     @type {Boolean}
+    @private
   */
   today: computed( 'clock.hour', 'date', 'month', 'year', function () {
     var today = new Date();
@@ -85,6 +91,7 @@ export default Ember.Component.extend({
 
     @property weekend
     @type {Boolean}
+    @private
   */
   weekend: computed( 'date', 'month', 'year', function () {
     var date = new Date(this.get('year'), this.get('month'), this.get('date'));

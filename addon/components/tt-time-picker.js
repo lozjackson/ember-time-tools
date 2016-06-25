@@ -81,6 +81,7 @@ export default Ember.Component.extend({
   /**
     @method _selectTime
     @param {Object} time A POJO with properties for `hour` and `minute`.
+    @private
   */
   _selectTime(time) {
     let output = this.get('output');

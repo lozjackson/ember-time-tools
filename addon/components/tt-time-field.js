@@ -14,6 +14,7 @@ export default Ember.TextField.extend({
   /**
     @property tagName
     @type {String}
+    @private
     @default input
   */
   tagName: 'input',
@@ -21,6 +22,7 @@ export default Ember.TextField.extend({
   /**
     @property classNames
     @type {Array}
+    @private
     @default ['no-select', 'tt-time-field']
   */
   classNames: ['no-select', 'tt-time-field'],
@@ -34,6 +36,7 @@ export default Ember.TextField.extend({
 
   /**
     @event click
+    @private
   */
   click(e) {
     e.target.blur();
@@ -42,6 +45,7 @@ export default Ember.TextField.extend({
 
   /**
     @event keyPress
+    @private
   */
   keyPress() {
     return false;

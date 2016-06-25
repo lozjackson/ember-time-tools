@@ -57,12 +57,14 @@ export default Ember.Component.extend({
   /**
     @property layout
     @type {String}
+    @private
   */
   layout: layout,
 
   /**
     @property classNames
     @type {Array}
+    @private
     @default `[ 'week-row' ]`
   */
   classNames: [ 'week-row' ],
@@ -91,12 +93,14 @@ export default Ember.Component.extend({
 
     @property days
     @type {Array}
+    @private
   */
   days: null,
 
   /**
     @property events
     @type {data_type}
+    @private
   */
   events: computed('model.@each.start', 'model.@each.end', 'days.[]', function () {
     return getEvents( this.get('model'), this.get('days') );

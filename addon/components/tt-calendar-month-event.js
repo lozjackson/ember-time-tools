@@ -89,30 +89,35 @@ export default Ember.Component.extend({
 
     @property event
     @type {Object}
+    @private
   */
   event: alias('model.event'),
 
   /**
     @property eventStart
     @type {Number}
+    @private
   */
   eventStart: alias('event.start'),
 
   /**
     @property eventEnd
     @type {Number}
+    @private
   */
   eventEnd: alias('event.end'),
 
   /**
     @property startOfWeek
     @type {Object}
+    @private
   */
   startOfWeek: alias('model.week.start'),
 
   /**
     @property endOfWeek
     @type {Object}
+    @private
   */
   endOfWeek: alias('model.week.end'),
 
@@ -121,6 +126,7 @@ export default Ember.Component.extend({
 
     @property description
     @type {String}
+    @private
   */
   description: alias('event.description'),
 
@@ -129,6 +135,7 @@ export default Ember.Component.extend({
 
     @property continuedLeft
     @type {Boolean}
+    @private
   */
   continuedLeft: computed( 'eventStart', 'startOfWeek', function () {
     var { eventStart, startOfWeek } = this.getProperties([ 'eventStart', 'startOfWeek' ]);
@@ -140,6 +147,7 @@ export default Ember.Component.extend({
 
     @property continuedRight
     @type {Boolean}
+    @private
   */
   continuedRight: computed( 'eventEnd', 'endOfWeek', function () {
     var { eventEnd, endOfWeek } = this.getProperties([ 'eventEnd', 'endOfWeek' ]);
@@ -150,11 +158,13 @@ export default Ember.Component.extend({
     Alias of `model.event.hover`
     @property hover
     @type {Boolean}
+    @private
   */
   hover: alias('event.hover'),
 
   /**
     @event click
+    @private
   */
   click() {
     var { event, select } = this.getProperties([ 'event', 'select' ]);
@@ -166,6 +176,7 @@ export default Ember.Component.extend({
 
   /**
     @event doubleClick
+    @private
   */
   doubleClick: function () {
     var { event, dblClick } = this.getProperties([ 'event', 'dblClick' ]);
@@ -177,6 +188,7 @@ export default Ember.Component.extend({
 
   /**
     @event mouseEnter
+    @private
   */
   mouseEnter: function () {
     this.set( 'hover', true );
@@ -184,6 +196,7 @@ export default Ember.Component.extend({
 
   /**
     @event mouseLeave
+    @private
   */
 	mouseLeave: function () {
     this.set( 'hover', false );
