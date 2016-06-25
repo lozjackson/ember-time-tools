@@ -8,7 +8,9 @@ moduleForComponent('tt-calendar-month', 'Unit | Component | tt calendar month', 
     'component:svg-triangle',
     'component:tt-calendar-week-row',
     'component:tt-calendar-weekrow-day',
-    'component:tt-event-container'
+    'component:tt-event-container',
+    'component:uic-button-group',
+    'component:uic-button'
   ],
   unit: true
 });

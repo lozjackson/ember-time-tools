@@ -7,7 +7,8 @@ moduleForComponent('tt-date-picker', 'Unit | Component | tt date picker', {
   // Specify the other units that are required for this test
   needs: [
     'component:tt-picker-item',
-    'component:svg-triangle'
+    'component:svg-triangle',
+    'component:uic-close-button'
   ],
   unit: true
 });

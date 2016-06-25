@@ -3,7 +3,10 @@ import { moduleForComponent, test } from 'ember-qunit';
 
 const { run } = Ember;
 moduleForComponent('tt-time-picker', 'Unit | Component | tt time picker', {
-  needs: ['component:tt-time-slot'],
+  needs: [
+    'component:tt-time-slot',
+    'component:uic-close-button'
+  ],
   unit: true
 });
 

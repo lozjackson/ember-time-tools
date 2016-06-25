@@ -10,6 +10,7 @@ moduleForComponent('tt-input-date', 'Unit | Component | tt input date', {
     'component:tt-date-picker',
     'component:tt-picker-item',
     'component:svg-triangle',
+    'component:uic-close-button',
     'helper:format-date'
   ],
   unit: true
