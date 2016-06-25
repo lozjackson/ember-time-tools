@@ -1,26 +1,16 @@
 # Ember-time-tools
 
-This README outlines the details of collaborating on this Ember addon.
+This Ember-cli addon provides date and time related tools for Ember applications.
+The primary components consist of a date-picker, time-picker and a calendar.
+
+## Demo
+
+http://lozjackson.github.io/ember-time-tools/
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+* `ember install ember-time-tools`
 
-## Running
+## Use
 
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+See the [demo](http://lozjackson.github.io/ember-time-tools/)
