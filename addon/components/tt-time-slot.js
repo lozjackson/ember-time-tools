@@ -8,7 +8,7 @@ const { computed } = Ember;
 
 /**
   @class TimeSlotComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 
@@ -45,11 +45,15 @@ export default Ember.Component.extend({
     @type {Boolean}
     @private
   */
-  timeIsSelected: Ember.computed('timeSelected', 'model.hours', 'model.mins', function() {
-    let hours = this.get('model.hours'),
-      mins = this.get('model.mins'),
-      selectedTime = new Date(this.get('timeSelected'));
-    return (selectedTime.getHours() === hours && selectedTime.getMinutes() === mins) ? true : false;
+  timeIsSelected: Ember.computed('timeSelected', 'model.hour', 'model.minute', function() {
+    let hour = this.get('model.hour'),
+      minute = this.get('model.minute'),
+      selectedTime = this.get('timeSelected');
+
+    if (Ember.typeOf(selectedTime) === 'null') { return false; }
+
+    selectedTime = new Date(selectedTime);
+    return (selectedTime.getHours() === hour && selectedTime.getMinutes() === minute) ? true : false;
   }),
 
   /**
@@ -57,39 +61,39 @@ export default Ember.Component.extend({
     @type {String}
     @private
   */
-  displayText: Ember.computed( 'model.hours', 'model.mins', 'militaryTime', function () {
-    let hours = this.get('model.hours'),
-      mins = this.get('model.mins'),
+  displayText: Ember.computed( 'model.hour', 'model.minute', 'militaryTime', function () {
+    let hour = this.get('model.hour'),
+      minute = this.get('model.minute'),
       militaryTime = this.get('militaryTime'),
       string = '',
       meridian = '';
 
-    if (isNaN(hours)) {
+    if (isNaN(hour)) {
       return string;
     }
 
     if (!militaryTime) {
-      meridian = (hours < 12) ? ' am':' pm';
+      meridian = (hour < 12) ? ' am':' pm';
 
-      if (hours === 0) {
-        hours = 12;
-      } else if (hours > 12) {
-        hours -= 12;
+      if (hour === 0) {
+        hour = 12;
+      } else if (hour > 12) {
+        hour -= 12;
       }
     }
 
-    if (hours < 10) {
-      hours = `0${hours}`; //'0' + hours;
+    if (hour < 10) {
+      hour = `0${hour}`;
     }
 
-    if (!mins || mins < 0 || mins > 59) {
-      mins = 0;
+    if (!minute || minute < 0 || minute > 59) {
+      minute = 0;
     }
 
-    if (mins < 10) {
-      mins = `0${mins}`; //'0' + mins;
+    if (minute < 10) {
+      minute = `0${minute}`;
     }
-    return `${hours}:${mins}${meridian}`;// hours + ':' + mins + meridian;
+    return `${hour}:${minute}${meridian}`;
   }),
 
   /**

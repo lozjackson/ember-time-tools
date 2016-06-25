@@ -8,7 +8,7 @@ import layout from '../templates/components/tt-input-time';
   This component is a container for a TimeFieldComponent and a TimePickerComponent.
 
   @class InputTimeComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 
@@ -30,18 +30,12 @@ export default Ember.Component.extend({
   classNames: ['input-time'],
 
   /**
-    time should be an object with `hours` and `mins` properties
-
-    `{ hours: 15, mins: 30 }` // 15:30
-
     @method _selectTime
-    @param {Object} time
+    @param {Object} date A javascript `Date` object
     @private
   */
-  _selectTime(time) {
-    let date = new Date(0);
-    date.setHours(time.hours);
-    date.setMinutes(time.mins);
+  _selectTime(date) {
+    Ember.assert(`'date' should be a javascript 'Date()' object.`, Ember.typeOf(date) === 'date');
     this.set('value', date);
   },
 
@@ -66,12 +60,8 @@ export default Ember.Component.extend({
     /**
       ACTION - Select time
 
-      time should be an object with `hours` and `mins` properties
-
-      `{ hours: 15, mins: 30 }` // 15:30
-
       @method selectTime
-      @param {Object} time
+      @param {Object} time A javascript `Date` object
     */
     selectTime(time) {
       this._selectTime(time);

@@ -1,5 +1,25 @@
-<div class="panel">
-  <div style="height: 500px; width: 100%; position:relative;">
-    {{tt-calendar-month events=model}}
-  </div>
+<h2><code>&#123;&#123;calendar-month&#125;&#125;</code></h2>
+
+<p>You can create a calendar using the following code: </p>
+{{code-snippet name="calendar-month-basic.hbs"}}
+
+<div class="dashboard-calendar">
+  {{! BEGIN-SNIPPET calendar-month-basic}}
+  {{calendar-month}}
+  {{! END-SNIPPET }}
+</div>
+
+<h2>Events</h2>
+<p>Provide an array of events:</p>
+<p>model.js</p>
+{{code-snippet name="calendar-event-model.js"}}
+<p>route.js</p>
+{{code-snippet name="calendar-month-route.js"}}
+<p>template.hbs</p>
+{{code-snippet name="calendar-events-example.hbs"}}
+
+<div class="calendar-container">
+  {{! BEGIN-SNIPPET calendar-events-example}}
+  {{calendar-month events=model}}
+  {{! END-SNIPPET }}
 </div>

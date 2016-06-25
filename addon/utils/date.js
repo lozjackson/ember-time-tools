@@ -79,20 +79,22 @@ export default Ember.Object.extend({
     ```
     @method _setDate
     @param {Object} date
+    @return {Object} A javascript `Date` object
   */
   setDate(date) {
-    if (typeof date === 'number') {
-      date = new Date(date);
-    } else if (typeof date === 'string') {
-      date = new Date(date.replace(/-/g, '/'));
+    if (Ember.typeOf(date) === 'string') {
+      date = date.replace(/-/g, '/');
+    } else if (Ember.typeOf(date) === 'instance') {
+      date = new Date(date.get('year'), date.get('month'), date.get('date'));
     }
-    return this._setDate(date);
+    return this._setDate(new Date(date));
   },
 
   /**
     @method _setDate
     @param {Object} date A javascript `Date` object
     @private
+    @return {Object} A javascript `Date` object
   */
   _setDate(date) {
     if (!date) { return; }

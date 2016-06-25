@@ -10,6 +10,7 @@ moduleForComponent('tt-input-date', 'Unit | Component | tt input date', {
     'component:tt-date-picker',
     'component:tt-picker-item',
     'component:svg-triangle',
+    'component:uic-close-button',
     'helper:format-date'
   ],
   unit: true
@@ -46,8 +47,9 @@ test('_selectDate() method', function(assert) {
   assert.expect(1);
   var component = this.subject();
   this.render();
-  run(() => component._selectDate({ year: 1977, month: 7, date: 24 }));
-  assert.deepEqual(component.get('value'), new Date(1977,7,24));
+  let date = new Date(1977,7,24);
+  run(() => component._selectDate(date));
+  assert.deepEqual(component.get('value'), date);
 });
 
 test('_closeDatePicker() method', function(assert) {

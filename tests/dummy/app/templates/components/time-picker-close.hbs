@@ -1,0 +1,23 @@
+<p>Provide an action to the time-picker's <code>close</code> action.</p>
+
+<p>controller/component.js</p>
+{{code-snippet name="time-picker-close-action.js"}}
+
+<p>template.hbs</p>
+{{code-snippet name="time-picker-close.hbs"}}
+
+<div class="time-picker-container">
+
+  {{! BEGIN-SNIPPET time-picker-close }}
+  {{#if showTimePicker}}
+    {{time-picker close="toggleTimePicker"}}
+  {{/if}}
+  {{! END-SNIPPET }}
+
+
+  {{#unless showTimePicker}}
+    {{#uic-button action="toggleTimePicker"}}
+      action="toggleTimePicker"
+    {{/uic-button}}
+  {{/unless}}
+</div>

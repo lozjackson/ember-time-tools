@@ -16,7 +16,7 @@ var Day = Ember.Object.extend({
 
 /**
   @class CalendarMonthComponent
-  @namespace Components
+  @namespace Calendar
 */
 export default Ember.Component.extend({
   layout,

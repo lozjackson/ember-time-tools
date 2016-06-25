@@ -8,6 +8,7 @@ moduleForComponent('tt-input-time', 'Unit | Component | tt input time', {
     'component:tt-time-field',
     'component:tt-time-picker',
     'component:tt-time-slot',
+    'component:uic-close-button',
     'helper:format-date'
   ],
   unit: true
@@ -44,7 +45,7 @@ test('_selectTime() method', function(assert) {
   date.setHours(15);
   date.setMinutes(30);
 
-  run(() => component._selectTime({ hours: 15, mins: 30 }));
+  run(() => component._selectTime(date));
   assert.deepEqual(component.get('value'), date);
 });
 
@@ -71,9 +72,9 @@ test('selectTime action', function(assert) {
   assert.expect(2);
   let component = this.subject();
   this.render();
-  component.set('_selectTime', (t) => assert.deepEqual(t, { hours: 15, mins: 30 }));
+  component.set('_selectTime', (t) => assert.deepEqual(t, { hour: 15, minute: 30 }));
   component.set('_closeTimePicker', () => assert.ok(true));
-  run(() => component.send('selectTime', { hours: 15, mins: 30 }));
+  run(() => component.send('selectTime', { hour: 15, minute: 30 }));
 });
 
 test('toggleTimePicker action', function(assert) {

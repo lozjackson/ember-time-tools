@@ -7,6 +7,7 @@ import DateObject from 'ember-time-tools/utils/date';
 
 const { computed } = Ember;
 const { readOnly } = computed;
+
 /*
   @param daysInMonth
     The number of days in each month.
@@ -36,36 +37,9 @@ function getDays(date) {
   }
 }
 
-// /*
-//   @method Today
-//     Generate today's date.  if the `date` param is provided then use that date.
-//
-//     Create an instance of Today. and it will have the properties date, day, month, year.
-//
-//     var today = new Today(); // 25/03/2015
-//     console.log(today.day); // 25
-// */
-// function Today (date) {
-//   if (!date) {
-//     this.date = new Date();
-//   } else {
-//     if (typeof date === 'number') {
-//       this.date = new Date(date);
-//     } else if (typeof date === 'string') {
-//       date = date.replace(/-/g, '/');
-//       this.date = new Date(date);
-//     }  else {
-//       this.date = date;
-//     }
-//   }
-//   this.year = this.date.getFullYear();
-//   this.month = this.date.getMonth();
-//   this.day = this.date.getDate();
-// }
-
 /**
   @class DatePickerComponent
-  @namespace DateTime
+  @namespace Date
 */
 export default Ember.Component.extend({
 
@@ -106,6 +80,21 @@ export default Ember.Component.extend({
     @default 6
   */
   numberOfWeeks: 6,
+
+   /**
+    ### Output
+
+    Options:
+
+    * date - javascript `Date` object.
+    * timestamp - number of seconds.
+    * object - `Ember.Object` with `year`, `month` and `date` properties.
+
+    @property output
+    @type {String}
+    @default 'date'
+  */
+  output: 'date',
 
   /**
     @property selectedDate
@@ -182,12 +171,7 @@ export default Ember.Component.extend({
       dailyNextMonth = 1,
       weeksArray = Ember.A(),
       daysOfWeek = this.get('daysOfWeek.length'),
-      {
-        month,
-        year,
-        numberOfWeeks,
-        startDay
-      } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
+      { month, year, numberOfWeeks, startDay } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
       daysInMonth = getDays({ year, month });
 
     for (intWeek = 0; intWeek < numberOfWeeks;  intWeek++) {
@@ -228,6 +212,11 @@ export default Ember.Component.extend({
     return weeksArray;
   }),
 
+   /**
+    @property startDay
+    @type {Integer}
+    @private
+  */
   startDay: computed( 'year', 'month', 'weekStart', function () {
     let { month, year } = this.getProperties('month', 'year'),
       newCal = new Date(year, month, 1),
@@ -273,12 +262,43 @@ export default Ember.Component.extend({
   },
 
   /**
-    @method _selectDay
+    `day` is an object with `date`, `month` and `year` properties.
+
+    @method _selectDate
     @param {Object} day
     @private
   */
-  _selectDay(day) {
-    this.sendAction('select', day);
+  _selectDate(day) {
+    let output = this.get('output');
+    let date = new Date(day.year, day.month, day.date);
+
+    if (output) {
+      switch(output) {
+        case 'date':
+          day = date;
+          break;
+        case 'timestamp':
+          day = date.getTime();
+          break;
+        case 'object':
+        default:
+          day = Ember.Object.create({
+            year: day.year,
+            month: day.month,
+            date: day.date,
+            _date: date,
+            timestamp: date.getTime()
+          });
+          break;
+      }
+    }
+
+    if (this.get('select')) {
+      this.sendAction('select', day);
+    } else {
+      this.set('selectedDate', day)
+    }
+
   },
 
   /**
@@ -306,7 +326,7 @@ export default Ember.Component.extend({
       @param {Object} day
     */
     selectDay(day) {
-      this._selectDay(day)
+      this._selectDate(day)
     },
 
     /**

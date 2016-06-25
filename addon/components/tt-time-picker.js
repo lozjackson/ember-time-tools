@@ -6,7 +6,7 @@ import layout from '../templates/components/tt-time-picker';
 
 /**
   @class TimePickerComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 
@@ -18,6 +18,21 @@ export default Ember.Component.extend({
     @private
   */
   classNames: ['time-picker', 'container'],
+
+  /**
+    ### Output
+
+    Options:
+
+    * date - javascript `Date` object.
+    * timestamp - number of seconds.
+    * object - `Ember.Object` with `year`, `month` and `date` properties.
+
+    @property output
+    @type {String}
+    @default 'date'
+  */
+  output: 'date',
 
   /**
     @property selectedTime
@@ -33,8 +48,8 @@ export default Ember.Component.extend({
   times: Ember.computed(function() {
     let timesArray = Ember.A();
     for (let i = 0; i < 24; i++) {
-      timesArray.pushObject({ hours: i, mins: 0 });
-      timesArray.pushObject({ hours: i, mins: 30 });
+      timesArray.pushObject({ hour: i, minute: 0 });
+      timesArray.pushObject({ hour: i, minute: 30 });
     }
     return timesArray;
   }),
@@ -63,6 +78,43 @@ export default Ember.Component.extend({
 		});
 	},
 
+  /**
+    @method _selectTime
+    @param {Object} time A POJO with properties for `hour` and `minute`.
+  */
+  _selectTime(time) {
+    let output = this.get('output');
+    let date = new Date(0);
+    date.setHours(time.hour);
+    date.setMinutes(time.minute);
+
+    if (output) {
+      switch(output) {
+        default:
+        case 'date':
+          time = date;
+          break;
+        case 'timestamp':
+          time = date.getTime();
+          break;
+        case 'object':
+          time = Ember.Object.create({
+            hour: date.getHours(),
+            minute: date.getMinutes(),
+            _date: date,
+            timestamp: date.getTime()
+          });
+          break;
+      }
+    }
+
+    if (this.get('select')) {
+      this.sendAction('select', time);
+    } else {
+      this.set('selectedTime', time)
+    }
+  },
+
   actions: {
 
     /**
@@ -70,7 +122,7 @@ export default Ember.Component.extend({
       @param {Object} time
     */
     selectTime(time) {
-      this.sendAction("select", time);
+      this._selectTime(time);
     },
 
     /**

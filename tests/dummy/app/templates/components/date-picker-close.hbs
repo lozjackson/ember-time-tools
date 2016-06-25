@@ -1,0 +1,23 @@
+<p>Provide an action to the date-picker's <code>close</code> action.</p>
+
+<p>controller/component.js</p>
+{{code-snippet name="date-picker-close-action.js"}}
+
+<p>template.hbs</p>
+{{code-snippet name="date-picker-close.hbs"}}
+
+<div class="date-picker-container">
+
+  {{! BEGIN-SNIPPET date-picker-close }}
+  {{#if showDatePicker}}
+    {{date-picker close="toggleDatePicker"}}
+  {{/if}}
+  {{! END-SNIPPET }}
+
+
+  {{#unless showDatePicker}}
+    {{#uic-button action="toggleDatePicker"}}
+      action="toggleDatePicker"
+    {{/uic-button}}
+  {{/unless}}
+</div>

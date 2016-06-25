@@ -7,7 +7,7 @@ import Ember from 'ember';
   A read-only text field component for displaying a time
 
   @class TimeFieldComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.TextField.extend({
 

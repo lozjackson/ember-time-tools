@@ -9,7 +9,7 @@ var alias = computed.alias;
 
 /**
   @class CalendarMonthEventComponent
-  @namespace Components
+  @namespace Calendar
 */
 export default Ember.Component.extend({
   layout: layout,
