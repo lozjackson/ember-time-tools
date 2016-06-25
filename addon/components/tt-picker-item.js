@@ -8,7 +8,7 @@ const { computed } = Ember;
 
 /**
   @class PickerItemComponent
-  @namespace Components
+  @namespace Date
 */
 export default Ember.Component.extend({
 

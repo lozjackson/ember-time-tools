@@ -8,7 +8,7 @@ import layout from '../templates/components/tt-input-time';
   This component is a container for a TimeFieldComponent and a TimePickerComponent.
 
   @class InputTimeComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 

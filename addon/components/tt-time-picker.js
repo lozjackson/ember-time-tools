@@ -6,7 +6,7 @@ import layout from '../templates/components/tt-time-picker';
 
 /**
   @class TimePickerComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 

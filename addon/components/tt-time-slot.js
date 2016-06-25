@@ -8,7 +8,7 @@ const { computed } = Ember;
 
 /**
   @class TimeSlotComponent
-  @namespace Components
+  @namespace Time
 */
 export default Ember.Component.extend({
 

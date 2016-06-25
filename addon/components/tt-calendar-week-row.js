@@ -50,7 +50,7 @@ var getEvents = function (events, daysArray) {
 
 /**
   @class CalendarWeekRowComponent
-  @namespace Arms
+  @namespace Calendar
 */
 export default Ember.Component.extend({
 

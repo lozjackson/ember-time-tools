@@ -8,7 +8,7 @@ import Ember from 'ember';
 
   @class DateFieldComponent
   @extends Arms.TextFieldComponent
-  @namespace DateTime
+  @namespace Date
 */
 export default Ember.TextField.extend({
 

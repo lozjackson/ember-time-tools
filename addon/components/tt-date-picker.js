@@ -39,7 +39,7 @@ function getDays(date) {
 
 /**
   @class DatePickerComponent
-  @namespace DateTime
+  @namespace Date
 */
 export default Ember.Component.extend({
 

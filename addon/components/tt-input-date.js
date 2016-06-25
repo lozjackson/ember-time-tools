@@ -8,7 +8,7 @@ import layout from '../templates/components/tt-input-date';
   This component is a container for a DateFieldComponent and a DatePickerComponent.
 
   @class InputDateComponent
-  @namespace Components
+  @namespace Date
 */
 export default Ember.Component.extend({
 
