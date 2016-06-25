@@ -5,9 +5,11 @@
 {{code-snippet name="time-picker.hbs"}}
 
 <div class="time-picker-container">
-{{! BEGIN-SNIPPET time-picker }}
-{{time-picker}}
-{{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker }}
+    {{time-picker}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 
 <hr>
@@ -23,9 +25,11 @@
 
 
 <div class="time-picker-container">
-  {{! BEGIN-SNIPPET time-picker-select }}
-  {{time-picker select="selectTime"}}
-  {{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-select }}
+    {{time-picker select="selectTime"}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
@@ -41,9 +45,11 @@
 {{code-snippet name="time-picker-selected-time.hbs"}}
 
 <div class="time-picker-container">
-  {{! BEGIN-SNIPPET time-picker-selected-time }}
-  {{time-picker selectedTime=selection select="selectTime"}}
-  {{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-selected-time }}
+    {{time-picker selectedTime=selection select="selectTime"}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
@@ -64,9 +70,11 @@
     {{code-snippet name="time-picker-output-date.hbs"}}
 
     <div class="time-picker-container">
-      {{! BEGIN-SNIPPET time-picker-output-date }}
-      {{time-picker output="date" select="selectTime"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET time-picker-output-date }}
+        {{time-picker output="date" select="selectTime"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p><code>selection</code>: {{selection}}</p>
     <hr>
@@ -77,9 +85,11 @@
     {{code-snippet name="time-picker-output-timestamp.hbs"}}
 
     <div class="time-picker-container">
-      {{! BEGIN-SNIPPET time-picker-output-timestamp }}
-      {{time-picker output="timestamp" select="selectTime"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET time-picker-output-timestamp }}
+        {{time-picker output="timestamp" select="selectTime"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p><code>selection</code>: {{selection}}</p>
     <hr>
@@ -90,9 +100,11 @@
     {{code-snippet name="time-picker-output-object.hbs"}}
 
     <div class="time-picker-container">
-      {{! BEGIN-SNIPPET time-picker-output-object }}
-      {{time-picker output="object" select="selectTime"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET time-picker-output-object }}
+        {{time-picker output="object" select="selectTime"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p>
       <code>selection.hour</code>: {{selection.hour}}<br>
@@ -104,5 +116,6 @@
 <hr>
 
 <h2>close</h2>
-
-{{time-picker-close}}
+{{#lazy-load}}
+  {{time-picker-close}}
+{{/lazy-load}}

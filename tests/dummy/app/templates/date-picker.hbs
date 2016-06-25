@@ -4,9 +4,11 @@
 {{code-snippet name="date-picker.hbs"}}
 
 <div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker }}
-  {{date-picker}}
-  {{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET date-picker }}
+    {{date-picker}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 
 <hr>
@@ -22,9 +24,11 @@
 
 
 <div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-select }}
-  {{date-picker select="selectDate"}}
-  {{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET date-picker-select }}
+    {{date-picker select="selectDate"}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
@@ -40,9 +44,11 @@
 {{code-snippet name="date-picker-selected-date.hbs"}}
 
 <div class="date-picker-container">
-  {{! BEGIN-SNIPPET date-picker-selected-date }}
-  {{date-picker selectedDate=selection select="selectDate"}}
-  {{! END-SNIPPET }}
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET date-picker-selected-date }}
+    {{date-picker selectedDate=selection select="selectDate"}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
 </div>
 <p><code>selection</code>: {{selection}}</p>
 
@@ -63,9 +69,11 @@
     {{code-snippet name="date-picker-output-date.hbs"}}
 
     <div class="date-picker-container">
-      {{! BEGIN-SNIPPET date-picker-output-date }}
-      {{date-picker output="date" select="selectDate"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET date-picker-output-date }}
+        {{date-picker output="date" select="selectDate"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p><code>selection</code>: {{selection}}</p>
     <hr>
@@ -76,9 +84,11 @@
     {{code-snippet name="date-picker-output-timestamp.hbs"}}
 
     <div class="date-picker-container">
-      {{! BEGIN-SNIPPET date-picker-output-timestamp }}
-      {{date-picker output="timestamp" select="selectDate"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET date-picker-output-timestamp }}
+        {{date-picker output="timestamp" select="selectDate"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p><code>selection</code>: {{selection}}</p>
     <hr>
@@ -90,9 +100,11 @@
     {{code-snippet name="date-picker-output-object.hbs"}}
 
     <div class="date-picker-container">
-      {{! BEGIN-SNIPPET date-picker-output-object }}
-      {{date-picker output="object" select="selectDate"}}
-      {{! END-SNIPPET }}
+      {{#lazy-load}}
+        {{! BEGIN-SNIPPET date-picker-output-object }}
+        {{date-picker output="object" select="selectDate"}}
+        {{! END-SNIPPET }}
+      {{/lazy-load}}
     </div>
     <p>
       <code>selection.date</code>: {{selection.date}}<br>
@@ -105,5 +117,6 @@
 <hr>
 
 <h2>close</h2>
-
-{{date-picker-close}}
+{{#lazy-load}}
+  {{date-picker-close}}
+{{/lazy-load}}
