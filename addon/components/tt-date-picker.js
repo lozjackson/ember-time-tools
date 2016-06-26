@@ -4,6 +4,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/tt-date-picker';
 import DateObject from 'ember-time-tools/utils/date';
+import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 
 const { computed } = Ember;
 const { readOnly } = computed;
@@ -41,7 +42,7 @@ function getDays(date) {
   @class DatePickerComponent
   @namespace Date
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(ClickOutsideMixin, {
 
   layout,
 
@@ -239,6 +240,14 @@ export default Ember.Component.extend({
     if (selectedDate) {
       this.setViewDate(selectedDate);
     }
+  },
+
+  /**
+    @method handleClickOutside
+    @private
+  */
+  handleClickOutside() {
+    this.sendAction('close');
   },
 
   /**

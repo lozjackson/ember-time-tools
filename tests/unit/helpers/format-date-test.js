@@ -32,6 +32,12 @@ test('format time', function(assert) {
   assert.equal(formatDate([date, 'time']), '3:30 pm');
 });
 
+test('format - pass in a format', function(assert) {
+  let date = new Date(1977,7,24,8,30).getTime();
+  assert.equal(formatDate([date, 'DD/MM/YYYY']), '24/08/1977');
+  assert.equal(formatDate([date, 'ddd DD/MM/YYYY']), 'Wed 24/08/1977');
+});
+
 test('format default', function(assert) {
   let date = new Date(1977,7,24,8,30).getTime();
   assert.equal(formatDate([date]), '24/08/1977');

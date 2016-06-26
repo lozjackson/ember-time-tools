@@ -1,7 +1,7 @@
 <h2><code>&#123;&#123;input-time&#125;&#125;</code></h2>
 
 <p>
-  The InputTimeComponent provides an <code>input</code> element and a <a href="date-picker">TimePickerComponent</a> in one.
+  The InputTimeComponent provides an <code>input</code> element and a {{#link-to 'time-picker'}}TimePickerComponent{{/link-to}} in one.
 </p>
 
 {{code-snippet name="input-time.hbs"}}
@@ -27,3 +27,23 @@
 <p>
   <code>time</code>:{{time}}
 </p>
+
+<hr>
+
+<h2>displayFormat</h2>
+
+<p>
+  Set the <code>displayFormat</code> property of the InputTimeComponent.
+</p>
+
+{{code-snippet name="input-time-display-format.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-display-format }}
+{{input-time displayFormat="HH:mm"}}
+{{! END-SNIPPET }}
+
+{{code-snippet name="input-time-display-format-example.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-display-format-example }}
+{{input-time displayFormat="h:mm a"}}
+{{! END-SNIPPET }}

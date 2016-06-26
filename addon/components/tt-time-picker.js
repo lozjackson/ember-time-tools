@@ -3,12 +3,13 @@
 */
 import Ember from 'ember';
 import layout from '../templates/components/tt-time-picker';
+import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 
 /**
   @class TimePickerComponent
   @namespace Time
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(ClickOutsideMixin, {
 
   layout,
 
@@ -16,8 +17,9 @@ export default Ember.Component.extend({
     @property classNames
     @type {Array}
     @private
+    @default `['tt-time-picker', 'container']`
   */
-  classNames: ['time-picker', 'container'],
+  classNames: ['tt-time-picker', 'container'],
 
   /**
     ### Output
@@ -55,11 +57,20 @@ export default Ember.Component.extend({
   }),
 
   /**
+    @method handleClickOutside
+    @private
+  */
+  handleClickOutside() {
+    this.sendAction('close');
+  },
+
+  /**
     @method didInsertElement
     @private
   */
   didInsertElement() {
-    this.scrollToElement('.time-picker li.time-selected');
+    this._super(...arguments);
+    this.scrollToElement('.tt-time-picker li.time-selected');
   },
 
   /**

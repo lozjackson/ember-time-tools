@@ -15,6 +15,18 @@ export default Ember.Component.extend({
   layout: layout,
 
   /**
+    @property value
+    @type {Object} A javascript `Date()` object.
+  */
+
+  /**
+    @property displayFormat
+    @type {String}
+    @default `h:mm a`
+  */
+  displayFormat: 'h:mm a',
+
+  /**
     @property showTimePicker
     @type {Boolean}
     @private

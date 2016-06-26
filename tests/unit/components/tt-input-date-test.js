@@ -26,6 +26,13 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
+test('displayFormat', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('displayFormat'), 'ddd DD/MM/YYYY');
+});
+
 test('showDatePicker should be false', function(assert) {
   assert.expect(1);
   var component = this.subject();
