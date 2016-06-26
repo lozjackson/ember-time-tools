@@ -23,6 +23,13 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
+test('displayFormat', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('displayFormat'), 'h:mm a');
+});
+
 test('showTimePicker should be false', function(assert) {
   assert.expect(1);
   var component = this.subject();
