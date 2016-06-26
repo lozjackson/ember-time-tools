@@ -24,7 +24,7 @@ test('classNames', function(assert) {
   assert.expect(1);
   var component = this.subject();
   this.render();
-  assert.deepEqual(component.get('classNames'), ['ember-view', 'time-picker', 'container']);
+  assert.deepEqual(component.get('classNames'), ['ember-view', 'tt-time-picker', 'container']);
 });
 
 test('output should be date', function(assert) {
@@ -93,7 +93,7 @@ test('times', function(assert) {
 test('didInsertElement() method', function(assert) {
   assert.expect();
   this.subject({
-    scrollToElement: selector => assert.equal(selector, '.time-picker li.time-selected')
+    scrollToElement: selector => assert.equal(selector, '.tt-time-picker li.time-selected')
   });
   this.render();
 });

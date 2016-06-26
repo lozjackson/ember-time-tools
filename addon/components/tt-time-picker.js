@@ -17,8 +17,9 @@ export default Ember.Component.extend(ClickOutsideMixin, {
     @property classNames
     @type {Array}
     @private
+    @default `['tt-time-picker', 'container']`
   */
-  classNames: ['time-picker', 'container'],
+  classNames: ['tt-time-picker', 'container'],
 
   /**
     ### Output
@@ -69,7 +70,7 @@ export default Ember.Component.extend(ClickOutsideMixin, {
   */
   didInsertElement() {
     this._super(...arguments);
-    this.scrollToElement('.time-picker li.time-selected');
+    this.scrollToElement('.tt-time-picker li.time-selected');
   },
 
   /**
