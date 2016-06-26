@@ -1,5 +1,7 @@
 # Change Log
 
+### v0.1.0 2016-06-26
+
 * [FEATURE] Add `displayFormat` property to InputDateComponent and InputTimeComponent.
 
 * [FEATURE] Update FormatDateHelper to allow passing in custom format strings.
