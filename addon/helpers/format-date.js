@@ -34,7 +34,10 @@ export function formatDate([date, format]) {
       formatString = 'h:mm a';
       break;
     default:
-      formatString = 'DD/MM/YYYY';
+      if (!format) {
+        format = 'DD/MM/YYYY';
+      }
+      formatString = format;
       break;
   }
   if (typeof date === 'string') {
