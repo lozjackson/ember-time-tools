@@ -1,16 +1,22 @@
 <h2><code>&#123;&#123;time-picker&#125;&#125;</code></h2>
 
+<h3>Basic use</h3>
+
 <p>You can create a time-picker with the TimePickerComponent.</p>
 
-{{code-snippet name="time-picker.hbs"}}
+{{code-snippet name="time-picker-basic.hbs"}}
 
 <div class="time-picker-container">
   {{#lazy-load}}
-    {{! BEGIN-SNIPPET time-picker }}
+    {{! BEGIN-SNIPPET time-picker-basic }}
     {{time-picker}}
     {{! END-SNIPPET }}
   {{/lazy-load}}
 </div>
+
+<h3>Advanced use</h3>
+
+{{code-snippet name="time-picker-advanced.hbs"}}
 
 <hr>
 
@@ -112,6 +118,53 @@
     </p>
   </li>
 </ul>
+
+<hr>
+
+<h2>displayFormat</h2>
+
+<p>
+  The default <code>displayFormat</code> is <code>hh:mm a</code> (12 hour clock).  To use a 24 hour clock set the <code>displayFormat</code> to <code>HH:mm</code>.
+</p>
+
+{{code-snippet name="time-picker-format.hbs"}}
+
+<div class="time-picker-container">
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-format }}
+    {{time-picker displayFormat='HH:mm'}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
+</div>
+
+<hr>
+
+<h2>timeInterval</h2>
+
+<p>
+  The default time interval is set to 30 minutes.  This can be be changed by
+  setting the `timeInterval` property.  Values between 1 and 59 are valid.
+</p>
+
+{{code-snippet name="time-picker-time-interval-20.hbs"}}
+
+<div class="time-picker-container">
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-time-interval-20 }}
+    {{time-picker timeInterval=20}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
+</div>
+
+{{code-snippet name="time-picker-time-interval-5.hbs"}}
+
+<div class="time-picker-container">
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-time-interval-5 }}
+    {{time-picker timeInterval=5}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
+</div>
 
 <hr>
 
