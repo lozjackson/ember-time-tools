@@ -9,7 +9,8 @@ moduleForComponent('tt-input-time', 'Unit | Component | tt input time', {
     'component:tt-time-picker',
     'component:tt-time-slot',
     'component:uic-close-button',
-    'helper:format-date'
+    'helper:format-date',
+    'helper:compare-json'
   ],
   unit: true
 });
@@ -28,6 +29,20 @@ test('displayFormat', function(assert) {
   var component = this.subject();
   this.render();
   assert.equal(component.get('displayFormat'), 'h:mm a');
+});
+
+test('pickerDisplayFormat', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('pickerDisplayFormat'), 'hh:mm a');
+});
+
+test('timeInterval', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('timeInterval'), 30);
 });
 
 test('showTimePicker should be false', function(assert) {
