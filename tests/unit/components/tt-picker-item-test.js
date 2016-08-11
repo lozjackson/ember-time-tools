@@ -4,7 +4,9 @@ import Ember from 'ember';
 const { run } = Ember;
 
 moduleForComponent('tt-picker-item', 'Unit | Component | tt picker item', {
-  // needs: [],
+  needs: [
+    'helper:compare-json'
+  ],
   unit: true
 });
 

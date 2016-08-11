@@ -4,11 +4,17 @@
   The InputTimeComponent provides an <code>input</code> element and a {{#link-to 'time-picker'}}TimePickerComponent{{/link-to}} in one.
 </p>
 
+<h3>Basic use</h3>
+
 {{code-snippet name="input-time.hbs"}}
 
 {{! BEGIN-SNIPPET input-time }}
 {{input-time}}
 {{! END-SNIPPET }}
+
+<h3>Advanced use</h3>
+
+{{code-snippet name="input-time-advanced.hbs"}}
 
 <hr>
 
@@ -47,3 +53,49 @@
 {{! BEGIN-SNIPPET input-time-display-format-example }}
 {{input-time displayFormat="h:mm a"}}
 {{! END-SNIPPET }}
+
+<hr>
+
+<h2>pickerDisplayFormat</h2>
+
+<p>
+  The <code>pickerDisplayFormat</code> property allows you to set the <code>displayFormat</code> property of the TimePickerComponent.
+</p>
+
+{{code-snippet name="input-time-picker-format.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-picker-format }}
+{{input-time pickerDisplayFormat="HH:mm"}}
+{{! END-SNIPPET }}
+
+{{code-snippet name="input-time-picker-format-example.hbs"}}
+
+
+{{! BEGIN-SNIPPET input-time-picker-format-example }}
+{{input-time pickerDisplayFormat="h:mm a"}}
+{{! END-SNIPPET }}
+
+
+<hr>
+
+<h2>timeInterval</h2>
+
+<p>
+  This is the time interval used by the TimePickerComponent. The default is 30 minutes.  Values between 1 and 59 are valid.
+</p>
+
+{{code-snippet name="input-time-interval.hbs"}}
+
+<div class="time-interval-example">
+{{! BEGIN-SNIPPET input-time-interval }}
+{{input type="number" value=timeInterval}} minutes
+
+{{input-time value=time timeInterval=timeInterval}}
+{{! END-SNIPPET }}
+</div>
+
+<p>
+  <code>time</code>:{{time}}
+</p>
+
+<div class="time-picker-container"></div>

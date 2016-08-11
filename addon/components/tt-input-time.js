@@ -27,6 +27,20 @@ export default Ember.Component.extend({
   displayFormat: 'h:mm a',
 
   /**
+    @property pickerDisplayFormat
+    @type {String}
+    @default `hh:mm a`
+  */
+  pickerDisplayFormat: 'hh:mm a',
+
+  /**
+    @property timeInterval
+    @type {Number}
+    @default `30`
+  */
+  timeInterval: 30,
+
+  /**
     @property showTimePicker
     @type {Boolean}
     @private

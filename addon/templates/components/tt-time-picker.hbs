@@ -4,7 +4,9 @@
 <div class="time-select">
   <ul>
     {{#each times as |time|}}
-      {{tt-time-slot model=time timeSelected=selectedTime select="selectTime"}}
+      <li class="{{if (compare-json _selectedTime time) 'time-selected'}}" {{action "selectTime" time}} >
+        {{format-date time displayFormat}}
+      </li>
     {{/each}}
   </ul>
 </div>

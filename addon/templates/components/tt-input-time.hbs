@@ -1,8 +1,15 @@
 {{#if hasBlock}}
   {{yield}}
 {{else}}
-  {{tt-time-field value=(format-date value displayFormat) toggleTimePicker="toggleTimePicker"}}
+  {{tt-time-field
+    value=(format-date value displayFormat)
+    toggleTimePicker="toggleTimePicker"}}
   {{#if showTimePicker}}
-    {{tt-time-picker selectedTime=value select="selectTime" close="closeTimePicker"}}
+    {{tt-time-picker
+      timeInterval=timeInterval
+      displayFormat=pickerDisplayFormat
+      selectedTime=value
+      select="selectTime"
+      close="closeTimePicker"}}
   {{/if}}
 {{/if}}
