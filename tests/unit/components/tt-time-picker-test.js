@@ -49,7 +49,7 @@ test('timeInterval', function(assert) {
   assert.equal(component.get('timeInterval'), 30);
 });
 
-test('_selectedTime', function(assert) {
+test('_selectedTime - date', function(assert) {
   assert.expect(1);
   var component = this.subject();
   this.render();
@@ -57,6 +57,17 @@ test('_selectedTime', function(assert) {
   date.setHours(2);
   date.setMinutes(30);
   run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 2, minute: 30 });
+});
+
+test('_selectedTime - number', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  date.setHours(2);
+  date.setMinutes(30);
+  run(() => component.set('selectedTime', date.getTime()));
   assert.deepEqual(component.get('_selectedTime'), { hour: 2, minute: 30 });
 });
 

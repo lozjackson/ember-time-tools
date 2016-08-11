@@ -76,6 +76,9 @@ export default Ember.Component.extend(ClickOutsideMixin, {
   _selectedTime: computed('selectedTime', function () {
     let selectedTime = this.get('selectedTime');
     if (!selectedTime) { return selectedTime; }
+    if (Ember.typeOf(selectedTime) !== 'date') {
+      selectedTime = new Date(selectedTime);
+    }
     return { hour: selectedTime.getHours(), minute: selectedTime.getMinutes() };
   }),
 
