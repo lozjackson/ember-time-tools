@@ -7,7 +7,6 @@ moduleForComponent('tt-input-time', 'Unit | Component | tt input time', {
   needs: [
     'component:tt-time-field',
     'component:tt-time-picker',
-    'component:tt-time-slot',
     'component:uic-close-button',
     'helper:format-date',
     'helper:compare-json'
