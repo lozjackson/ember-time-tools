@@ -49,7 +49,60 @@ test('timeInterval', function(assert) {
   assert.equal(component.get('timeInterval'), 30);
 });
 
-test('_selectedTime', function(assert) {
+test('_selectedTime - 0:00', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 0, minute: 0 });
+});
+
+test('_selectedTime - 0:30', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  date.setHours(0);
+  date.setMinutes(30);
+  run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 0, minute: 30 });
+});
+
+test('_selectedTime - 1:00', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  date.setHours(1);
+  date.setMinutes(0);
+  run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 1, minute: 0 });
+});
+
+test('_selectedTime - 1:30', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  date.setHours(1);
+  date.setMinutes(30);
+  run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 1, minute: 30 });
+});
+
+test('_selectedTime - 2:00', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  let date = new Date(0);
+  date.setHours(2);
+  date.setMinutes(0);
+  run(() => component.set('selectedTime', date));
+  assert.deepEqual(component.get('_selectedTime'), { hour: 2, minute: 0 });
+});
+
+test('_selectedTime - 2:30', function(assert) {
   assert.expect(1);
   var component = this.subject();
   this.render();
