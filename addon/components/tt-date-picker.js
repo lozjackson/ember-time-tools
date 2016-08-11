@@ -247,6 +247,7 @@ export default Ember.Component.extend(ClickOutsideMixin, {
     @private
   */
   handleClickOutside() {
+    if (this.get('isDestroyed') || this.get('isDestroying')) { return; }
     this.sendAction('close');
   },
 
