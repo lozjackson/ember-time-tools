@@ -3,11 +3,18 @@
 <p>
   The InputDateComponent provides an <code>input</code> element and a {{#link-to 'date-picker'}}DatePickerComponent{{/link-to}} in one.
 </p>
+
+<h3>Basic use</h3>
+
 {{code-snippet name="input-date.hbs"}}
 
 {{! BEGIN-SNIPPET input-date }}
 {{input-date}}
 {{! END-SNIPPET }}
+
+<h3>Advanced use</h3>
+
+{{code-snippet name="input-date-advanced.hbs"}}
 
 <hr>
 
@@ -46,3 +53,5 @@
 {{! BEGIN-SNIPPET input-date-display-format-example }}
 {{input-date displayFormat="MMM Do YY"}}
 {{! END-SNIPPET }}
+
+<div class="date-picker-container"></div>
