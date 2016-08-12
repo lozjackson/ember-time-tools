@@ -12,7 +12,7 @@ import Ember from 'ember';
   @method formatDate
   @param {Object} date
   @param {String} format
-  @return {Object} a moment date object.
+  @return {String}
 */
 export function formatDate([date, format]) {
   var formatString = '';
