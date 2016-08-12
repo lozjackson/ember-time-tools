@@ -1,5 +1,7 @@
 # Change Log
 
+### v0.2.0 2016-08-12
+
 * [FEATURE] Add `timeInterval` property to the TimePickerComponent.
 
 * [FEATURE] Add `displayFormat` property to the TimePickerComponent.
