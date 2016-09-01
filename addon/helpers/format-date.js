@@ -2,7 +2,7 @@
   @module ember-time-tools
 */
 import Ember from 'ember';
-
+import moment from 'moment';
 /**
   @class FormatDateHelper
   @namespace Helpers
