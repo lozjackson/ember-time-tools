@@ -13,7 +13,7 @@ http://lozjackson.github.io/ember-time-tools/
 
 ## Use
 
-##DatePicker
+## DatePicker
 
 Create a DatePickerComponent using the following example:
 
@@ -27,7 +27,7 @@ You can use the InputDateComponent to create a html `input` element and a DatePi
 {{input-date value=date}}
 ```
 
-##TimePicker
+## TimePicker
 
 Create a TimePickerComponent using the following example:
 
@@ -41,10 +41,14 @@ You can use the InputTimeComponent to create a html `input` element and a TimePi
 {{input-time value=time}}
 ```
 
-##Calendar
+## Calendar
 
 You can create a CalendarMonthComponent using the following example:
 
 ```
 {{calendar-month events=model}}
 ```
+
+## Compatibility
+
+Ember version ^2.0 is required for this addon to function correctly.  Ember v1.x is not supported.

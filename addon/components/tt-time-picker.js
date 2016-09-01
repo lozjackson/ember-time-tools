@@ -181,7 +181,7 @@ export default Ember.Component.extend(ClickOutsideMixin, {
     if (this.get('select')) {
       this.sendAction('select', time);
     } else {
-      this.set('selectedTime', time)
+      this.set('selectedTime', time);
     }
   },
 

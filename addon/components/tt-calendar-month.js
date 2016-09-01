@@ -340,6 +340,7 @@ export default Ember.Component.extend({
     if ( !date ) {
       date = new Date();
     }
+    date.setDate(1);
     date.setMonth(date.getMonth() + 1);
     this.set('selectedDate', new Date(date));
   },
@@ -353,6 +354,7 @@ export default Ember.Component.extend({
     if ( !date ) {
       date = new Date();
     }
+    date.setDate(1);
     date.setMonth(date.getMonth() - 1);
     this.setToday(new Date(date));
   },

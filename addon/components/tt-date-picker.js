@@ -290,6 +290,14 @@ export default Ember.Component.extend(ClickOutsideMixin, {
           day = date.getTime();
           break;
         case 'object':
+          day = Ember.Object.create({
+            year: day.year,
+            month: day.month,
+            date: day.date,
+            _date: date,
+            timestamp: date.getTime()
+          });
+          break;
         default:
           day = Ember.Object.create({
             year: day.year,
@@ -305,7 +313,7 @@ export default Ember.Component.extend(ClickOutsideMixin, {
     if (this.get('select')) {
       this.sendAction('select', day);
     } else {
-      this.set('selectedDate', day)
+      this.set('selectedDate', day);
     }
 
   },
@@ -335,7 +343,7 @@ export default Ember.Component.extend(ClickOutsideMixin, {
       @param {Object} day
     */
     selectDay(day) {
-      this._selectDate(day)
+      this._selectDate(day);
     },
 
     /**
