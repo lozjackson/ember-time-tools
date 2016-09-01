@@ -1,5 +1,16 @@
 # Change Log
 
+* [BUGFIX] Fix an issue that could cause the `nextMonth()` method to skip a month.
+
+* Add Phantomjs dev-dependency.
+
+* Configure Ember-try to include Ember versions ~2.0.0 and ~2.4.0 (LTS).
+
+* Update to Ember-cli 2.7.0
+
+
+
+
 ### v0.2.0 2016-08-12
 
 * [FEATURE] Add `timeInterval` property to the TimePickerComponent.
