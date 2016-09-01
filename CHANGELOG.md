@@ -1,5 +1,7 @@
 # Change Log
 
+### v0.2.1
+
 * [BUGFIX] Fix an issue that could cause the `nextMonth()` method to skip a month.
 
 * Add Phantomjs dev-dependency.
