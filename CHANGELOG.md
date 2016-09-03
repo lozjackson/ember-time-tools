@@ -1,6 +1,6 @@
 # Change Log
 
-### v0.2.1
+### v0.2.1 2016-09-03
 
 * [BUGFIX] Fix an issue that could cause the `nextMonth()` method to skip a month.
 
