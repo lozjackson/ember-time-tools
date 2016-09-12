@@ -1,6 +1,11 @@
 # Change Log
 
+### v0.2.2
+
 * #5 Replace `Ember.Handlebars.SafeString` with `Ember.String.htmlSafe`.
+
+
+
 
 ### v0.2.1 2016-09-03
 
