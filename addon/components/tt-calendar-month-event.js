@@ -60,7 +60,7 @@ export default Ember.Component.extend({
     if ( right < 0 ) { right = 0; }
     else if ( right > 100 ) { right = 100; }
 
-    return new Ember.Handlebars.SafeString(`left: ${left}%; right: ${right}%;`);
+    return new Ember.String.htmlSafe(`left: ${left}%; right: ${right}%;`);
   }),
 
   /**
