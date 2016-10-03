@@ -3,6 +3,7 @@
 {{else}}
   {{tt-time-field
     value=(format-date value displayFormat)
+    disabled=disabled
     toggleTimePicker="toggleTimePicker"}}
   {{#if showTimePicker}}
     {{tt-time-picker
