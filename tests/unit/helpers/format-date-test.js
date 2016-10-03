@@ -42,3 +42,13 @@ test('format default', function(assert) {
   let date = new Date(1977,7,24,8,30).getTime();
   assert.equal(formatDate([date]), '24/08/1977');
 });
+
+test('undefined values should result in undefined value', function(assert) {
+  let _undefined;
+  assert.equal(formatDate([_undefined]), _undefined);
+});
+
+test('null values should result in undefined value', function(assert) {
+  let _undefined;
+  assert.equal(formatDate([null]), _undefined);
+});
