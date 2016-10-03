@@ -1,8 +1,14 @@
 {{#if hasBlock}}
   {{yield}}
 {{else}}
-  {{tt-date-field value=(format-date value displayFormat) toggleDatePicker="toggleDatePicker"}}
+  {{tt-date-field
+    value=(format-date value displayFormat)
+    disabled=disabled
+    toggleDatePicker="toggleDatePicker"}}
   {{#if showDatePicker}}
-    {{tt-date-picker selectedDate=value select="selectDate" close="closeDatePicker"}}
+    {{tt-date-picker
+      selectedDate=value
+      select="selectDate"
+      close="closeDatePicker"}}
   {{/if}}
 {{/if}}
