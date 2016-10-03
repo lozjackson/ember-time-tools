@@ -17,6 +17,8 @@ import moment from 'moment';
 export function formatDate([date, format]) {
   var formatString = '';
 
+  if (typeof date === 'undefined' || date === null) { return; }
+
   switch (format) {
     case 'date-and-time':
       formatString = 'DD/MM/YYYY h:mm a';
