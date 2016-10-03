@@ -1,5 +1,7 @@
 # Change Log
 
+* [#12](https://github.com/lozjackson/ember-time-tools/pull/12) [BUGFIX] input components now allow empty values.
+
 ### v0.2.2 2016-09-12
 
 * #5 Replace `Ember.Handlebars.SafeString` with `Ember.String.htmlSafe`.
