@@ -54,3 +54,15 @@ test('change displayFormat', function(assert) {
   this.set('displayFormat', 'H:mm');
   assert.equal(this.$('input').val(), '15:05');
 });
+
+test('disabled', function(assert) {
+
+  this.render(hbs`{{tt-input-time disabled=disabled}}`);
+  assert.equal(this.$('input').attr('disabled'), undefined);
+
+  this.set('disabled', true);
+  assert.equal(this.$('input').attr('disabled'), 'disabled');
+
+  this.set('disabled', false);
+  assert.equal(this.$('input').attr('disabled'), undefined);
+});

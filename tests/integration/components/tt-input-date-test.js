@@ -50,3 +50,15 @@ test('change displayFormat', function(assert) {
   this.set('displayFormat', 'ddd Do, MMM YYYY');
   assert.equal(this.$('input').val(), 'Wed 24th, Aug 1977');
 });
+
+test('disabled', function(assert) {
+
+  this.render(hbs`{{tt-input-date disabled=disabled}}`);
+  assert.equal(this.$('input').attr('disabled'), undefined);
+
+  this.set('disabled', true);
+  assert.equal(this.$('input').attr('disabled'), 'disabled');
+
+  this.set('disabled', false);
+  assert.equal(this.$('input').attr('disabled'), undefined);
+});
