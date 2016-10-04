@@ -1,5 +1,7 @@
 # Change Log
 
+* [#14](https://github.com/lozjackson/ember-time-tools/pull/14) Add `format` property to InputDateComponent and InputTimeComponent.
+
 * [#13](https://github.com/lozjackson/ember-time-tools/pull/13) InputDateComponent and InputTimeComponent now accept `disabled` attribute.
 
 * [#12](https://github.com/lozjackson/ember-time-tools/pull/12) [BUGFIX] input components now allow empty values.
