@@ -21,6 +21,18 @@ export default Ember.Component.extend({
   */
 
   /**
+    Format can be:
+
+    * date (the default)
+    * timestamp
+    * object
+    * YYYY-MM-DD
+
+    @property format
+    @type {String}
+  */
+
+  /**
     @property displayFormat
     @type {String}
     @default `ddd DD/MM/YYYY`
