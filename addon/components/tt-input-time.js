@@ -3,6 +3,7 @@
 */
 import Ember from 'ember';
 import layout from '../templates/components/tt-input-time';
+import format from 'ember-time-tools/utils/format';
 
 /**
   This component is a container for a TimeFieldComponent and a TimePickerComponent.
@@ -62,8 +63,7 @@ export default Ember.Component.extend({
     @private
   */
   _selectTime(date) {
-    Ember.assert(`'date' should be a javascript 'Date()' object.`, Ember.typeOf(date) === 'date');
-    this.set('value', date);
+    this.set('value', format(date, this.get('format')));
   },
 
   /**
