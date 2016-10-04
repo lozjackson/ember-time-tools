@@ -75,6 +75,59 @@
 {{input-time pickerDisplayFormat="h:mm a"}}
 {{! END-SNIPPET }}
 
+<hr />
+
+<h2>format</h2>
+
+<p>
+  Set the <code>format</code> property of the InputDateComponent.
+</p>
+
+<ul>
+  <li>
+    <h3>date</h3>
+
+    <p>This is the default.</p>
+
+    {{code-snippet name="input-time-format-date.hbs"}}
+
+    {{! BEGIN-SNIPPET input-time-format-date }}
+    {{input-time value=date format="date"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      date: {{date}}
+    </p>
+  </li>
+  <li>
+    <h3>timestamp</h3>
+
+    {{code-snippet name="input-time-format-timestamp.hbs"}}
+
+    {{! BEGIN-SNIPPET input-time-format-timestamp }}
+    {{input-time value=timestamp format="timestamp"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      timestamp: {{timestamp}}
+    </p>
+  </li>
+  <li>
+    <h3>object</h3>
+
+    {{code-snippet name="input-time-format-object.hbs"}}
+
+    {{! BEGIN-SNIPPET input-time-format-object }}
+    {{input-time value=obj format="object"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      <div>obj.hour: {{obj.hour}}</div>
+      <div>obj.minute: {{obj.minute}}</div>
+    </p>
+  </li>
+</ul>
+
 
 <hr>
 
