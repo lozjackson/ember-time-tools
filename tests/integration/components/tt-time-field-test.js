@@ -6,10 +6,6 @@ moduleForComponent('tt-time-field', 'Integration | Component | tt time field', {
 });
 
 test('it has correct tagName and classNames', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
-
   this.render(hbs`{{tt-time-field}}`);
-
-  assert.equal(this.$('input.tt-time-field.no-select').length, 1);
+  assert.equal(this.$('input.ember-text-field.tt-time-field.no-select').length, 1);
 });

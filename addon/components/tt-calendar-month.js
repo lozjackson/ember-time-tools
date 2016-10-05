@@ -383,7 +383,7 @@ export default Ember.Component.extend({
 
       @method today
     */
-    today: function () {
+    today() {
       this.setToday();
     }
   }

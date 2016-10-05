@@ -40,16 +40,6 @@ test('showDatePicker should be false', function(assert) {
   assert.equal(component.get('showDatePicker'), false);
 });
 
-test('classNames', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-  assert.deepEqual(component.get('classNames'), [
-    "ember-view",
-    "input-date"
-  ]);
-});
-
 test('_selectDate() method', function(assert) {
   assert.expect(1);
   var component = this.subject();
@@ -80,10 +70,11 @@ test('_openDatePicker() method', function(assert) {
 
 test('selectDate action', function(assert) {
   assert.expect(2);
-  let component = this.subject();
+  let component = this.subject({
+    _selectDate: (d) => assert.deepEqual(d, { year: 1977, month: 7, date: 24 }),
+    _closeDatePicker: () => assert.ok(true)
+  });
   this.render();
-  component.set('_selectDate', (d) => assert.deepEqual(d, { year: 1977, month: 7, date: 24 }));
-  component.set('_closeDatePicker', () => assert.ok(true));
   run(() => component.send('selectDate', { year: 1977, month: 7, date: 24 }));
 });
 
@@ -100,16 +91,18 @@ test('toggleDatePicker action', function(assert) {
 
 test('closeDatePicker action', function(assert) {
   assert.expect(1);
-  let component = this.subject();
+  let component = this.subject({
+    _closeDatePicker: () => assert.ok(true)
+  });
   this.render();
-  component.set('_closeDatePicker', () => assert.ok(true));
   component.send('closeDatePicker');
 });
 
-test('closeDatePicker action', function(assert) {
+test('openDatePicker action', function(assert) {
   assert.expect(1);
-  let component = this.subject();
+  let component = this.subject({
+    _openDatePicker: () => assert.ok(true)
+  });
   this.render();
-  component.set('_openDatePicker', () => assert.ok(true));
   component.send('openDatePicker');
 });

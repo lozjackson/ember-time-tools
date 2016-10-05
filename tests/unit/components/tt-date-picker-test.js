@@ -23,17 +23,6 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
-test('classNames', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-  assert.deepEqual(component.get('classNames'), [
-    "ember-view",
-    "tt-date-picker",
-    "container"
-  ]);
-});
-
 test('months', function(assert) {
   assert.expect(1);
   var component = this.subject();
@@ -141,9 +130,10 @@ test('startDay', function(assert) {
 
 test('setToday() method', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  var component = this.subject({
+    setViewDate: (date) => assert.deepEqual(date, new Date())
+  });
   this.render();
-  component.set('setViewDate', (date) => assert.deepEqual(date, new Date()));
   component.setToday();
 });
 

@@ -56,6 +56,73 @@
 
 <hr>
 
+<h2>format</h2>
+
+<p>
+  Set the <code>format</code> property of the InputDateComponent.
+</p>
+
+<ul>
+  <li>
+    <h3>date</h3>
+
+    <p>This is the default.</p>
+
+    {{code-snippet name="input-date-format-date.hbs"}}
+
+    {{! BEGIN-SNIPPET input-date-format-date }}
+    {{input-date value=date format="date"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      date: {{date}}
+    </p>
+  </li>
+  <li>
+    <h3>timestamp</h3>
+
+    {{code-snippet name="input-date-format-timestamp.hbs"}}
+
+    {{! BEGIN-SNIPPET input-date-format-timestamp }}
+    {{input-date value=timestamp format="timestamp"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      timestamp: {{timestamp}}
+    </p>
+  </li>
+  <li>
+    <h3>object</h3>
+
+    {{code-snippet name="input-date-format-object.hbs"}}
+
+    {{! BEGIN-SNIPPET input-date-format-object }}
+    {{input-date value=obj format="object"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      <div>obj.year: {{obj.year}}</div>
+      <div>obj.month: {{obj.month}}</div>
+      <div>obj.date: {{obj.date}}</div>
+    </p>
+  </li>
+  <li>
+    <h3>YYYY-MM-DD</h3>
+
+    {{code-snippet name="input-date-format-custom.hbs"}}
+
+    {{! BEGIN-SNIPPET input-date-format-custom }}
+    {{input-date value=string format="YYYY-MM-DD"}}
+    {{! END-SNIPPET }}
+
+    <p>
+      string: {{string}}
+    </p>
+  </li>
+</ul>
+
+<hr>
+
 <h2>disabled</h2>
 
 <p>

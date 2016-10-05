@@ -18,13 +18,6 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
-test('classNames', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-  assert.equal(component.get('classNames.length'), 2, `'classNames.length' should be 2`);
-});
-
 test('date', function(assert) {
   assert.expect(1);
   var component = this.subject();

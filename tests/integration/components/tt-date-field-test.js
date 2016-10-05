@@ -11,5 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{tt-date-field}}`);
 
-  assert.equal(this.$('.tt-date-field').length, 1);
+  assert.equal(this.$('.ember-text-field.tt-date-field.no-select').length, 1);
 });
