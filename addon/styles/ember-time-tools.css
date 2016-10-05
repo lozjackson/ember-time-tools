@@ -230,6 +230,9 @@
 .tt-date-field, .tt-time-field {
 	cursor: pointer;
 }
+.tt-date-field[disabled], .tt-time-field[disabled] {
+	cursor: default;
+}
 .tt-date-picker.container,
 .tt-time-picker.container {
 	margin-top: 5px;
