@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import Ember from 'ember';
 
-var run = Ember.run;
+const { run } = Ember;
 
 moduleForComponent('tt-calendar-month', 'Unit | Component | tt calendar month', {
   needs: [
@@ -29,16 +29,6 @@ test('eventTemplate is not null', function(assert) {
   var component = this.subject();
   this.render();
   assert.ok(component.get('eventTemplate'));
-});
-
-test('classNames', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-
-  let classNames = ['ember-view', 'tt-calendar-month', 'tt-calendar-container'];
-
-  assert.deepEqual(component.get('classNames'), classNames);
 });
 
 test('should be 7 dayNames', function(assert) {
@@ -231,10 +221,10 @@ test('_nextMonth method should increment month', function(assert) {
 
 test('nextMonth action', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  var component = this.subject({
+    _nextMonth: () => assert.ok(true)
+  });
   this.render();
-
-  component.set('_nextMonth', () => assert.ok(true));
   component.send('nextMonth');
 });
 
@@ -308,19 +298,19 @@ test('prevMonth action should decrement month', function(assert) {
 
 test('prevMonth action', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  var component = this.subject({
+    _prevMonth: () => assert.ok(true)
+  });
   this.render();
-
-  component.set('_prevMonth', () => assert.ok(true));
   component.send('prevMonth');
 });
 
 test('today action', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
+  assert.expect(2);
+  var component = this.subject({
+    setToday: () => assert.ok(true)
+  });
   this.render();
-
-  component.set('setToday', () => assert.ok(true));
   component.send('today');
 });
 

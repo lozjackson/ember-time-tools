@@ -6,21 +6,8 @@ moduleForComponent('tt-input-time', 'Integration | Component | tt input time', {
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
-
   this.render(hbs`{{tt-input-time}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#tt-input-time}}
-      template block text
-    {{/tt-input-time}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.input-time').length, 1);
 });
 
 test('displayFormat', function(assert) {

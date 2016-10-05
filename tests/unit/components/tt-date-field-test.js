@@ -23,18 +23,6 @@ test('tagName should be input', function(assert) {
   assert.equal(component.get('tagName'), 'input');
 });
 
-test('classNames', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-  assert.deepEqual(component.get('classNames'), [
-    "ember-view",
-    "ember-text-field",
-    "no-select",
-    "tt-date-field"
-  ]);
-});
-
 test('size should be 14', function(assert) {
   assert.expect(1);
   var component = this.subject();
