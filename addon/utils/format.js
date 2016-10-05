@@ -4,7 +4,7 @@ import moment from 'moment';
 const { get } = Ember;
 
 function convertObjectToString(date) {
-  return `${ get(date, 'year') }-${ get(date, 'month')+1 }-${ get(date, 'date') }`;
+  return `${ get(date, 'year') }/${ get(date, 'month')+1 }/${ get(date, 'date') }`;
 }
 
 export default function format(date, format = 'date') {
