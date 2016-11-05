@@ -33,6 +33,11 @@ export default Ember.Component.extend({
   */
 
   /**
+    @property placeholder
+    @type {String}
+  */
+
+  /**
     @property displayFormat
     @type {String}
     @default `ddd DD/MM/YYYY`
