@@ -21,6 +21,15 @@ test('displayFormat', function(assert) {
   assert.equal(this.$('input').val(), '3:05 pm');
 });
 
+test('placeholder', function(assert) {
+  this.set('placeholder', 'foo');
+  this.render(hbs`{{tt-input-time placeholder=placeholder}}`);
+  assert.equal(this.$('input').attr('placeholder'), 'foo');
+
+  this.set('placeholder', 'bar');
+  assert.equal(this.$('input').attr('placeholder'), 'bar');
+});
+
 test('change displayFormat', function(assert) {
   let time = new Date(0);
   time.setHours(15);

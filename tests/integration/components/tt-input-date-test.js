@@ -19,6 +19,15 @@ test('displayFormat', function(assert) {
   assert.equal(this.$('input').val(), 'Wed 24/08/1977');
 });
 
+test('placeholder', function(assert) {
+  this.set('placeholder', 'foo');
+  this.render(hbs`{{tt-input-date placeholder=placeholder}}`);
+  assert.equal(this.$('input').attr('placeholder'), 'foo');
+
+  this.set('placeholder', 'bar');
+  assert.equal(this.$('input').attr('placeholder'), 'bar');
+});
+
 test('change displayFormat', function(assert) {
   let date = new Date(1977,7,24);
   this.set('displayFormat', 'ddd DD/MM/YYYY');
