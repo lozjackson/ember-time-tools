@@ -1,5 +1,7 @@
 # Change Log
 
+* [#16](https://github.com/lozjackson/ember-time-tools/pull/16) Add support for the placeholder attribute to InputDateComponent and InputTimeComponent.
+
 ### v0.3.0 2016-10-05
 
 * [#14](https://github.com/lozjackson/ember-time-tools/pull/14) Add `format` property to InputDateComponent and InputTimeComponent.
