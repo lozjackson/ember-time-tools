@@ -42,6 +42,13 @@ test('timeInterval', function(assert) {
   assert.equal(component.get('timeInterval'), 30);
 });
 
+test('scrollToSelectedTime should be true', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('scrollToSelectedTime'), true);
+});
+
 test('_selectedTime - date', function(assert) {
   assert.expect(1);
   var component = this.subject();
@@ -201,7 +208,17 @@ test('times - interval=0 should be same as interval=1', function(assert) {
 test('didInsertElement() method', function(assert) {
   assert.expect();
   this.subject({
+    scrollToSelectedTime: true,
     scrollToElement: selector => assert.equal(selector, '.tt-time-picker li.time-selected')
+  });
+  this.render();
+});
+
+test('didInsertElement() method - scrollToSelectedTime=false', function(assert) {
+  assert.expect(0);
+  this.subject({
+    scrollToSelectedTime: false,
+    scrollToElement: () => assert.ok(false)
   });
   this.render();
 });

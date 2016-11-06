@@ -70,6 +70,23 @@ export default Ember.Component.extend(DestinationElementMixin, {
   timeInterval: 30,
 
   /**
+    ## Scroll to selected time
+
+    With this property set to `true` the time picker will scroll to display the
+    selected time. If that is not the desired behaviour then you can set
+    `scrollToSelectedTime` to `false`.
+
+    ```
+    {{input-time scrollToSelectedTime=false}}
+    ```
+
+    @property scrollToSelectedTime
+    @type {Boolean}
+    @default `true`
+  */
+  scrollToSelectedTime: true,
+
+  /**
     @property showTimePicker
     @type {Boolean}
     @private

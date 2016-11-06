@@ -168,6 +168,26 @@
 
 <hr>
 
+<h2>scrollToSelectedTime</h2>
+
+<p>
+  When <code>true</code>, the default, the time picker will scroll to display
+  the selected time when inserted into the DOM.  If that is not the desired behaviour
+  then you can set <code>scrollToSelectedTime</code> to <code>false</code>.
+</p>
+
+{{code-snippet name="time-picker-scroll-false.hbs"}}
+
+<div class="time-picker-container">
+  {{#lazy-load}}
+    {{! BEGIN-SNIPPET time-picker-scroll-false }}
+    {{time-picker scrollToSelectedTime=false}}
+    {{! END-SNIPPET }}
+  {{/lazy-load}}
+</div>
+
+<hr>
+
 <h2>close</h2>
 {{#lazy-load}}
   {{time-picker-close}}

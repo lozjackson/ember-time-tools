@@ -68,6 +68,23 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   selectedTime: null,
 
   /**
+    ## Scroll to selected time
+
+    With this property set to `true` the time picker will scroll to display the
+    selected time.  If that is not the desired behaviour then you can set
+    `scrollToSelectedTime` to `false`.
+
+    ```
+    {{time-picker scrollToSelectedTime=false}}
+    ```
+
+    @property scrollToSelectedTime
+    @type {Boolean}
+    @default `true`
+  */
+  scrollToSelectedTime: true,
+
+  /**
     This computed property takes the `selectedTime` property, which is a javascript
     `Date` object and returns an object with `hour` and `minute` properties.
 
@@ -130,7 +147,9 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   didInsertElement() {
     this._super(...arguments);
-    this.scrollToElement('.tt-time-picker li.time-selected');
+    if (this.get('scrollToSelectedTime')) {
+      this.scrollToElement('.tt-time-picker li.time-selected');
+    }
   },
 
   /**
