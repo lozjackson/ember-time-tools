@@ -7,9 +7,13 @@
     placeholder=placeholder
     toggleDatePicker="toggleDatePicker"}}
   {{#if showDatePicker}}
-    {{tt-date-picker
-      selectedDate=value
-      select="selectDate"
-      close="closeDatePicker"}}
+    {{#ember-wormhole to=destinationElementId renderInPlace=(unless destinationElementId true)}}
+      {{tt-date-picker
+        selectedDate=value
+        setPositionByCursor=setPositionByCursor
+        inputDateElement=this.element
+        select="selectDate"
+        close="closeDatePicker"}}
+    {{/ember-wormhole}}
   {{/if}}
 {{/if}}

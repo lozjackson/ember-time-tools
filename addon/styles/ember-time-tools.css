@@ -251,6 +251,10 @@
 	border-bottom-left-radius: 4px;
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
 }
+.tt-date-picker.container.fixed,
+.tt-time-picker.container.fixed {
+  position: fixed;
+}
 .tt-time-picker.container {
 	height: 300px;
 	width: 120px;

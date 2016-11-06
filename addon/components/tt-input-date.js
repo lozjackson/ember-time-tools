@@ -4,6 +4,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/tt-input-date';
 import format from 'ember-time-tools/utils/format';
+import DestinationElementMixin from 'ember-ui-components/mixins/destination-element';
 
 /**
   This component is a container for a DateFieldComponent and a DatePickerComponent.
@@ -11,7 +12,7 @@ import format from 'ember-time-tools/utils/format';
   @class InputDateComponent
   @namespace Date
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(DestinationElementMixin, {
 
   layout,
 
@@ -35,6 +36,17 @@ export default Ember.Component.extend({
   /**
     @property placeholder
     @type {String}
+  */
+
+  /**
+    @property to
+    @type {String}
+  */
+
+  /**
+    @property destinationElementId
+    @type {String}
+    @private
   */
 
   /**

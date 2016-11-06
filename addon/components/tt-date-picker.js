@@ -5,6 +5,7 @@ import Ember from 'ember';
 import layout from '../templates/components/tt-date-picker';
 import DateObject from 'ember-time-tools/utils/date';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
+import SetPositionMixin from 'ember-time-tools/mixins/set-position';
 
 const { computed } = Ember;
 const { readOnly } = computed;
@@ -40,9 +41,10 @@ function getDays(date) {
 
 /**
   @class DatePickerComponent
+  @uses Mixins.SetPositionMixin
   @namespace Date
 */
-export default Ember.Component.extend(ClickOutsideMixin, {
+export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
 
   layout,
 

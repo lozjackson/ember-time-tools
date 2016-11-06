@@ -4,14 +4,16 @@
 import Ember from 'ember';
 import layout from '../templates/components/tt-time-picker';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
+import SetPositionMixin from 'ember-time-tools/mixins/set-position';
 
 const { computed } = Ember;
 
 /**
   @class TimePickerComponent
+  @uses Mixins.SetPositionMixin
   @namespace Time
 */
-export default Ember.Component.extend(ClickOutsideMixin, {
+export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
 
   layout,
 
