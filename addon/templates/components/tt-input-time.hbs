@@ -7,11 +7,15 @@
     placeholder=placeholder
     toggleTimePicker="toggleTimePicker"}}
   {{#if showTimePicker}}
-    {{tt-time-picker
-      timeInterval=timeInterval
-      displayFormat=pickerDisplayFormat
-      selectedTime=value
-      select="selectTime"
-      close="closeTimePicker"}}
+    {{#ember-wormhole to=destinationElementId renderInPlace=(unless destinationElementId true)}}
+      {{tt-time-picker
+        timeInterval=timeInterval
+        displayFormat=pickerDisplayFormat
+        selectedTime=value
+        setPositionByCursor=setPositionByCursor
+        inputTimeElement=this.element
+        select="selectTime"
+        close="closeTimePicker"}}
+    {{/ember-wormhole}}
   {{/if}}
 {{/if}}

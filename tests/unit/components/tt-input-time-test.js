@@ -8,6 +8,7 @@ moduleForComponent('tt-input-time', 'Unit | Component | tt input time', {
     'component:tt-time-field',
     'component:tt-time-picker',
     'component:uic-close-button',
+    'component:ember-wormhole',
     'helper:format-date',
     'helper:compare-json'
   ],
