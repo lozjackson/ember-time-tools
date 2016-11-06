@@ -1,4 +1,5 @@
 # Change Log
+* [#20](https://github.com/lozjackson/ember-time-tools/pull/20) Add `scrollToSelectedTime` property to TimePickerComponent.
 
 * [#18](https://github.com/lozjackson/ember-time-tools/pull/18) [FEATURE] Add SetPositionMixin
 
