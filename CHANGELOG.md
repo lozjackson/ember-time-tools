@@ -1,4 +1,7 @@
 # Change Log
+
+### v0.4.0 2016-11-06
+
 * [#20](https://github.com/lozjackson/ember-time-tools/pull/20) Add `scrollToSelectedTime` property to TimePickerComponent.
 
 * [#18](https://github.com/lozjackson/ember-time-tools/pull/18) [FEATURE] Add SetPositionMixin
@@ -10,6 +13,9 @@
 * [#18](https://github.com/lozjackson/ember-time-tools/pull/18) Update Ember-ui-components dependency to v0.9.2
 
 * [#19](https://github.com/lozjackson/ember-time-tools/pull/19) Update to Ember-cli 2.8.0
+
+
+
 
 ### v0.3.0 2016-10-05
 
