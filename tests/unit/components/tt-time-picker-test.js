@@ -201,7 +201,17 @@ test('times - interval=0 should be same as interval=1', function(assert) {
 test('didInsertElement() method', function(assert) {
   assert.expect();
   this.subject({
+    scrollToSelectedTime: true,
     scrollToElement: selector => assert.equal(selector, '.tt-time-picker li.time-selected')
+  });
+  this.render();
+});
+
+test('didInsertElement() method - scrollToSelectedTime=false', function(assert) {
+  assert.expect(0);
+  this.subject({
+    scrollToSelectedTime: false,
+    scrollToElement: () => assert.ok(false)
   });
   this.render();
 });
