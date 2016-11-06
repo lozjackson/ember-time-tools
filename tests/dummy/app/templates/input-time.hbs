@@ -217,6 +217,21 @@
   For more information on <code>ember-wormhole</code>, click <a href="https://github.com/yapplabs/ember-wormhole">here</a>.
 </p>
 
+<hr>
+
+<h2>scrollToSelectedTime</h2>
+
+<p>
+  When <code>true</code>, the default, the time picker will scroll to display
+  the selected time when inserted into the DOM.  If that is not the desired behaviour
+  then you can set <code>scrollToSelectedTime</code> to <code>false</code>.
+</p>
+
+{{code-snippet name="input-time-scroll-false.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-scroll-false }}
+{{input-time scrollToSelectedTime=false}}
+{{! END-SNIPPET }}
 
 <hr>
 
