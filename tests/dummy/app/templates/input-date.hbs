@@ -16,6 +16,18 @@
 
 {{code-snippet name="input-date-advanced.hbs"}}
 
+<h2>Properties</h2>
+
+<ul>
+  <li>value</li>
+  <li>displayFormat</li>
+  <li>format</li>
+  <li>setPositionByCursor</li>
+  <li>to</li>
+  <li>placeholder</li>
+  <li>disabled</li>
+</ul>
+
 <hr>
 
 <h2>value</h2>
@@ -147,7 +159,7 @@
 
 <hr>
 
-<h2>Destination element</h2>
+<h2>to</h2>
 
 <p>
   The date picker can be rendered into another DOM element
@@ -167,7 +179,7 @@
 {{code-snippet name="input-date-destinationElementId.hbs"}}
 
 {{! BEGIN-SNIPPET input-date-destinationElementId }}
-{{input-date destinationElementId="date-picker-container"}}
+{{input-date to="date-picker-container"}}
 {{! END-SNIPPET }}
 
 <p>This will position the date picker at the bottom/left corner of the destination element specified.</p>
@@ -180,7 +192,7 @@
 {{code-snippet name="input-date-position-by-cursor.hbs"}}
 
 {{! BEGIN-SNIPPET input-date-position-by-cursor }}
-{{input-date setPositionByCursor=true destinationElementId="date-picker-container"}}
+{{input-date setPositionByCursor=true to="date-picker-container"}}
 {{! END-SNIPPET }}
 
 <p>

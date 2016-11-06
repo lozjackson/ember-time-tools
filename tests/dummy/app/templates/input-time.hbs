@@ -16,6 +16,21 @@
 
 {{code-snippet name="input-time-advanced.hbs"}}
 
+<h2>Properties</h2>
+
+<ul>
+  <li>value</li>
+  <li>displayFormat</li>
+  <li>pickerDisplayFormat</li>
+  <li>format</li>
+  <li>timeInterval</li>
+  <li>setPositionByCursor</li>
+  <li>to</li>
+  <li>scrollToSelectedTime</li>
+  <li>placeholder</li>
+  <li>disabled</li>
+</ul>
+
 <hr>
 
 <h2>value</h2>
@@ -177,7 +192,7 @@
 
 <hr>
 
-<h2>Destination element</h2>
+<h2>to</h2>
 
 <p>
   The time picker can be rendered into another DOM element
@@ -197,7 +212,7 @@
 {{code-snippet name="input-time-destinationElementId.hbs"}}
 
 {{! BEGIN-SNIPPET input-time-destinationElementId }}
-{{input-time destinationElementId="time-picker-container"}}
+{{input-time to="time-picker-container"}}
 {{! END-SNIPPET }}
 
 <p>This will position the time picker at the bottom/left corner of the destination element specified.</p>
@@ -210,7 +225,7 @@
 {{code-snippet name="input-time-position-by-cursor.hbs"}}
 
 {{! BEGIN-SNIPPET input-time-position-by-cursor }}
-{{input-time setPositionByCursor=true destinationElementId="time-picker-container"}}
+{{input-time setPositionByCursor=true to="time-picker-container"}}
 {{! END-SNIPPET }}
 
 <p>
