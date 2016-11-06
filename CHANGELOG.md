@@ -1,6 +1,12 @@
 # Change Log
 
+* [#18](https://github.com/lozjackson/ember-time-tools/pull/18) [FEATURE] Add SetPositionMixin
+
+* [#18](https://github.com/lozjackson/ember-time-tools/pull/18) [FEATURE] Add `ember-wormhole` component to InputDateComponent and InputTimeComponent.
+
 * [#16](https://github.com/lozjackson/ember-time-tools/pull/16) Add support for the placeholder attribute to InputDateComponent and InputTimeComponent.
+
+* [#18](https://github.com/lozjackson/ember-time-tools/pull/18) Update Ember-ui-components dependency to v0.9.2
 
 ### v0.3.0 2016-10-05
 
