@@ -45,9 +45,9 @@
   },
   "keywords": [
     "ember-addon",
-    "time-tools"
+    "time-tools",
     "input-date",
-    "input-time"
+    "input-time",
     "date-picker",
     "time-picker",
     "calendar"
