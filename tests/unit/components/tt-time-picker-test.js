@@ -42,6 +42,13 @@ test('timeInterval', function(assert) {
   assert.equal(component.get('timeInterval'), 30);
 });
 
+test('scrollToSelectedTime should be true', function(assert) {
+  assert.expect(1);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('scrollToSelectedTime'), true);
+});
+
 test('_selectedTime - date', function(assert) {
   assert.expect(1);
   var component = this.subject();

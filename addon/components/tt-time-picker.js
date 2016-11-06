@@ -71,7 +71,12 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     ## Scroll to selected time
 
     With this property set to `true` the time picker will scroll to display the
-    selected time.
+    selected time.  If that is not the desired behaviour then you can set
+    `scrollToSelectedTime` to `false`.
+
+    ```
+    {{time-picker scrollToSelectedTime=false}}
+    ```
 
     @property scrollToSelectedTime
     @type {Boolean}
