@@ -153,6 +153,73 @@
 
 <hr>
 
+<h2>setPositionByCursor</h2>
+
+<p>
+  Set the <code>setPositionByCursor</code> attribute to <code>true</code> to have
+  the time picker positioned at the mouse position.  In this mode the time picker
+  css <code>position</code> attribute is set to <code>fixed</code> and will not
+  move with the page when the page is scrolled.
+</p>
+
+<p>
+  When this attribute is set to <code>false</code>, the default, then the time
+  picker will be positioned at the bottom/left corner of the destination element.
+  In this mode the time picker css <code>position</code> attribute is set to
+  <code>absolute</code> and will move with the page when the page is scrolled.
+</p>
+
+{{code-snippet name="input-time-position-by-cursor-example.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-position-by-cursor-example }}
+{{input-time setPositionByCursor=true}}
+{{! END-SNIPPET }}
+
+<hr>
+
+<h2>Destination element</h2>
+
+<p>
+  The time picker can be rendered into another DOM element
+  using <a href="https://github.com/yapplabs/ember-wormhole"><code>ember-wormhole</code></a>.
+</p>
+<p>First, add a html element to the DOM and give it a unique <code>id</code></p>
+
+{{code-snippet name="time-picker-container.hbs"}}
+
+{{! BEGIN-SNIPPET time-picker-container }}
+<div id="time-picker-container"></div>
+{{! END-SNIPPET }}
+
+<p>
+  Then specify the element id to the <code>to</code> property of the <code>InputTimeComponent</code>.
+</p>
+{{code-snippet name="input-time-destinationElementId.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-destinationElementId }}
+{{input-time destinationElementId="time-picker-container"}}
+{{! END-SNIPPET }}
+
+<p>This will position the time picker at the bottom/left corner of the destination element specified.</p>
+
+<p>
+  You can set the <code>setPositionByCursor</code> attribute to <code>true</code>
+  to have the time picker positioned at the mouse position.
+</p>
+
+{{code-snippet name="input-time-position-by-cursor.hbs"}}
+
+{{! BEGIN-SNIPPET input-time-position-by-cursor }}
+{{input-time setPositionByCursor=true destinationElementId="time-picker-container"}}
+{{! END-SNIPPET }}
+
+<p>
+  For more information on <code>ember-wormhole</code>, click <a href="https://github.com/yapplabs/ember-wormhole">here</a>.
+</p>
+
+
+<hr>
+
 <h2>placeholder</h2>
 
 <p>

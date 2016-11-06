@@ -123,6 +123,72 @@
 
 <hr>
 
+<h2>setPositionByCursor</h2>
+
+<p>
+  Set the <code>setPositionByCursor</code> attribute to <code>true</code> to have
+  the date picker positioned at the mouse position.  In this mode the date picker
+  css <code>position</code> attribute is set to <code>fixed</code> and will not
+  move with the page when the page is scrolled.
+</p>
+
+<p>
+  When this attribute is set to <code>false</code>, the default, then the date
+  picker will be positioned at the bottom/left corner of the destination element.
+  In this mode the date picker css <code>position</code> attribute is set to
+  <code>absolute</code> and will move with the page when the page is scrolled.
+</p>
+
+{{code-snippet name="input-date-position-by-cursor-example.hbs"}}
+
+{{! BEGIN-SNIPPET input-date-position-by-cursor-example }}
+{{input-date setPositionByCursor=true}}
+{{! END-SNIPPET }}
+
+<hr>
+
+<h2>Destination element</h2>
+
+<p>
+  The date picker can be rendered into another DOM element
+  using <a href="https://github.com/yapplabs/ember-wormhole"><code>ember-wormhole</code></a>.
+</p>
+<p>First, add a html element to the DOM and give it a unique <code>id</code></p>
+
+{{code-snippet name="date-picker-container.hbs"}}
+
+{{! BEGIN-SNIPPET date-picker-container }}
+<div id="date-picker-container"></div>
+{{! END-SNIPPET }}
+
+<p>
+  Then specify the element id to the <code>to</code> property of the <code>InputDateComponent</code>.
+</p>
+{{code-snippet name="input-date-destinationElementId.hbs"}}
+
+{{! BEGIN-SNIPPET input-date-destinationElementId }}
+{{input-date destinationElementId="date-picker-container"}}
+{{! END-SNIPPET }}
+
+<p>This will position the date picker at the bottom/left corner of the destination element specified.</p>
+
+<p>
+  You can set the <code>setPositionByCursor</code> attribute to <code>true</code>
+  to have the date picker positioned at the mouse position.
+</p>
+
+{{code-snippet name="input-date-position-by-cursor.hbs"}}
+
+{{! BEGIN-SNIPPET input-date-position-by-cursor }}
+{{input-date setPositionByCursor=true destinationElementId="date-picker-container"}}
+{{! END-SNIPPET }}
+
+<p>
+  For more information on <code>ember-wormhole</code>, click <a href="https://github.com/yapplabs/ember-wormhole">here</a>.
+</p>
+
+<hr>
+
 <h2>placeholder</h2>
 
 <p>
