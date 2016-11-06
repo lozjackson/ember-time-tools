@@ -40,11 +40,17 @@
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.1.0",
     "ember-resolver": "^2.0.3",
+    "loader.js": "^4.0.1",
     "phantomjs-prebuilt": "^2.1.12"
-    "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "time-tools"
+    "input-date",
+    "input-time"
+    "date-picker",
+    "time-picker",
+    "calendar"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
