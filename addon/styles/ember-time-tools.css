@@ -281,8 +281,12 @@
   font-size:18px;
 	position: absolute;
 	top: 5px;
-	left:5px;
-	width: calc(100% - 40px);
+	left: 5px;
+  max-width: calc(100% - 40px);
+  display: inline-block;
+}
+.tt-date-picker .header > .top-panel > div[data-ember-action].date {
+  cursor: pointer;
 }
 .tt-date-picker .header > .top-panel > .navigation {
 	margin-top: 35px;
