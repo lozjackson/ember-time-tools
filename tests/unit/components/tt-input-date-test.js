@@ -9,6 +9,8 @@ moduleForComponent('tt-input-date', 'Unit | Component | tt input date', {
     'component:tt-date-field',
     'component:tt-date-picker',
     'component:tt-picker-item',
+    'component:tt-year-option',
+    'component:tt-month-option',
     'component:svg-triangle',
     'component:uic-close-button',
     'component:ember-wormhole',
