@@ -2,6 +2,8 @@
 
 * [#21](https://github.com/lozjackson/ember-time-tools/pull/21) [FEATURE] The DatePickerComponent now offers a list of months and years to select from.
 
+* [#22](https://github.com/lozjackson/ember-time-tools/pull/22) Update Ember-ui-components dependency to ^0.10.0
+
 ### v0.4.0 2016-11-06
 
 * [#20](https://github.com/lozjackson/ember-time-tools/pull/20) Add `scrollToSelectedTime` property to TimePickerComponent.
@@ -12,7 +14,7 @@
 
 * [#16](https://github.com/lozjackson/ember-time-tools/pull/16) Add support for the placeholder attribute to InputDateComponent and InputTimeComponent.
 
-* [#18](https://github.com/lozjackson/ember-time-tools/pull/18) Update Ember-ui-components dependency to v0.9.2
+* [#18](https://github.com/lozjackson/ember-time-tools/pull/18) Update Ember-ui-components dependency to ^0.9.2
 
 * [#19](https://github.com/lozjackson/ember-time-tools/pull/19) Update to Ember-cli 2.8.0
 
