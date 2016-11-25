@@ -239,7 +239,7 @@
   position: absolute;
   z-index: 4;
 	background: #FFFFFF;
-  border: 1px solid black;
+  border: 1px solid #c5c5c5;
   padding:0px;
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-topright: 4px;
