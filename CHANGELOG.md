@@ -1,5 +1,7 @@
 # Change Log
 
+* [#23](https://github.com/lozjackson/ember-time-tools/pull/23) Update DatePickerComponent css styles.
+
 * [#21](https://github.com/lozjackson/ember-time-tools/pull/21) [FEATURE] The DatePickerComponent now offers a list of months and years to select from.
 
 * [#22](https://github.com/lozjackson/ember-time-tools/pull/22) Update Ember-ui-components dependency to ^0.10.0
