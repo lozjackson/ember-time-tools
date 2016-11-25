@@ -433,7 +433,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   },
 
   /**
-    @method prevYear
+    @method prevDecade
   */
   prevDecade() {
     let { decade: { start }, month } = this.getProperties('decade', 'month');
@@ -441,7 +441,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   },
 
   /**
-    @method nextYear
+    @method nextDecade
   */
   nextDecade() {
     let { decade, month } = this.getProperties('decade', 'month');
