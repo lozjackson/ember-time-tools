@@ -1,5 +1,7 @@
 # Change Log
 
+* [#21](https://github.com/lozjackson/ember-time-tools/pull/21) [FEATURE] The DatePickerComponent now offers a list of months and years to select from.
+
 ### v0.4.0 2016-11-06
 
 * [#20](https://github.com/lozjackson/ember-time-tools/pull/20) Add `scrollToSelectedTime` property to TimePickerComponent.

@@ -4,15 +4,15 @@ import Ember from 'ember';
 const { run } = Ember;
 
 moduleForComponent('tt-date-picker', 'Unit | Component | tt date picker', {
-  // Specify the other units that are required for this test
   needs: [
     'component:tt-picker-item',
+    'component:tt-year-option',
+    'component:tt-month-option',
     'component:svg-triangle',
     'component:uic-close-button'
   ],
   unit: true
 });
-
 
 test('it renders', function(assert) {
   assert.expect(2);
@@ -51,6 +51,12 @@ test('output should be date', function(assert) {
   assert.equal(component.get('output'), 'date');
 });
 
+test('viewRange should be date', function(assert) {
+  let component = this.subject();
+  this.render();
+  assert.equal(component.get('viewRange'), 'date');
+});
+
 test('year should be viewDate.year', function(assert) {
   assert.expect(2);
   var component = this.subject();
@@ -71,6 +77,33 @@ test('month should be viewDate.month', function(assert) {
 
   run(() => component.setViewDate('1982/5/13'));
   assert.equal(component.get('month'), 4);
+});
+
+test('decade', function(assert) {
+  let component = this.subject();
+  this.render();
+  run(() => component.set('viewDate.date', '2007/8/1'));
+  assert.deepEqual(component.get('decade'), { start: 2000, end: 2009 });
+});
+
+test('displayMonths', function(assert) {
+  let component = this.subject();
+  this.render();
+  assert.deepEqual(component.get('displayMonths'), false);
+  run(() => component.set('viewRange', 'month'));
+  assert.deepEqual(component.get('displayMonths'), true);
+  run(() => component.set('viewRange', 'year'));
+  assert.deepEqual(component.get('displayMonths'), false);
+});
+
+test('displayYears', function(assert) {
+  let component = this.subject();
+  this.render();
+  assert.deepEqual(component.get('displayYears'), false);
+  run(() => component.set('viewRange', 'year'));
+  assert.deepEqual(component.get('displayYears'), true);
+  run(() => component.set('viewRange', 'month'));
+  assert.deepEqual(component.get('displayYears'), false);
 });
 
 test('daysOfWeek', function(assert) {
@@ -126,6 +159,52 @@ test('startDay', function(assert) {
 
   run(() => component.setViewDate('1982/5/13'));
   assert.deepEqual(component.get('startDay'), 5);
+});
+
+test('chooseMonth() method', function(assert) {
+  assert.expect(2);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('viewRange'), 'date');
+  run(() => component.chooseMonth());
+  assert.equal(component.get('viewRange'), 'month');
+});
+
+test('chooseYear() method', function(assert) {
+  assert.expect(2);
+  var component = this.subject();
+  this.render();
+  assert.equal(component.get('viewRange'), 'date');
+  run(() => component.chooseYear());
+  assert.equal(component.get('viewRange'), 'year');
+});
+
+test('_setMonth() method', function(assert) {
+  assert.expect(6);
+  var component = this.subject({ viewRange: 'month' });
+  this.render();
+  run(() => component.set('viewDate.date', `2016/10/1`));
+  assert.equal(component.get('month'), '9');
+  assert.equal(component.get('year'), '2016');
+  assert.equal(component.get('viewRange'), 'month');
+  run(() => component._setMonth(4));
+  assert.equal(component.get('month'), '4');
+  assert.equal(component.get('year'), '2016');
+  assert.equal(component.get('viewRange'), 'date');
+});
+
+test('_setYear() method', function(assert) {
+  assert.expect(6);
+  var component = this.subject({ viewRange: 'year' });
+  this.render();
+  run(() => component.set('viewDate.date', `2016/10/1`));
+  assert.equal(component.get('month'), '9');
+  assert.equal(component.get('year'), '2016');
+  assert.equal(component.get('viewRange'), 'year');
+  run(() => component._setYear(1977));
+  assert.equal(component.get('month'), '9');
+  assert.equal(component.get('year'), '1977');
+  assert.equal(component.get('viewRange'), 'date');
 });
 
 test('setToday() method', function(assert) {
@@ -251,4 +330,82 @@ test('_nextMonth() method', function(assert) {
   run(() => component._nextMonth());
   assert.equal(component.get('month'), 0);
   assert.equal(component.get('year'), 1978);
+});
+
+test('_prevMonth() method calls viewDate.decrementMonth()', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  component.set('viewDate.decrementMonth', () => assert.ok(true));
+  run(() => component._prevMonth());
+});
+
+test('_nextMonth() method calls viewDate.incrementMonth()', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  component.set('viewDate.incrementMonth', () => assert.ok(true));
+  run(() => component._nextMonth());
+});
+
+test('prevYear() method calls viewDate.decrementYear()', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  component.set('viewDate.decrementYear', () => assert.ok(true));
+  run(() => component.prevYear());
+});
+
+test('nextYear() method calls viewDate.incrementYear()', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  component.set('viewDate.incrementYear', () => assert.ok(true));
+  run(() => component.nextYear());
+});
+
+test('prevDecade() method', function(assert) {
+  assert.expect(4);
+  let component = this.subject();
+  this.render();
+  run(() => component.set('viewDate.date', '2016/8/24'));
+  assert.equal(component.get('month'), '7');
+  assert.equal(component.get('year'), '2016');
+  run(() => component.prevDecade());
+  assert.equal(component.get('month'), '7');
+  assert.equal(component.get('year'), '2000');
+});
+
+test('nextDecade() method', function(assert) {
+  assert.expect(4);
+  let component = this.subject();
+  this.render();
+  run(() => component.set('viewDate.date', '2016/8/24'));
+  assert.equal(component.get('month'), '7');
+  assert.equal(component.get('year'), '2016');
+  run(() => component.nextDecade());
+  assert.equal(component.get('month'), '7');
+  assert.equal(component.get('year'), '2020');
+});
+
+test('setMonth action', function(assert) {
+  assert.expect(1);
+  let component = this.subject({
+    _setMonth: (month) => {
+      assert.equal(month, 2);
+    }
+  });
+  this.render();
+  component.send('setMonth', 2);
+});
+
+test('setYear action', function(assert) {
+  assert.expect(1);
+  let component = this.subject({
+    _setYear: (year) => {
+      assert.equal(year, 2010);
+    }
+  });
+  this.render();
+  component.send('setYear', 2010);
 });

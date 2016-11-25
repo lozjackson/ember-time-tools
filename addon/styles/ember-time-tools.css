@@ -259,7 +259,7 @@
 	height: 300px;
 	width: 120px;
 }
-.tt-date-picker > .header {
+.tt-date-picker .header {
 	width:100%;
   height:60px;
   border-bottom:1px solid #ccc;
@@ -268,14 +268,14 @@
 .tt-date-picker .day-letters {
 	background: rgba(235, 242, 255, 0.5);
 }
-.tt-date-picker > .header > .top-panel {
+.tt-date-picker .header > .top-panel {
   position: absolute;
 	width: 100%;
   overflow: visible;
 	height:60px;
 	text-align: center;
 }
-.tt-date-picker > .header > .top-panel > .date {
+.tt-date-picker .header > .top-panel > .date {
   text-align: left;
 	float:left;
   font-size:18px;
@@ -284,20 +284,20 @@
 	left:5px;
 	width: calc(100% - 40px);
 }
-.tt-date-picker > .header > .top-panel > .navigation {
+.tt-date-picker .header > .top-panel > .navigation {
 	margin-top: 35px;
 }
-.tt-date-picker > .header > .top-panel > .navigation button {
+.tt-date-picker .header > .top-panel > .navigation button {
 	float: none;
 	margin: 0px;
 	background: none;
 	cursor: pointer;
 	border:  none;
 }
-.tt-date-picker > .header > .top-panel > .navigation button:hover {
+.tt-date-picker .header > .top-panel > .navigation button:hover {
 	border: none;
 }
-.tt-date-picker > .header > .top-panel > .navigation button:focus {
+.tt-date-picker .header > .top-panel > .navigation button:focus {
   outline: none;
 }
 .tt-date-picker.container .close-button,
@@ -308,9 +308,29 @@
     width:22px;
     height:22px;
 }
-.tt-date-picker.container > table {
+.tt-date-picker.container table {
     border-spacing: 0px;
     font-family: arial;
+    width: 100%;
+}
+.tt-date-picker.container > .range-select {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background-color: #fff;
+  transition: height 0.1s;
+  overflow: hidden;
+}
+.tt-date-picker.container > .range-select.display-months,
+.tt-date-picker.container > .range-select.display-years {
+  height: 100%;
+}
+.tt-date-picker.container > .range-select > table {
+  height: calc(100% - 60px);
+}
+.tt-date-picker.container > .range-select > table > tbody.month-list {
+  text-align: center;
 }
 .tt-date-picker.container > table > .date-picker-select, .tt-date-picker.container > table > .days {
 	background-color: rgb(255,255,255);
@@ -334,15 +354,47 @@
     color:#fff;
     background: rgba(14, 61, 145, 0.24);
 }
+.tt-date-picker.container table td {
+  transition: background 0.1s;
+  border-radius: 2px;
+}
 .tt-date-picker.container > table td.day.day-selected,
 .tt-time-picker .time-select ul > li.time-selected {
     color:#ffffff;
     background: rgba(56, 88, 255, 0.81);
 }
+.tt-date-picker.container .range-select table td.month-selected,
+.tt-date-picker.container .range-select table td.year-selected {
+    color:#ffffff;
+    background: rgba(147, 152, 175, 0.8);
+}
 .tt-date-picker.container > table td.day:hover,
+.tt-date-picker.container .range-select table td.option:hover,
 .tt-time-picker .time-select ul > li:hover {
   background: rgba(139, 171, 242, 1);
 	color: #fff;
+}
+.tt-date-picker.container .month-select {
+  z-index: 2;
+}
+.tt-date-picker.container .year-select {
+  z-index: 3;
+}
+.tt-date-picker.container .range-select .header {
+  background: #fff;
+  height: 60px;
+}
+.tt-date-picker.container .range-select table td {
+  border-radius: 4px;
+  border: 1px solid #fdfdfd;
+  cursor: default;
+}
+.tt-date-picker.container .range-select table td.option {
+  transition: background 0.1s, border 0.1s;
+  cursor: pointer;
+}
+.tt-date-picker.container .range-select table td.option:hover {
+  border: 1px solid #f1f1f1;
 }
 .tt-date-picker.container > table tr.day-letters {
   cursor: default;
