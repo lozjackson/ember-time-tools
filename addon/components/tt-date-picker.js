@@ -113,6 +113,14 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   viewDate: null,
 
   /**
+    @property viewMode
+    @type {String}
+    @private
+    @default `date`
+  */
+  viewRange: 'date',
+
+  /**
     @property year
     @type {Number}
     @readonly
@@ -127,6 +135,22 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   month: readOnly('viewDate.month'),
+
+  /**
+    Returns an object with the start and end of the decade.  Given the year 2016
+    the `decade` {Object} would be `{ start: 2010, end: 2019 }`
+
+    @property decade
+    @type {Object}
+    @private
+  */
+  decade: computed('year', function () {
+    let start = Math.floor(this.get('year')/10)*10;
+    return {
+      start,
+      end: start + 9
+    };
+  }),
 
   /**
     An Ember.Array containing an object for each day of the week.  Each object
@@ -149,6 +173,26 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
       array.pushObject({name:daysArray[i]});
     }
     return array;
+  }),
+
+  /**
+    @property displayMonths
+    @type {Boolean}
+    @private
+    @readonly
+  */
+  displayMonths: computed('viewRange', function () {
+    return this.get('viewRange') === 'month';
+  }),
+
+  /**
+    @property displayYears
+    @type {Boolean}
+    @private
+    @readonly
+  */
+  displayYears: computed('viewRange', function () {
+    return this.get('viewRange') === 'year';
   }),
 
   /**
@@ -321,6 +365,44 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   },
 
   /**
+    @method chooseMonth
+    @private
+  */
+  chooseMonth() {
+    this.set('viewRange', 'month');
+  },
+
+  /**
+    @method chooseYear
+    @private
+  */
+  chooseYear() {
+    this.set('viewRange', 'year');
+  },
+
+  /**
+    @method _setMonth
+    @param {Integer} month
+    @private
+  */
+  _setMonth(month) {
+    let year = this.get('viewDate.year');
+    this.set('viewDate.date', `${year}/${ month + 1 }/1`);
+    this.set('viewRange', 'date');
+  },
+
+  /**
+    @method _setYear
+    @param {Integer} year
+    @private
+  */
+  _setYear(year) {
+    let month = this.get('viewDate.month');
+    this.set('viewDate.date', `${year}/${ month + 1 }/1`);
+    this.set('viewRange', 'date');
+  },
+
+  /**
     @method _prevMonth
     @private
   */
@@ -334,6 +416,36 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   _nextMonth() {
     this.get('viewDate').incrementMonth();
+  },
+
+  /**
+    @method prevYear
+  */
+  prevYear() {
+    this.get('viewDate').decrementYear();
+  },
+
+  /**
+    @method nextYear
+  */
+  nextYear() {
+    this.get('viewDate').incrementYear();
+  },
+
+  /**
+    @method prevYear
+  */
+  prevDecade() {
+    let { decade: { start }, month } = this.getProperties('decade', 'month');
+    this.set('viewDate.date', `${ parseInt(start) - 10 }/${ month + 1 }/1`);
+  },
+
+  /**
+    @method nextYear
+  */
+  nextDecade() {
+    let { decade, month } = this.getProperties('decade', 'month');
+    this.set('viewDate.date', `${ parseInt(decade.start) + 10 }/${ month + 1 }/1`);
   },
 
   actions: {
@@ -364,6 +476,22 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     */
     nextMonth() {
       this._nextMonth();
+    },
+
+    /**
+      @method setMonth
+      @param {Integer} month
+    */
+    setMonth() {
+      this._setMonth(...arguments);
+    },
+
+    /**
+      @method setYear
+      @param {Integer} year
+    */
+    setYear() {
+      this._setYear(...arguments);
     },
 
     /**
