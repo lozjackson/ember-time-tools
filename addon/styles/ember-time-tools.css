@@ -113,6 +113,7 @@
 .tt-calendar-month > .body > .week-row .event-container ul {
   margin: 25px 0 0 0;
   padding: 0;
+  display: block;
 }
 .tt-calendar-month > .body > .week-row .event-container ul > li {
   position: relative;;
@@ -120,6 +121,7 @@
   box-sizing: border-box;
   width: 100%;
   list-style: none;
+  display: list-item;
 }
 .tt-calendar-month > .body > .week-row .calendar-event {
   background: rgba(255, 0, 0, 0.28);
