@@ -104,36 +104,26 @@
 .tt-calendar-month > .body > .week-row > .week-days > .day-cell > span.day-number.out-of-month {
   color: rgba(219, 219, 219, 0.8);
 }
-.tt-calendar-month > .body > .day-container {
-  position: relative;
-  height: 160%;
-  left:0;
-  right:0;
-}
-.tt-calendar-month > .body > .day-container > .calendar-events {
-  top:0;
-  height: 100%;
-  left: 100px;
-  right: 0;
-}
 .tt-calendar-month > .body > .week-row .event-container {
-  position: relative;
-  height: calc(100% - 25px);
-  top: 25px;
-  display: -webkit-flex;
-	display: flex;
-  -webkit-flex-flow: column nowrap;
-	flex-flow: column nowrap;
-}
-.tt-calendar-month > .body > .week-row .event-container > .event-row {
-  position: relative;
-  -webkit-flex: 1 1 auto;
-  flex: 1 1 auto;
-}
-.tt-calendar-month > .body .event {
+  top: 0px;
+  margin: 0;
   position: absolute;
+  width: 100%;
 }
-.tt-calendar-month > .body > .week-row .event {
+.tt-calendar-month > .body > .week-row .event-container ul {
+  margin: 25px 0 0 0;
+  padding: 0;
+  display: block;
+}
+.tt-calendar-month > .body > .week-row .event-container ul > li {
+  position: relative;;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  list-style: none;
+  display: list-item;
+}
+.tt-calendar-month > .body > .week-row .calendar-event {
   background: rgba(255, 0, 0, 0.28);
   text-align: left;
   padding: 2px 10px;
@@ -142,57 +132,23 @@
   margin:0px;
   cursor: pointer;
   font-size: 12px;
-  height: calc(100% - 8px);
+  height: initial;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  width: 100%;
 }
-.tt-calendar-month > .body > .day-container > .calendar-events > .event {
-  min-height: 15px;
-  background: rgba(255, 0, 0, 0.28);
-  text-align: left;
-  padding:2px 10px;
-  border-radius: 5px;
-  margin:0px 2px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.tt-calendar-month > .body > .week-row .event.hover {
+.tt-calendar-month > .body > .week-row .calendar-event.hover {
   background: rgba(255, 0, 0, 0.5);
   color:#fff;
   border: 1px solid rgba(0,0,0,0.5);
 }
-.tt-calendar-month > .body > .week-row .event.selected {
+.tt-calendar-month > .body > .week-row .calendar-event.selected {
   background: rgba(255, 0, 0, 0.8);
   color:#fff;
   border: 1px solid rgb(255,0,0);
 }
-.tt-calendar-month > .body > .week-row .event.continued-left {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left:2px dotted white;
-}
-.tt-calendar-month > .body > .week-row .event.continued-right {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-right:2px dotted white;
-}
-
-/*
-.tt-calendar-month > .body > .day-container > .event.continued-top,
-.tt-calendar-month > .body > .day-container > .calendar-events > .event.continued-top {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-top:2px dotted white;
-}
-
-.tt-calendar-month > .body > .day-container > .event.continued-bottom,
-.tt-calendar-month > .body > .day-container > .calendar-events > .event.continued-bottom {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-bottom:2px dotted white;
-}
-*/
 
 /* calendar day */
 /*
@@ -225,7 +181,7 @@
 
 
 /*
-  date picker
+  date/time picker
 */
 .tt-date-field, .tt-time-field {
 	cursor: pointer;

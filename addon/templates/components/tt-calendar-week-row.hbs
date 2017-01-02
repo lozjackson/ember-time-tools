@@ -1,6 +1,11 @@
 <div class="week-days">
   {{#each days as |day|}}
-    {{tt-calendar-weekrow-day day=day}}
+    {{tt-calendar-weekrow-day
+      day=day
+      events=events
+      selectedEvent=selectedEvent
+      select=select
+      eventComponent=eventComponent}}
   {{/each}}
 </div>
 {{#if hasBlock}}

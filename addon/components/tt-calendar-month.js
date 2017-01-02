@@ -3,11 +3,12 @@
 */
 import Ember from 'ember';
 import layout from '../templates/components/tt-calendar-month';
-import eventTemplate from '../templates/components/tt-calendar-month-event';
+import getDaysInMonth from 'ember-time-tools/utils/get-days-in-month';
 
-const computed = Ember.computed;
+const { computed } = Ember;
+const { sort } = computed;
 
-var Day = Ember.Object.extend({
+const Day = Ember.Object.extend({
   date: null,
   month: null,
   year: null,
@@ -22,12 +23,11 @@ export default Ember.Component.extend({
   layout,
 
   /**
-    This is the template to use for the events displayed in the calendar.
+    You can supply a custom component to use for the events displayed in the calendar.
 
-    @property eventTemplate
+    @property eventComponent
     @type {String}
   */
-  eventTemplate: eventTemplate,
 
   /**
     @property classNames
@@ -87,7 +87,7 @@ export default Ember.Component.extend({
     @type {Array}
     @private
   */
-  sortedEvents: computed.sort('events', 'sortProperties'),
+  sortedEvents: sort('events', 'sortProperties'),
 
   /**
     The selected model/event.
@@ -109,9 +109,9 @@ export default Ember.Component.extend({
     @method init
     @private
   */
-  init: function () {
+  init() {
     this.setToday();
-    return this._super();
+    return this._super(...arguments);
   },
 
   /**
@@ -121,7 +121,7 @@ export default Ember.Component.extend({
     @type {Number}
     @private
   */
-  year: computed( 'selectedDate', function() {
+  year: computed('selectedDate', function() {
     var date = this.get('selectedDate') || new Date();
     return date.getFullYear();
   }),
@@ -133,7 +133,7 @@ export default Ember.Component.extend({
     @type {Number}
     @private
   */
-  month: computed( 'selectedDate', function() {
+  month: computed('selectedDate', function() {
     var date = this.get('selectedDate') || new Date();
     return date.getMonth();
   }),
@@ -145,9 +145,9 @@ export default Ember.Component.extend({
     @type {String}
     @private
   */
-  monthName: computed( 'month', 'monthNames', function () {
-    var { month, monthNames } = this.getProperties([ 'month', 'monthNames' ]);
-    return monthNames[ month ];
+  monthName: computed('month', 'monthNames', function () {
+    let { month, monthNames } = this.getProperties('month', 'monthNames');
+    return monthNames[month];
   }),
 
   /**
@@ -158,16 +158,13 @@ export default Ember.Component.extend({
     @type {Number}
     @private
   */
-  startDay: computed( 'year', 'month', function () {
-    var month = this.get('month'),
-      year = this.get('year'),
-      newCal = new Date(year, month, 1),
-      startDay = newCal.getDay() - 1;
-
+  startDay: computed('year', 'month', function () {
+    let { month, year } = this.getProperties('month', 'year');
+    let newCal = new Date(year, month, 1);
+    let startDay = newCal.getDay() - 1;
     if (startDay < 0) {
       startDay = 6;
     }
-
     return startDay;
   }),
 
@@ -176,24 +173,24 @@ export default Ember.Component.extend({
     @type {Array}
     @private
   */
-  weeks: computed( 'month', 'year', 'startDay', function () {
+  weeks: computed('month', 'year', 'startDay', function () {
 
     const rows = 6;
     const days = 7;
-    var out = Ember.A();
-    var { month, year, startDay } = this.getProperties([ 'month', 'year', 'startDay' ]);
-    var lastMonth = this.getLastMonth( month );
-    var daily = 0;
-    var dailyNextMonth = 1;
-    var daysInLastMonth = this.getDaysInMonth({ year:year, month: lastMonth });
-    var daysInMonth = this.getDaysInMonth({ year:year, month:month });
-    var outOfMonthDayObject = function (d) {
-      var y = year;
-      if ( 0 === daily ) {
+    let out = Ember.A();
+    let { month, year, startDay } = this.getProperties([ 'month', 'year', 'startDay' ]);
+    let lastMonth = this.getLastMonth( month );
+    let daily = 0;
+    let dailyNextMonth = 1;
+    let daysInLastMonth = getDaysInMonth({ year, month: lastMonth });
+    let daysInMonth = getDaysInMonth({ year, month });
+    let outOfMonthDayObject = d => {
+      let y = year;
+      if (0 === daily) {
         return {
           date: daysInLastMonth - (startDay - d)+1,
-          month: (function (month) {
-            var newMonth = month - 1;
+          month: (month => {
+            let newMonth = month - 1;
             if (newMonth < 0) {
               newMonth += 12;
               y--;
@@ -205,8 +202,8 @@ export default Ember.Component.extend({
       } else {
         return {
           date: dailyNextMonth++,
-          month: (function (month) {
-            var newMonth = month + 1;
+          month: (month => {
+            let newMonth = month + 1;
             if (newMonth > 11) {
               newMonth -= 12;
               y++;
@@ -218,10 +215,10 @@ export default Ember.Component.extend({
       }
     };
 
-    for ( var w = 0; w < rows; w++ ) {
-      var daysArray = Ember.A();
+    for ( let w = 0; w < rows; w++ ) {
+      let daysArray = Ember.A();
 
-      for (var d = 0; d < days; d++) {
+      for (let d = 0; d < days; d++) {
         // start the ball rolling when `d` is equal to `startDay`
         if ((d === startDay) && (0 === daily)) {
           daily = 1;
@@ -235,11 +232,11 @@ export default Ember.Component.extend({
             inMonth: true
           }));
         } else {
-          daysArray.pushObject( Day.create( outOfMonthDayObject( d ) ) );
+          daysArray.pushObject(Day.create(outOfMonthDayObject(d)));
         }
       }
 
-      out.pushObject( daysArray );
+      out.pushObject(daysArray);
     }
     return out;
   }),
@@ -261,37 +258,6 @@ export default Ember.Component.extend({
   },
 
   /**
-    Get the number of days in the month.
-
-    The `date` object passed in should be a POJO with `month` and `year` properties.
-
-      ```
-      {
-        year: 2015,
-        month: 11 // starting from 0, 11 = December.
-      }
-      ```
-
-
-    @method getDaysInMonth
-    @param {Object} date
-    @private
-    @return {Integer} The number of days in the month
-  */
-  getDaysInMonth(date) {
-    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var year = parseInt(date.year),
-      month = parseInt(date.month);
-
-    // test for leapyear when february is selected
-    if (1 === month) {
-      return ((0 === year % 4) && (0 !== (year % 100))) || (0 === year % 400) ? 29 : 28;
-    } else {
-      return daysInMonth[month];
-    }
-  },
-
-  /**
     Sets the `selected` property to `model`.
 
     This function is called when an event is clicked.
@@ -300,8 +266,8 @@ export default Ember.Component.extend({
     @param {Object} model
     @private
   */
-  select( model ) {
-    this.set( 'selected', model );
+  select(model) {
+    this.set('selected', model );
   },
 
   /**
@@ -324,7 +290,7 @@ export default Ember.Component.extend({
     @private
     @param {Object} date (optional) a `Date` object.
   */
-  setToday: function (date) {
+  setToday(date) {
     if (!date) {
       date = new Date();
     }
@@ -336,10 +302,7 @@ export default Ember.Component.extend({
     @private
   */
   _nextMonth() {
-    var date = this.get('selectedDate');
-    if ( !date ) {
-      date = new Date();
-    }
+    let date = this.get('selectedDate') || new Date();
     date.setDate(1);
     date.setMonth(date.getMonth() + 1);
     this.set('selectedDate', new Date(date));
@@ -349,14 +312,11 @@ export default Ember.Component.extend({
     @method _prevMonth
     @private
   */
-  _prevMonth: function () {
-    var date = this.get('selectedDate');
-    if ( !date ) {
-      date = new Date();
-    }
+  _prevMonth() {
+    let date = this.get('selectedDate') || new Date();
     date.setDate(1);
     date.setMonth(date.getMonth() - 1);
-    this.setToday(new Date(date));
+    this.set('selectedDate', new Date(date));
   },
 
   actions: {

@@ -24,13 +24,6 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
-test('eventTemplate is not null', function(assert) {
-  assert.expect(1);
-  var component = this.subject();
-  this.render();
-  assert.ok(component.get('eventTemplate'));
-});
-
 test('should be 7 dayNames', function(assert) {
   assert.expect(1);
   var component = this.subject();
@@ -167,17 +160,6 @@ test('getLastMonth', function(assert) {
   assert.equal( component.getLastMonth(0), 11, `return value should be 11` );
 });
 
-test('getDaysInMonth', function(assert) {
-  assert.expect(5);
-  var component = this.subject();
-  this.render();
-  assert.equal( component.getDaysInMonth({year: 2015, month: 1}), 28, `Feb 2015 should be 28 days` );
-  assert.equal( component.getDaysInMonth({year: 2015, month: 10}), 30, `November 2015 should be 30 days` );
-  assert.equal( component.getDaysInMonth({year: 2016, month: 1}), 29, `Feb 2016 should be 29 days` );
-  assert.equal( component.getDaysInMonth({year: 2016, month: 3}), 30, `April 2016 should be 30 days` );
-  assert.equal( component.getDaysInMonth({year: 2016, month: 4}), 31, `May 2016 should be 31 days` );
-});
-
 test('select', function(assert) {
   assert.expect(1);
   var model = Ember.Object.create({ id:1 });
@@ -245,6 +227,9 @@ test('nextMonth action should not fail when selecteddate is null', function(asse
   var date = new Date();
   var month = date.getMonth();
   var nextMonth = month + 1;
+  if (nextMonth > 11) {
+    nextMonth -= 12;
+  }
 
   var component = this.subject();
   this.render();
@@ -273,6 +258,9 @@ test('prevMonth action should not fail when selecteddate is null', function(asse
   var date = new Date();
   var month = date.getMonth();
   var prevMonth = month - 1;
+  if (prevMonth < 0) {
+    prevMonth += 12;
+  }
 
   var component = this.subject();
   this.render();
