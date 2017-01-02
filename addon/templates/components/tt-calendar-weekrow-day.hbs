@@ -1,1 +1,19 @@
 <span class="day-number {{unless day.inMonth 'out-of-month'}}">{{day.date}}</span>
+<div class="event-container">
+  <ul>
+    {{#each _events as |event|}}
+      {{#if eventComponent}}
+        {{component eventComponent
+          tagName="li"
+          model=event
+          selectedEvent=selectedEvent
+          select=select}}
+      {{else}}
+        {{tt-calendar-event
+          model=event
+          selectedEvent=selectedEvent
+          select=select}}
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>

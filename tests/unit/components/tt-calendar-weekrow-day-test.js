@@ -1,11 +1,13 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import Ember from 'ember';
 
-var run = Ember.run;
+const { run } = Ember;
 
 moduleForComponent('tt-calendar-weekrow-day', 'Unit | Component | tt calendar weekrow day', {
   // Specify the other units that are required for this test
-  // needs: [ ],
+  needs: [
+    'component:tt-calendar-event'
+  ],
   unit: true
 });
 
@@ -114,4 +116,29 @@ test('weekend is correct', function(assert) {
 
   run(() => day.incrementProperty( 'date' ));
   assert.equal( component.get('weekend'), false, `'weekend' should be false` );
+});
+
+test('_events', function(assert) {
+  assert.expect(3);
+  let day = Ember.Object.create({
+    date: 3,
+    month: 1,
+    year: 2016
+  });
+  let event = Ember.Object.create({ start: new Date(2016,1,3).getTime() });
+  let events = Ember.A([
+    Ember.Object.create({ start: new Date(2016,1,2).getTime() }),
+    Ember.Object.create({ start: new Date(2016,1,3).getTime() }),
+    Ember.Object.create({ start: new Date(2016,1,4).getTime() })
+  ]);
+  let component = this.subject({ day, events });
+  this.render();
+
+  assert.equal( component.get('_events.length'), 1);
+
+  run(() => events.pushObject(event));
+  assert.equal( component.get('_events.length'), 2);
+
+  run(() => event.set('start', new Date(2016,1,4).getTime()));
+  assert.equal( component.get('_events.length'), 1);
 });
