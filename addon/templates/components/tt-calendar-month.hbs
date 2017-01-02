@@ -18,22 +18,13 @@
 </header>
 <div class="body calendar-month">
   {{#each weeks as |row|}}
-    {{#tt-calendar-week-row
+
+    {{tt-calendar-week-row
       days=row
-      model=sortedEvents
-      as |events|}}
-      {{#tt-event-container select=(action select)}}
-        {{#each events as |event|}}
-          <div class="event-row">
-          {{tt-calendar-month-event
-            model=event
-            layout=eventTemplate
-            selectedEvent=selected
-            select=(action select)
-            dblClick=(action dblClick)}}
-          </div>
-        {{/each}}
-      {{/tt-event-container}}
-    {{/tt-calendar-week-row}}
+      events=sortedEvents
+      selectedEvent=selected
+      eventComponent=eventComponent
+      select=(action select)}}
+
   {{/each}}
 </div>
