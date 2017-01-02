@@ -1,6 +1,8 @@
 # CHANGELOG
 
-* [#24](https://github.com/lozjackson/ember-time-tools/pull/24) Update Ember-ui-components dependency to 0.11.0
+* [#25](https://github.com/lozjackson/ember-time-tools/pull/25) Update `CalendarMonthComponent`.
+
+* [#24](https://github.com/lozjackson/ember-time-tools/pull/24) Update Ember-ui-components dependency to ^0.11.0
 
 ### v0.5.0 2016-11-25
 
