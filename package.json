@@ -59,6 +59,10 @@
     "ember-ui-components": "0.11.0"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://lozjackson.github.io/ember-time-tools/",
+    "versionCompatibility": {
+      "ember": ">=2.0.0"
+    }
   }
 }
