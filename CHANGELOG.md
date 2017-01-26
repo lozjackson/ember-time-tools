@@ -1,5 +1,7 @@
 # CHANGELOG
 
+* [#28](https://github.com/lozjackson/ember-time-tools/pull/28) Add Ember-cli-moment-shim dependency.
+
 * [#27](https://github.com/lozjackson/ember-time-tools/pull/27) Update dependencies.
 
 * [#26](https://github.com/lozjackson/ember-time-tools/pull/26) Update Ember-cli to 2.11.0
