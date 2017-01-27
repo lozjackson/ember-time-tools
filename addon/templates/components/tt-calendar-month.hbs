@@ -1,11 +1,15 @@
+{{#if showDatePicker}}
+  {{tt-date-picker
+    viewDate=viewDate
+    displayMonths=true
+    class="calendar-date-select"
+    _setMonth=(action setMonth)
+    close=(action toggleProperty "showDatePicker")}}
+{{/if}}
 <header>
   <div class="top-panel">
-    <div class="date">{{monthName}} {{year}}</div>
-    {{#uic-button-group class="navigation extra-small"}}
-      {{#uic-button action="prevMonth"}}{{svg-triangle direction="left"}}{{/uic-button}}
-      {{#uic-button action="today"}}Today{{/uic-button}}
-      {{#uic-button action="nextMonth"}}{{svg-triangle direction="right"}}{{/uic-button}}
-    {{/uic-button-group}}
+    <div class="date" {{action toggleProperty "showDatePicker"}}>{{monthName}} {{year}}</div>
+    {{tt-date-navigation back=(action prevMonth) today=(action setToday) forward=(action nextMonth)}}
   </div>
   <div class="day-names-row">
     {{#each dayNames as |dayName|}}

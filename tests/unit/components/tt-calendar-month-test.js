@@ -9,7 +9,7 @@ moduleForComponent('tt-calendar-month', 'Unit | Component | tt calendar month', 
     'component:tt-calendar-week-row',
     'component:tt-calendar-weekrow-day',
     'component:tt-event-container',
-    'component:uic-button-group',
+    'component:tt-date-navigation',
     'component:uic-button'
   ],
   unit: true
@@ -17,7 +17,7 @@ moduleForComponent('tt-calendar-month', 'Unit | Component | tt calendar month', 
 
 test('it renders', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   assert.equal(component._state, 'preRender');
 
   this.render();
@@ -26,7 +26,7 @@ test('it renders', function(assert) {
 
 test('should be 7 dayNames', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   let dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -36,7 +36,7 @@ test('should be 7 dayNames', function(assert) {
 
 test('should be 12 monthNames', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -45,7 +45,7 @@ test('should be 12 monthNames', function(assert) {
 
 test('sortProperties', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
   let sortProperties = ['start:asc', 'end:asc'];
   assert.deepEqual(component.get('sortProperties'), sortProperties);
@@ -53,10 +53,10 @@ test('sortProperties', function(assert) {
 
 test('sortedEvents', function (assert) {
   assert.expect(2);
-  var model1 = Ember.Object.create({ id:1, start: 3 });
-  var model2 = Ember.Object.create({ id:2, start: 1 });
-  var model3 = Ember.Object.create({ id:3, start: 2 });
-  var component = this.subject();
+  let model1 = Ember.Object.create({ id:1, start: 3 });
+  let model2 = Ember.Object.create({ id:2, start: 1 });
+  let model3 = Ember.Object.create({ id:3, start: 2 });
+  let component = this.subject();
   component.set('events', Ember.A([ model1, model2, model3 ]));
   this.render();
   assert.equal(component.get('sortedEvents.firstObject.id'), 2, `'sortedEvents.firstObject.id' should be 2` );
@@ -70,91 +70,91 @@ test('sortedEvents', function (assert) {
 
 test('year should default to today', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  var date = new Date();
-  var year = date.getFullYear();
+  let date = new Date();
+  let year = date.getFullYear();
   assert.equal(component.get('year'), year, `'year' should be ${year}`);
 });
 
-test('year follows selectedDate', function(assert) {
+test('year follows viewDate', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  var date = new Date(2014, 1, 1);
-  var year = date.getFullYear();
-  run(() => component.set('selectedDate', date ));
+  let date = new Date(2014, 1, 1);
+  let year = date.getFullYear();
+  run(() => component.set('viewDate.date', date ));
   assert.equal(component.get('year'), year, `'year' should be ${year}`);
 
   date = new Date(2012, 1, 1);
   year = date.getFullYear();
-  run(() => component.set('selectedDate', date ));
+  run(() => component.set('viewDate.date', date ));
   assert.equal(component.get('year'), year, `'year' should be ${year}`);
 });
 
 test('month should default to today', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  var date = new Date();
-  var month = date.getMonth();
+  let date = new Date();
+  let month = date.getMonth();
   assert.equal(component.get('month'), month, `'month' should be ${month}`);
 });
 
-test('month follows selectedDate', function(assert) {
+test('month follows viewDate', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  var date = new Date(2014, 4, 1);
-  var month = date.getMonth();
-  run(() => component.set('selectedDate', date ));
+  let date = new Date(2014, 4, 1);
+  let month = date.getMonth();
+  run(() => component.set('viewDate.date', date ));
   assert.equal(component.get('month'), month, `'month' should be ${month}`);
 
   date = new Date(2012, 8, 1);
   month = date.getMonth();
-  run(() => component.set('selectedDate', date ));
+  run(() => component.set('viewDate.date', date ));
   assert.equal(component.get('month'), month, `'month' should be ${month}`);
 });
 
 test('month name is correct', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  run(() => component.set('selectedDate', new Date(2014, 4, 1) ));
+  run(() => component.set('viewDate.date', new Date(2014, 4, 1) ));
   assert.equal(component.get('monthName'), 'May', `'monthName' should be 'May'`);
 
-  run(() => component.set('selectedDate', new Date(2012, 8, 1) ));
+  run(() => component.set('viewDate.date', new Date(2012, 8, 1) ));
   assert.equal(component.get('monthName'), 'September', `'monthName' should be 'September'`);
 });
 
 test('startDay', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  run(() => component.set('selectedDate', new Date(2014, 4, 1)));
+  run(() => component.set('viewDate.date', new Date(2014, 4, 1)));
   assert.equal(component.get('startDay'), 3, `'startDay' should be 3`);
 
-  run(() => component.set('selectedDate', new Date(2014, 5, 1)));
+  run(() => component.set('viewDate.date', new Date(2014, 5, 1)));
   assert.equal(component.get('startDay'), 6, `'startDay' should be 6`);
 
 });
 
 test('weeks.length should be 6', function (assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
   assert.equal(component.get('weeks.length'), 6, `'weeks.length' should be 6`);
 });
 
 test('getLastMonth', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
   assert.equal( component.getLastMonth(2), 1, `return value should be 1` );
   assert.equal( component.getLastMonth(0), 11, `return value should be 11` );
@@ -162,8 +162,8 @@ test('getLastMonth', function(assert) {
 
 test('select', function(assert) {
   assert.expect(1);
-  var model = Ember.Object.create({ id:1 });
-  var component = this.subject();
+  let model = Ember.Object.create({ id:1 });
+  let component = this.subject();
   this.render();
   run(() => component.select(model));
   assert.equal( component.get('selected.id'), 1, `'selected.id' should be 1` );
@@ -172,9 +172,9 @@ test('select', function(assert) {
 
 test('setToday defaults to today', function(assert) {
   assert.expect(3);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
-  var date = new Date();
+  let date = new Date();
   assert.equal(component.get('selectedDate').getDate(), date.getDate(), `'selectedDate.getDate()' should be ${date.getDate()}`);
   assert.equal(component.get('selectedDate').getMonth(), date.getMonth(), `'selectedDate.getMonth()' should be ${date.getMonth()}`);
   assert.equal(component.get('selectedDate').getFullYear(), date.getFullYear(), `'selectedDate.getFullYear()' should be ${date.getFullYear()}`);
@@ -182,135 +182,85 @@ test('setToday defaults to today', function(assert) {
 
 test('setToday', function(assert) {
   assert.expect(1);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
-  var date = new Date(2014, 5, 18);
+  let date = new Date(2014, 5, 18);
   run(() => component.setToday(date));
-  assert.equal(component.get('selectedDate').getTime(), date.getTime(), `'selectedDate' should be ${date}`);
+  assert.equal(component.get('viewDate.date').getTime(), date.getTime(), `'viewDate.date' should be ${date}`);
 });
 
-test('_nextMonth method should increment month', function(assert) {
+test('nextMonth method should increment month', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
-  run( () => component.set('selectedDate', new Date( 2014, 2, 16 )) );
+  run( () => component.set('viewDate.date', new Date( 2014, 2, 16 )) );
   assert.equal(component.get('month'), 2, `'month' should be 2`);
 
-  run( () => component._nextMonth() );
-  assert.equal(component.get('month'), 3, `'month' should be 3`);
-});
-
-test('nextMonth action', function(assert) {
-  assert.expect(1);
-  var component = this.subject({
-    _nextMonth: () => assert.ok(true)
-  });
-  this.render();
-  component.send('nextMonth');
-});
-
-test('nextMonth action should increment month', function(assert) {
-  assert.expect(2);
-  var component = this.subject();
-  this.render();
-
-  run( () => component.set('selectedDate', new Date( 2014, 2, 16 )) );
-  assert.equal(component.get('month'), 2, `'month' should be 2`);
-
-  run( () => component.send('nextMonth') );
+  run( () => component.nextMonth() );
   assert.equal(component.get('month'), 3, `'month' should be 3`);
 });
 
 test('nextMonth action should not fail when selecteddate is null', function(assert) {
   assert.expect(2);
-  var date = new Date();
-  var month = date.getMonth();
-  var nextMonth = month + 1;
+  let date = new Date();
+  let month = date.getMonth();
+  let nextMonth = month + 1;
   if (nextMonth > 11) {
     nextMonth -= 12;
   }
 
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   run( () => component.set( 'selectedDate', null ) );
   assert.equal(component.get('month'), month, `'month' should be ${date}`);
 
-  run( () => component.send('nextMonth') );
+  run( () => component.nextMonth() );
   assert.equal(component.get('month'), nextMonth, `'month' should be ${nextMonth}`);
 });
 
-test('_prevMonth method should decrement month', function(assert) {
+test('prevMonth method should decrement month', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   run(() => component.set('selectedDate', new Date( 2014, 2, 16 )));
   assert.equal(component.get('month'), 2, `'month' should be 2`);
 
-  run(() => component._prevMonth());
+  run(() => component.prevMonth());
   assert.equal(component.get('month'), 1, `'month' should be 1`);
 });
 
 test('prevMonth action should not fail when selecteddate is null', function(assert) {
   assert.expect(2);
-  var date = new Date();
-  var month = date.getMonth();
-  var prevMonth = month - 1;
+  let date = new Date();
+  let month = date.getMonth();
+  let prevMonth = month - 1;
   if (prevMonth < 0) {
     prevMonth += 12;
   }
 
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   run( () => component.set( 'selectedDate', null ) );
   assert.equal(component.get('month'), month, `'month' should be ${date}`);
 
-  run( () => component.send('prevMonth') );
+  run( () => component.prevMonth() );
   assert.equal(component.get('month'), prevMonth, `'month' should be ${prevMonth}`);
 });
 
-test('prevMonth action should decrement month', function(assert) {
-  assert.expect(2);
-  var component = this.subject();
-  this.render();
-
-  run(() => component.set('selectedDate', new Date( 2014, 2, 16 )));
-  assert.equal(component.get('month'), 2, `'month' should be 2`);
-
-  run(() => component.send('prevMonth'));
-  assert.equal(component.get('month'), 1, `'month' should be 1`);
-});
-
-test('prevMonth action', function(assert) {
-  assert.expect(1);
-  var component = this.subject({
-    _prevMonth: () => assert.ok(true)
-  });
-  this.render();
-  component.send('prevMonth');
-});
-
-test('today action', function(assert) {
-  assert.expect(2);
-  var component = this.subject({
-    setToday: () => assert.ok(true)
-  });
-  this.render();
-  component.send('today');
-});
 
 test('today action - setToday', function(assert) {
   assert.expect(2);
-  var component = this.subject();
+  let component = this.subject();
   this.render();
 
   run(() => component.set('selectedDate', new Date( 2014, 2, 16 )));
-  var date = new Date();
+  let date = new Date();
 
-  run(() => component.send('today'));
+  run(() => component.setToday());
   assert.equal( component.get('month'), date.getMonth(), `'month' should be ${date.getMonth()}` );
   assert.equal( component.get('year'), date.getFullYear(), `'year' should be ${date.getFullYear()}` );
 });
