@@ -6,6 +6,18 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 /**
+  
+  ```js
+  let dateObject = DateObject.create();
+  dateObject.setDate('2017/1/27');
+
+  dateObject.get('month') // month = 0
+  dateObject.set('month', 2) // month = 1
+  dateObject.incrementProperty('month') // month = 2
+  dateObject.decrementProperty('month') // month = 1
+  dateObject.decrementProperty('month', 2) // month = 11, year = 2016
+  ```
+
   @class DateObject
   @namespace Utils
 */
