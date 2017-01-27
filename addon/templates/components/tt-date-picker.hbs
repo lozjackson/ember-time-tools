@@ -1,90 +1,79 @@
-<div class="range-select year-select {{if displayYears 'display-years'}}">
-  <div class="header">
-    <div class="top-panel">
-      {{uic-close-button action="close"}}
-      <div class="date">{{decade.start}} - {{decade.end}}</div>
-      <div class="navigation">
-        <button {{action prevDecade}}>{{svg-triangle direction="left"}}</button>
-        <button {{action "today"}}>Today</button>
-        <button {{action nextDecade}}>{{svg-triangle direction="right"}}</button>
+<div>
+  <div class="range-select year-select {{if displayYears 'display-years'}}">
+    <header>
+      <div class="top-panel">
+        {{uic-close-button action="close"}}
+        <div class="date">{{decade.start}} - {{decade.end}}</div>
+        {{tt-date-navigation back=(action prevDecade) today=(action "today") forward=(action nextDecade)}}
       </div>
-    </div>
+    </header>
+    <table border="0">
+      <tbody class="month-list" valign="center">
+        <tr>
+          {{tt-year-option decade=decade.start selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=1 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=2 selectedYear=year action="setYear"}}
+        </tr>
+        <tr>
+          {{tt-year-option decade=decade.start unit=3 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=4 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=5 selectedYear=year action="setYear"}}
+        </tr>
+        <tr>
+          {{tt-year-option decade=decade.start unit=6 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=7 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=8 selectedYear=year action="setYear"}}
+        </tr>
+        <tr>
+          {{tt-year-option decade=decade.start unit=9 selectedYear=year action="setYear"}}
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table border="0">
-    <tbody class="month-list" valign="center">
-      <tr>
-        {{tt-year-option decade=decade.start selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=1 selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=2 selectedYear=year action="setYear"}}
-      </tr>
-      <tr>
-        {{tt-year-option decade=decade.start unit=3 selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=4 selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=5 selectedYear=year action="setYear"}}
-      </tr>
-      <tr>
-        {{tt-year-option decade=decade.start unit=6 selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=7 selectedYear=year action="setYear"}}
-        {{tt-year-option decade=decade.start unit=8 selectedYear=year action="setYear"}}
-      </tr>
-      <tr>
-        {{tt-year-option decade=decade.start unit=9 selectedYear=year action="setYear"}}
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
-<div class="range-select month-select {{if displayMonths 'display-months'}}">
-  <div class="header">
-    <div class="top-panel">
-      {{uic-close-button action="close"}}
-      <div class="date" {{action chooseYear}}>{{year}}</div>
-      <div class="navigation">
-        <button {{action prevYear}}>{{svg-triangle direction="left"}}</button>
-        <button {{action "today"}}>Today</button>
-        <button {{action nextYear}}>{{svg-triangle direction="right"}}</button>
+  <div class="range-select month-select {{if displayMonths 'display-months'}}">
+    <header>
+      <div class="top-panel">
+        {{uic-close-button action="close"}}
+        <div class="date" {{action chooseYear}}>{{year}}</div>
+        {{tt-date-navigation back=(action prevYear) today=(action "today") forward=(action nextYear)}}
       </div>
-    </div>
+    </header>
+    <table border="0">
+      <tbody class="month-list" valign="center">
+        <tr>
+          {{tt-month-option value=0 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=1 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=2 selectedMonth=month action="setMonth"}}
+        </tr>
+        <tr>
+          {{tt-month-option value=3 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=4 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=5 selectedMonth=month action="setMonth"}}
+        </tr>
+        <tr>
+          {{tt-month-option value=6 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=7 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=8 selectedMonth=month action="setMonth"}}
+        </tr>
+        <tr>
+          {{tt-month-option value=9 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=10 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=11 selectedMonth=month action="setMonth"}}
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table border="0">
-    <tbody class="month-list" valign="center">
-      <tr>
-        {{tt-month-option value=0 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=1 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=2 selectedMonth=month action="setMonth"}}
-      </tr>
-      <tr>
-        {{tt-month-option value=3 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=4 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=5 selectedMonth=month action="setMonth"}}
-      </tr>
-      <tr>
-        {{tt-month-option value=6 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=7 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=8 selectedMonth=month action="setMonth"}}
-      </tr>
-      <tr>
-        {{tt-month-option value=9 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=10 selectedMonth=month action="setMonth"}}
-        {{tt-month-option value=11 selectedMonth=month action="setMonth"}}
-      </tr>
-    </tbody>
-  </table>
 </div>
-
-<div class="header">
+<header>
   <div class="top-panel">
     {{uic-close-button action="close"}}
     <div class="date" {{action chooseMonth}}>{{monthName}} {{year}}</div>
-  	<div class="navigation">
-  		<button {{action "prevMonth"}}>{{svg-triangle direction="left"}}</button>
-  		<button {{action "today"}}>Today</button>
-  		<button {{action "nextMonth"}}>{{svg-triangle direction="right"}}</button>
-  	</div>
+  	{{tt-date-navigation back=(action "prevMonth") today=(action "today") forward=(action "nextMonth")}}
   </div>
-</div>
+</header>
 <table border="0">
   <tbody class="days">
     <tr class="day-letters">

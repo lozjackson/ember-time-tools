@@ -8,7 +8,9 @@ moduleForComponent('tt-date-picker', 'Unit | Component | tt date picker', {
     'component:tt-picker-item',
     'component:tt-year-option',
     'component:tt-month-option',
+    'component:tt-date-navigation',
     'component:svg-triangle',
+    'component:uic-button',
     'component:uic-close-button'
   ],
   unit: true
@@ -204,7 +206,7 @@ test('_setYear() method', function(assert) {
   run(() => component._setYear(1977));
   assert.equal(component.get('month'), '9');
   assert.equal(component.get('year'), '1977');
-  assert.equal(component.get('viewRange'), 'date');
+  assert.equal(component.get('viewRange'), 'month');
 });
 
 test('setToday() method', function(assert) {
@@ -330,38 +332,6 @@ test('_nextMonth() method', function(assert) {
   run(() => component._nextMonth());
   assert.equal(component.get('month'), 0);
   assert.equal(component.get('year'), 1978);
-});
-
-test('_prevMonth() method calls viewDate.decrementMonth()', function(assert) {
-  assert.expect(1);
-  let component = this.subject();
-  this.render();
-  component.set('viewDate.decrementMonth', () => assert.ok(true));
-  run(() => component._prevMonth());
-});
-
-test('_nextMonth() method calls viewDate.incrementMonth()', function(assert) {
-  assert.expect(1);
-  let component = this.subject();
-  this.render();
-  component.set('viewDate.incrementMonth', () => assert.ok(true));
-  run(() => component._nextMonth());
-});
-
-test('prevYear() method calls viewDate.decrementYear()', function(assert) {
-  assert.expect(1);
-  let component = this.subject();
-  this.render();
-  component.set('viewDate.decrementYear', () => assert.ok(true));
-  run(() => component.prevYear());
-});
-
-test('nextYear() method calls viewDate.incrementYear()', function(assert) {
-  assert.expect(1);
-  let component = this.subject();
-  this.render();
-  component.set('viewDate.incrementYear', () => assert.ok(true));
-  run(() => component.nextYear());
 });
 
 test('prevDecade() method', function(assert) {

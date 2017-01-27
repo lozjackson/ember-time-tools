@@ -282,7 +282,9 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   init() {
     this._super(...arguments);
     let selectedDate = this.get('selectedDate');
-    this.set('viewDate', DateObject.create());
+    if (!this.get('viewDate')) {
+      this.set('viewDate', DateObject.create());
+    }
     if (selectedDate) {
       this.setViewDate(selectedDate);
     }
@@ -386,8 +388,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   _setMonth(month) {
-    let year = this.get('viewDate.year');
-    this.set('viewDate.date', `${year}/${ month + 1 }/1`);
+    this.set('viewDate.month', month);
     this.set('viewRange', 'date');
   },
 
@@ -397,9 +398,8 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   _setYear(year) {
-    let month = this.get('viewDate.month');
-    this.set('viewDate.date', `${year}/${ month + 1 }/1`);
-    this.set('viewRange', 'date');
+    this.set('viewDate.year', year);
+    this.set('viewRange', 'month');
   },
 
   /**
@@ -407,7 +407,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   _prevMonth() {
-    this.get('viewDate').decrementMonth();
+    this.get('viewDate').decrementProperty('month');
   },
 
   /**
@@ -415,21 +415,21 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   _nextMonth() {
-    this.get('viewDate').incrementMonth();
+    this.get('viewDate').incrementProperty('month');
   },
 
   /**
     @method prevYear
   */
   prevYear() {
-    this.get('viewDate').decrementYear();
+    this.get('viewDate').decrementProperty('year');
   },
 
   /**
     @method nextYear
   */
   nextYear() {
-    this.get('viewDate').incrementYear();
+    this.get('viewDate').incrementProperty('year');
   },
 
   /**
