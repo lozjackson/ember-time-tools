@@ -1,5 +1,7 @@
 # CHANGELOG
 
+* [#29](https://github.com/lozjackson/ember-time-tools/pull/29) [FEATURE] Add date-picker to calendar.
+
 * [#28](https://github.com/lozjackson/ember-time-tools/pull/28) Add Ember-cli-moment-shim dependency.
 
 * [#27](https://github.com/lozjackson/ember-time-tools/pull/27) Update dependencies.

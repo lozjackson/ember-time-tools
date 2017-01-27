@@ -36,19 +36,6 @@ test('set date - string with slashes', function(assert) {
   assert.deepEqual(object.get('_date'), new Date(1977,7,24));
 });
 
-test('change _date - should not change the original date', function(assert) {
-  let object = DateObject.create();
-
-  let date = new Date(1977,7,24);
-  object.set('date', date);
-  assert.deepEqual(object.get('_date'), new Date(1977,7,24));
-  // changing `_date` should not change `date`
-  object.incrementMonth();
-  assert.deepEqual(date, new Date(1977,7,24));
-  object.decrementMonth(5);
-  assert.deepEqual(date, new Date(1977,7,24));
-});
-
 test('day', function(assert) {
   let object = DateObject.create();
 
@@ -69,6 +56,120 @@ test('month', function(assert) {
   assert.equal(object.get('month'), 8);
 });
 
+test('decrement day', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/1/2');
+  assert.equal(object.get('day'), 2);
+  assert.equal(object.get('month'), 0);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('day');
+  assert.equal(object.get('day'), 1);
+  assert.equal(object.get('month'), 0);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('day');
+  assert.equal(object.get('day'), 31);
+  assert.equal(object.get('month'), 11);
+  assert.equal(object.get('year'), 1976);
+});
+
+test('increment day', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/12/30');
+  assert.equal(object.get('day'), 30);
+  assert.equal(object.get('month'), 11);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('day');
+  assert.equal(object.get('day'), 31);
+  assert.equal(object.get('month'), 11);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('day');
+  assert.equal(object.get('day'), 1);
+  assert.equal(object.get('month'), 0);
+  assert.equal(object.get('year'), 1978);
+});
+
+test('decrement month', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/4/24');
+  assert.equal(object.get('month'), 3);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('month');
+  assert.equal(object.get('month'), 2);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('month');
+  assert.equal(object.get('month'), 1);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('month');
+  assert.equal(object.get('month'), 0);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('month');
+  assert.equal(object.get('month'), 11);
+  assert.equal(object.get('year'), 1976);
+});
+
+test('increment month', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/8/24');
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('month', 2);
+  assert.equal(object.get('month'), 9);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('month');
+  assert.equal(object.get('month'), 10);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('month', 4);
+  assert.equal(object.get('month'), 2);
+  assert.equal(object.get('year'), 1978);
+});
+
+test('decrement year', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/8/24');
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1977);
+
+  object.decrementProperty('year');
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1976);
+
+  object.decrementProperty('year', 3);
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1973);
+});
+
+test('increment year', function(assert) {
+  let object = DateObject.create();
+
+  object.set('date', '1977/8/24');
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1977);
+
+  object.incrementProperty('year');
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1978);
+
+  object.incrementProperty('year', 3);
+  assert.equal(object.get('month'), 7);
+  assert.equal(object.get('year'), 1981);
+});
+
 test('year', function(assert) {
   let object = DateObject.create();
 
@@ -86,314 +187,26 @@ test('init() method', function(assert) {
   assert.equal(object.get('_date').getFullYear(), date.getFullYear());
 });
 
-test('_setDate() method', function(assert) {
-  assert.expect(8);
-  let object = DateObject.create();
-  let date = new Date('1977/8/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1977);
-
-  let newDate = new Date('1982/5/13');
-  object._setDate(newDate);
-  assert.deepEqual(object.get('_date'), newDate);
-  assert.equal(object.get('day'), 13);
-  assert.equal(object.get('month'), 4);
-  assert.equal(object.get('year'), 1982);
-});
-
 test('_modifyDate(name, number) method', function(assert) {
-  assert.expect(21);
   let object = DateObject.create();
   let date = new Date('1977/12/30');
-  object._setDate(date);
+  object.set('_date', date);
   assert.equal(object.get('day'), 30);
   assert.equal(object.get('month'), 11);
   assert.equal(object.get('year'), 1977);
 
-  object._modifyDate('Date', 36);
-  assert.equal(object.get('day'), 4);
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1978);
+  object._modifyDate('Date', 2);
+  assert.equal(object.get('_date').getDate(), 2);
+  assert.equal(object.get('_date').getMonth(), 11);
+  assert.equal(object.get('_date').getFullYear(), 1977);
 
-  object._modifyDate('Month', 16);
-  assert.equal(object.get('day'), 4);
-  assert.equal(object.get('month'), 5);
-  assert.equal(object.get('year'), 1979);
+  object._modifyDate('Month', 5);
+  assert.equal(object.get('_date').getDate(), 2);
+  assert.equal(object.get('_date').getMonth(), 5);
+  assert.equal(object.get('_date').getFullYear(), 1977);
 
-  object._modifyDate('Year', 5);
-  assert.equal(object.get('day'), 4);
-  assert.equal(object.get('month'), 5);
-  assert.equal(object.get('year'), 1984);
-
-  object._modifyDate('Year',-25);
-  assert.equal(object.get('day'), 4);
-  assert.equal(object.get('month'), 5);
-  assert.equal(object.get('year'), 1959);
-
-  object._modifyDate('Month', -26);
-  assert.equal(object.get('day'), 4);
-  assert.equal(object.get('month'), 3);
-  assert.equal(object.get('year'), 1957);
-
-  object._modifyDate('Date', -37);
-  assert.equal(object.get('day'), 26);
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1957);
-});
-
-test('incrementDay() method', function(assert) {
-  assert.expect(13);
-  let object = DateObject.create();
-  let date = new Date('1977/12/30');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 30);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementDay();
-  assert.equal(object.get('day'), 31);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementDay();
-  assert.equal(object.get('day'), 1);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1978);
-
-  object.incrementDay();
-  assert.equal(object.get('day'), 2);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1978);
-});
-
-test('incrementDay(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/12/30');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 30);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementDay(3);
-
-  assert.equal(object.get('day'), 2);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1978);
-});
-
-test('decrementDay() method', function(assert) {
-  assert.expect(13);
-  let object = DateObject.create();
-  let date = new Date('1977/1/2');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 2);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementDay();
-  assert.equal(object.get('day'), 1);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementDay();
-  assert.equal(object.get('day'), 31);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1976);
-
-  object.decrementDay();
-  assert.equal(object.get('day'), 30);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1976);
-});
-
-test('decrementDay(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/1/2');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 2);
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementDay(3);
-
-  assert.equal(object.get('day'), 30);
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1976);
-});
-
-test('incrementMonth() method', function(assert) {
-  assert.expect(11);
-  let object = DateObject.create();
-  let date = new Date('1977/10/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('month'), 9);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementMonth();
-  assert.equal(object.get('month'), 10);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementMonth();
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementMonth();
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1978);
-
-  object.incrementMonth();
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1978);
-});
-
-test('incrementMonth(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/10/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 9);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementMonth(4);
-
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1978);
-});
-
-test('decrementMonth() method', function(assert) {
-  assert.expect(9);
-  let object = DateObject.create();
-  let date = new Date('1977/2/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementMonth();
-  assert.equal(object.get('month'), 0);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementMonth();
-  assert.equal(object.get('month'), 11);
-  assert.equal(object.get('year'), 1976);
-
-  object.decrementMonth();
-  assert.equal(object.get('month'), 10);
-  assert.equal(object.get('year'), 1976);
-});
-
-test('decrementMonth(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/2/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 1);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementMonth(3);
-
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 10);
-  assert.equal(object.get('year'), 1976);
-});
-
-test('incrementYear() method', function(assert) {
-  assert.expect(13);
-  let object = DateObject.create();
-  let date = new Date('1977/8/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1978);
-
-  object.incrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1979);
-
-  object.incrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1980);
-});
-
-test('incrementYear(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/8/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1977);
-
-  object.incrementYear(3);
-
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1980);
-});
-
-test('decrementYear() method', function(assert) {
-  assert.expect(13);
-  let object = DateObject.create();
-  let date = new Date('1977/8/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1976);
-
-  object.decrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1975);
-
-  object.decrementYear();
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1974);
-});
-
-test('decrementYear(number) method', function(assert) {
-  assert.expect(7);
-  let object = DateObject.create();
-  let date = new Date('1977/8/24');
-  object._setDate(date);
-  assert.deepEqual(object.get('_date'), date);
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1977);
-
-  object.decrementYear(3);
-
-  assert.equal(object.get('day'), 24);
-  assert.equal(object.get('month'), 7);
-  assert.equal(object.get('year'), 1974);
+  object._modifyDate('FullYear', 1978);
+  assert.equal(object.get('_date').getDate(), 2);
+  assert.equal(object.get('_date').getMonth(), 5);
+  assert.equal(object.get('_date').getFullYear(), 1978);
 });

@@ -6,6 +6,18 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 /**
+  
+  ```js
+  let dateObject = DateObject.create();
+  dateObject.setDate('2017/1/27');
+
+  dateObject.get('month') // month = 0
+  dateObject.set('month', 2) // month = 1
+  dateObject.incrementProperty('month') // month = 2
+  dateObject.decrementProperty('month') // month = 1
+  dateObject.decrementProperty('month', 2) // month = 11, year = 2016
+  ```
+
   @class DateObject
   @namespace Utils
 */
@@ -31,7 +43,7 @@ export default Ember.Object.extend({
     @property date
     @type {Object}
   */
-  date: computed('_date', {
+  date: computed('_date', 'day', 'month', 'year', {
     get() {
       return this.get('_date');
     },
@@ -43,23 +55,44 @@ export default Ember.Object.extend({
   /**
     @property day
     @type {Integer}
-    @readonly
   */
-  day: null,
+  day: computed('_date', {
+    get() {
+      return this.get('_date').getDate();
+    },
+    set(key, value) {
+      this._modifyDate('Date', value);
+      return this.get('_date').getDate();
+    }
+  }),
 
   /**
     @property month
     @type {Integer}
-    @readonly
   */
-  month: null,
+  month: computed('_date', 'day', {
+    get() {
+      return this.get('_date').getMonth();
+    },
+    set(key, value) {
+      this._modifyDate('Month', value);
+      return this.get('_date').getMonth();
+    }
+  }),
 
   /**
     @property year
     @type {Integer}
-    @readonly
   */
-  year: null,
+  year: computed('_date', 'month', 'day', {
+    get() {
+      return this.get('_date').getFullYear();
+    },
+    set(key, value) {
+      this._modifyDate('FullYear', value);
+      return this.get('_date').getFullYear();
+    }
+  }),
 
   /**
     @method init
@@ -67,7 +100,7 @@ export default Ember.Object.extend({
   */
   init() {
     this._super(...arguments);
-    this._setDate(new Date());
+    this.set('_date', new Date());
   },
 
   /**
@@ -87,83 +120,27 @@ export default Ember.Object.extend({
     } else if (Ember.typeOf(date) === 'instance') {
       date = new Date(date.get('year'), date.get('month'), date.get('date'));
     }
-    return this._setDate(new Date(date));
+    return this.set('_date', new Date(date));
   },
 
   /**
-    @method _setDate
-    @param {Object} date A javascript `Date` object
-    @private
-    @return {Object} A javascript `Date` object
-  */
-  _setDate(date) {
-    if (!date) { return; }
-    this.setProperties({
-      _date: date,
-      day: date.getDate(),
-      month: date.getMonth(),
-      year: date.getFullYear()
-    });
-    return date;
-  },
 
-  /**
+    The `_modifyDate()` method takes two arguments.  A key and a value. The key specifies
+    the part of the `Date()` object to set.  Can be either `Date`, `Month` or `FullYear`.
+
+    ```js
+    this._modifyDate('Month', 3); // set month to 3
+    this._modifyDate('FullYear', 2017); // set year to 2017
+    ```
+
     @method _modifyDate
-    @param {String} name The part of the date to set. `Date`, `Month` or `FullYear`.
-    @param {Number} number The number add.  Defaults to 1.
+    @param {String} key
+    @param {Number} value
     @private
   */
-  _modifyDate(name, number = 1) {
+  _modifyDate(key, value) {
     let date = this.get('_date');
-    date[`set${name}`](date[`get${name}`]() + number);
-    this._setDate(date);
-  },
-
-  /**
-    @method incrementDay
-    @param {Number} number
-  */
-  incrementDay(number = 1) {
-    this._modifyDate('Date', number);
-  },
-
-  /**
-    @method decrementDay
-    @param {Number} number
-  */
-  decrementDay(number = 1) {
-    this._modifyDate('Date', number * -1);
-  },
-
-  /**
-    @method incrementMonth
-    @param {Number} number
-  */
-  incrementMonth(number = 1) {
-    this._modifyDate('Month', number);
-  },
-
-  /**
-    @method decrementMonth
-    @param {Number} number
-  */
-  decrementMonth(number = 1) {
-    this._modifyDate('Month', number * -1);
-  },
-
-  /**
-    @method incrementYear
-    @param {Number} number
-  */
-  incrementYear(number = 1) {
-    this._modifyDate('FullYear', number);
-  },
-
-  /**
-    @method decrementYear
-    @param {Number} number
-  */
-  decrementYear(number = 1) {
-    this._modifyDate('FullYear', number * -1);
+    date[`set${ key }`](value);
+    this.set('_date', date);
   }
 });

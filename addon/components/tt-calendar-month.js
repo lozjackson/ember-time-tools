@@ -3,10 +3,11 @@
 */
 import Ember from 'ember';
 import layout from '../templates/components/tt-calendar-month';
+import DateObject from 'ember-time-tools/utils/date';
 import getDaysInMonth from 'ember-time-tools/utils/get-days-in-month';
 
 const { computed } = Ember;
-const { sort } = computed;
+const { alias, sort } = computed;
 
 const Day = Ember.Object.extend({
   date: null,
@@ -100,43 +101,49 @@ export default Ember.Component.extend({
   /**
     A `Date()` object representing the currently selected date.
 
+    Alias of `viewDate.date`.
+
     @property selectedDate
     @type {Object}
   */
-  selectedDate: null,
+  selectedDate: alias('viewDate.date'),
+
+  /**
+    @property viewDate
+    @type {Object}
+    @private
+  */
+  viewDate: null,
+
+  /**
+    Alias of `viewDate.year`.
+
+    @property year
+    @type {Number}
+    @readonly
+    @private
+  */
+  year: alias('viewDate.year'),
+
+  /**
+    Alias of `viewDate.month`.
+
+    @property month
+    @type {Number}
+    @readonly
+    @private
+  */
+  month: alias('viewDate.month'),
 
   /**
     @method init
     @private
   */
   init() {
+    this.set('viewDate', DateObject.create());
     this.setToday();
     return this._super(...arguments);
   },
-
-  /**
-    The year of the `selectedDate`.
-
-    @property year
-    @type {Number}
-    @private
-  */
-  year: computed('selectedDate', function() {
-    var date = this.get('selectedDate') || new Date();
-    return date.getFullYear();
-  }),
-
-  /**
-    The month of the `selectedDate`.
-
-    @property month
-    @type {Number}
-    @private
-  */
-  month: computed('selectedDate', function() {
-    var date = this.get('selectedDate') || new Date();
-    return date.getMonth();
-  }),
 
   /**
     The month name string.. ie. 'January'.
@@ -294,57 +301,50 @@ export default Ember.Component.extend({
     if (!date) {
       date = new Date();
     }
-    this.set('selectedDate', date);
+    this.setViewDate(date);
   },
 
   /**
-    @method _nextMonth
+    @method setViewDate
+    @param {Object} date A javascript `Date` object
     @private
   */
-  _nextMonth() {
-    let date = this.get('selectedDate') || new Date();
-    date.setDate(1);
-    date.setMonth(date.getMonth() + 1);
-    this.set('selectedDate', new Date(date));
+  setViewDate(date) {
+    this.set('viewDate.date', date);
   },
 
   /**
-    @method _prevMonth
+    @method setMonth
+    @param {Integer} month
     @private
   */
-  _prevMonth() {
-    let date = this.get('selectedDate') || new Date();
-    date.setDate(1);
-    date.setMonth(date.getMonth() - 1);
-    this.set('selectedDate', new Date(date));
+  setMonth(month) {
+    this.set('viewDate.month', month);
+    this.set('showDatePicker', false);
   },
 
-  actions: {
-    /**
-      ACTION
+  /**
+    @method setYear
+    @param {Integer} year
+    @private
+  */
+  setYear(year) {
+    this.set('viewDate.year', year);
+  },
 
-      @method nextMonth
-    */
-    nextMonth() {
-      this._nextMonth();
-    },
+  /**
+    @method nextMonth
+    @private
+  */
+  nextMonth() {
+    this.get('viewDate').incrementProperty('month');
+  },
 
-    /**
-      ACTION
-
-      @method prevMonth
-    */
-    prevMonth() {
-      this._prevMonth();
-    },
-
-    /**
-      ACTION
-
-      @method today
-    */
-    today() {
-      this.setToday();
-    }
+  /**
+    @method prevMonth
+    @private
+  */
+  prevMonth() {
+    this.get('viewDate').decrementProperty('month');
   }
 });
