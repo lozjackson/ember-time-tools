@@ -215,7 +215,7 @@
 	height: 300px;
 	width: 120px;
 }
-.tt-date-picker .header {
+.tt-date-picker header {
 	width:100%;
   height:60px;
   border-bottom:1px solid #ccc;
@@ -224,14 +224,14 @@
 .tt-date-picker .day-letters {
 	background: rgba(235, 242, 255, 0.5);
 }
-.tt-date-picker .header > .top-panel {
+.tt-date-picker header > .top-panel {
   position: absolute;
 	width: 100%;
   overflow: visible;
 	height:60px;
 	text-align: center;
 }
-.tt-date-picker .header > .top-panel > .date {
+.tt-date-picker header > .top-panel > .date {
   text-align: left;
 	float:left;
   font-size:18px;
@@ -241,23 +241,23 @@
   max-width: calc(100% - 40px);
   display: inline-block;
 }
-.tt-date-picker .header > .top-panel > div[data-ember-action].date {
+header > .top-panel > div[data-ember-action].date {
   cursor: pointer;
 }
-.tt-date-picker .header > .top-panel > .navigation {
+.tt-date-picker header > .top-panel > .navigation {
 	margin-top: 35px;
 }
-.tt-date-picker .header > .top-panel > .navigation button {
+.tt-date-picker header > .top-panel > .navigation button {
 	float: none;
 	margin: 0px;
 	background: none;
 	cursor: pointer;
 	border:  none;
 }
-.tt-date-picker .header > .top-panel > .navigation button:hover {
+.tt-date-picker header > .top-panel > .navigation button:hover {
 	border: none;
 }
-.tt-date-picker .header > .top-panel > .navigation button:focus {
+.tt-date-picker header > .top-panel > .navigation button:focus {
   outline: none;
 }
 .tt-date-picker.container .close-button,
@@ -273,7 +273,7 @@
     font-family: arial;
     width: 100%;
 }
-.tt-date-picker.container > .range-select {
+.tt-date-picker.container .range-select {
   text-align: center;
   position: absolute;
   width: 100%;
@@ -282,14 +282,14 @@
   transition: height 0.1s;
   overflow: hidden;
 }
-.tt-date-picker.container > .range-select.display-months,
-.tt-date-picker.container > .range-select.display-years {
+.tt-date-picker.container .range-select.display-months,
+.tt-date-picker.container .range-select.display-years {
   height: 100%;
 }
-.tt-date-picker.container > .range-select > table {
+.tt-date-picker.container .range-select > table {
   height: calc(100% - 60px);
 }
-.tt-date-picker.container > .range-select > table > tbody.month-list {
+.tt-date-picker.container .range-select > table > tbody.month-list {
   text-align: center;
 }
 .tt-date-picker.container > table > .date-picker-select, .tt-date-picker.container > table > .days {
@@ -340,7 +340,7 @@
 .tt-date-picker.container .year-select {
   z-index: 3;
 }
-.tt-date-picker.container .range-select .header {
+.tt-date-picker.container .range-select header {
   background: #fff;
   height: 60px;
 }
@@ -362,7 +362,7 @@
 .tt-date-picker.container .out-of-range {
 	color: rgba(0, 0, 0, 0.5);
 }
-.tt-time-picker.container > .header {
+.tt-time-picker.container > header {
 	height: 35px;
 	border-bottom:1px solid #ccc;
 }
