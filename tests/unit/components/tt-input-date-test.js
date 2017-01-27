@@ -11,7 +11,9 @@ moduleForComponent('tt-input-date', 'Unit | Component | tt input date', {
     'component:tt-picker-item',
     'component:tt-year-option',
     'component:tt-month-option',
+    'component:tt-date-navigation',
     'component:svg-triangle',
+    'component:uic-button',
     'component:uic-close-button',
     'component:ember-wormhole',
     'helper:format-date'
