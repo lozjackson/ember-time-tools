@@ -1904,6 +1904,14 @@ ember-cli@2.11.0:
     walk-sync "^0.3.0"
     yam "0.0.22"
 
+ember-clock-face@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ember-clock-face/-/ember-clock-face-0.0.2.tgz#d53cf2172c0c38f30e30fc6a67283c9d09d7bea4"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-htmlbars "^1.1.1"
+    ember-clock "^1.0.2"
+
 ember-clock@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ember-clock/-/ember-clock-1.0.2.tgz#fc07195ef01889f60b9ae277c377b7fcb9abf68c"
