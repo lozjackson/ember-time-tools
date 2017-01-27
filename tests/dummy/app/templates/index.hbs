@@ -1,32 +1,58 @@
-<p>
-  This Ember-cli addon provides date and time related tools for Ember applications.
-  The primary components consist of a date-picker, time-picker and a calendar.
-</p>
 
-<h3>Install</h3>
-<p>
-  The package can be installed from <a href="https://www.npmjs.com/package/ember-time-tools" class="npm-link" target="_blank">npm</a>.
-</p>
+<header class="ember-time-tools">
+  <h2 id="title">{{clock-face}}Ember Time Tools</h2>
+  <p class="version">{{version}}</p>
 
-<div class="panel code">
-  <pre><code>ember install ember-time-tools</code></pre>
-</div>
+</header>
 
-<h3>Source code</h3>
-<p>
-  The source code can be found on <a href="https://github.com/lozjackson/ember-time-tools" class="github-link" target="_blank">Github</a>.
-</p>
+<div class="body ember-time-tools">
 
-<h3>Date Picker</h3>
+  <p>
+    This Ember-cli addon provides date and time related tools for Ember applications.
+    The primary components consist of a date-picker, time-picker and a calendar.
+  </p>
 
-{{input-date value=date}}
+  <ul>
+    <li>{{#link-to 'date-picker'}}DatePicker{{/link-to}}</li>
+    <li>{{#link-to 'time-picker'}}TimePicker{{/link-to}}</li>
+    <li>{{#link-to 'calendar'}}Calendar{{/link-to}}</li>
+  </ul>
 
-<h3>Time Picker</h3>
+  <p>
+    The addon also provides a couple of convenient component wrappers container an input element and a date/time-picker.
+  </p>
 
-{{input-time value=time}}
+  <ul>
+    <li>{{#link-to 'input-date'}}InputDate{{/link-to}}</li>
+    <li>{{#link-to 'input-time'}}InputTime{{/link-to}}</li>
+  </ul>
 
-<h3>Calendar</h3>
+  <h3>Install</h3>
+  <p>
+    The package can be installed from <a href="https://www.npmjs.com/package/ember-time-tools" class="npm-link" target="_blank">npm</a>.
+  </p>
 
-<div class="dashboard-calendar">
-  {{calendar-month}}
+  <div class="panel code">
+    <pre><code>ember install ember-time-tools</code></pre>
+  </div>
+
+  <h3>Source code</h3>
+  <p>
+    The source code can be found on <a href="https://github.com/lozjackson/ember-time-tools" class="github-link" target="_blank">Github</a>.
+  </p>
+
+  <h3>Date Picker</h3>
+
+  {{input-date value=date}}
+
+  <h3>Time Picker</h3>
+
+  {{input-time value=time}}
+
+  <h3>Calendar</h3>
+
+  <div class="dashboard-calendar">
+    {{calendar-month}}
+  </div>
+
 </div>
