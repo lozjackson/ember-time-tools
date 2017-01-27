@@ -6,7 +6,7 @@ import layout from '../templates/components/tt-time-picker';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
 
-const { computed } = Ember;
+const { computed, run } = Ember;
 
 /**
   @class TimePickerComponent
@@ -120,7 +120,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @type {Array}
     @private
   */
-  times: Ember.computed('timeInterval', function() {
+  times: computed('timeInterval', function() {
     let i, d, output = [];
     let interval = this.get('timeInterval') || 1;
     let divisions = 60 / interval;
@@ -160,7 +160,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
 	*/
 	scrollToElement(selector) {
-		Ember.run.scheduleOnce('afterRender', this, function () {
+		run.scheduleOnce('afterRender', this, function () {
 			let items = Ember.$(selector);
 			if (items.length > 0) {
 				items[0].scrollIntoView();
