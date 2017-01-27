@@ -1,8 +1,8 @@
 # CHANGELOG
 
-* [#29](https://github.com/lozjackson/ember-time-tools/pull/29) Update time-picker header
+* [#30](https://github.com/lozjackson/ember-time-tools/pull/30) Update TimePickerComponent header
 
-* [#29](https://github.com/lozjackson/ember-time-tools/pull/29) [FEATURE] Add date-picker to calendar.
+* [#29](https://github.com/lozjackson/ember-time-tools/pull/29) [FEATURE] Add date-picker to CalendarMonthComponent.
 
 * [#28](https://github.com/lozjackson/ember-time-tools/pull/28) Add Ember-cli-moment-shim dependency.
 
