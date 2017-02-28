@@ -85,6 +85,13 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   scrollToSelectedTime: true,
 
   /**
+    @property resetDate
+    @type {Boolean}
+    @default `true`
+  */
+  resetDate: true,
+
+  /**
     This computed property takes the `selectedTime` property, which is a javascript
     `Date` object and returns an object with `hour` and `minute` properties.
 
@@ -175,7 +182,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   _selectTime(time) {
     let output = this.get('output');
-    let date = new Date(0);
+    let date = this.get('resetDate') ? new Date(0) : new Date();
     date.setHours(time.hour);
     date.setMinutes(time.minute);
 
