@@ -49,6 +49,13 @@ test('scrollToSelectedTime should be true', function(assert) {
   assert.equal(component.get('scrollToSelectedTime'), true);
 });
 
+test('resetDate should be true', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  assert.equal(component.get('resetDate'), true);
+});
+
 test('_selectedTime - date', function(assert) {
   assert.expect(1);
   var component = this.subject();
@@ -265,7 +272,7 @@ test('_selectTime() method - selectedTime property', function(assert) {
   assert.deepEqual(component.get('selectedTime'), date);
 });
 
-test('_selectTime() method - output = date', function(assert) {
+test('_selectTime() method - output=date resetDate=true', function(assert) {
   assert.expect(1);
   let date = new Date(0);
   date.setHours(10);
@@ -273,6 +280,26 @@ test('_selectTime() method - output = date', function(assert) {
   let component = this.subject({
     output: 'date',
     select: time => assert.deepEqual(time, date)
+  });
+  this.render();
+  component._selectTime({ hour: 10, minute: 30 });
+});
+
+test('_selectTime() method - output=date resetDate=false', function(assert) {
+  assert.expect(5);
+  let date = new Date();
+  date.setHours(10);
+  date.setMinutes(30);
+  let component = this.subject({
+    resetDate: false,
+    output: 'date',
+    select: time => {
+      assert.equal(time.getMinutes(), date.getMinutes());
+      assert.equal(time.getSeconds(), date.getSeconds());
+      assert.equal(time.getFullYear(), date.getFullYear());
+      assert.equal(time.getMonth(), date.getMonth());
+      assert.equal(time.getDate(), date.getDate());
+    }
   });
   this.render();
   component._selectTime({ hour: 10, minute: 30 });
