@@ -251,6 +251,18 @@ test('_selectDate() method - selectedDate property', function(assert) {
   assert.deepEqual(component.get('selectedDate'), date);
 });
 
+test('_selectDate() method should not alter the time part of the selectedDate property', function(assert) {
+  assert.expect(1);
+  let date = new Date(1977,7,24,10);
+
+  let component = this.subject({
+    selectedDate: new Date(2017,3,1,10)
+  });
+  this.render();
+  run(() => component._selectDate({year: 1977, month: 7, date: 24}));
+  assert.deepEqual(component.get('selectedDate'), date);
+});
+
 test('_selectDate() method - output = date', function(assert) {
   assert.expect(1);
   let date = new Date(1977,7,24);
