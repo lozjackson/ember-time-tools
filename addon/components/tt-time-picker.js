@@ -176,8 +176,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   _selectTime(time) {
     let output = this.get('output');
     let date = new Date(get(this, 'selectedTime') || 0);
-    date.setHours(time.hour);
-    date.setMinutes(time.minute);
+    date.setHours(time.hour, time.minute);
 
     if (output) {
       switch(output) {
