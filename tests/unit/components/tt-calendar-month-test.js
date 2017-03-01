@@ -201,25 +201,6 @@ test('nextMonth method should increment month', function(assert) {
   assert.equal(component.get('month'), 3, `'month' should be 3`);
 });
 
-test('nextMonth action should not fail when selecteddate is null', function(assert) {
-  assert.expect(2);
-  let date = new Date();
-  let month = date.getMonth();
-  let nextMonth = month + 1;
-  if (nextMonth > 11) {
-    nextMonth -= 12;
-  }
-
-  let component = this.subject();
-  this.render();
-
-  run( () => component.set( 'selectedDate', null ) );
-  assert.equal(component.get('month'), month, `'month' should be ${date}`);
-
-  run( () => component.nextMonth() );
-  assert.equal(component.get('month'), nextMonth, `'month' should be ${nextMonth}`);
-});
-
 test('prevMonth method should decrement month', function(assert) {
   assert.expect(2);
   let component = this.subject();
@@ -231,26 +212,6 @@ test('prevMonth method should decrement month', function(assert) {
   run(() => component.prevMonth());
   assert.equal(component.get('month'), 1, `'month' should be 1`);
 });
-
-test('prevMonth action should not fail when selecteddate is null', function(assert) {
-  assert.expect(2);
-  let date = new Date();
-  let month = date.getMonth();
-  let prevMonth = month - 1;
-  if (prevMonth < 0) {
-    prevMonth += 12;
-  }
-
-  let component = this.subject();
-  this.render();
-
-  run( () => component.set( 'selectedDate', null ) );
-  assert.equal(component.get('month'), month, `'month' should be ${date}`);
-
-  run( () => component.prevMonth() );
-  assert.equal(component.get('month'), prevMonth, `'month' should be ${prevMonth}`);
-});
-
 
 test('today action - setToday', function(assert) {
   assert.expect(2);
