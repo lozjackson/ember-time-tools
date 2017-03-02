@@ -6,7 +6,7 @@ import layout from '../templates/components/tt-time-picker';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
 
-const { computed, run } = Ember;
+const { computed, get, run } = Ember;
 
 /**
   @class TimePickerComponent
@@ -175,9 +175,8 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   _selectTime(time) {
     let output = this.get('output');
-    let date = new Date(0);
-    date.setHours(time.hour);
-    date.setMinutes(time.minute);
+    let date = new Date(get(this, 'selectedTime') || 0);
+    date.setHours(time.hour, time.minute);
 
     if (output) {
       switch(output) {

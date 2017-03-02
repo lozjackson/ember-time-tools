@@ -7,7 +7,7 @@ import DateObject from 'ember-time-tools/utils/date';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
 
-const { computed } = Ember;
+const { computed, get } = Ember;
 const { readOnly } = computed;
 
 /*
@@ -327,8 +327,8 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   _selectDate(day) {
     let output = this.get('output');
-    let date = new Date(day.year, day.month, day.date);
-
+    let date = new Date(get(this, 'selectedDate') || 0);
+    date.setFullYear(day.year, day.month, day.date);
     if (output) {
       switch(output) {
         case 'date':
