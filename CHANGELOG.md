@@ -1,8 +1,13 @@
 # CHANGELOG
 
+### v0.8.0 2017-03-02
+
 * [#36](https://github.com/lozjackson/ember-time-tools/pull/36) Update dependencies.
 
 * [#34](https://github.com/lozjackson/ember-time-tools/pull/34) DatePickerComponent and TimePickerComponent should re-use selected value.
+
+
+
 
 ### v0.7.0 2017-01-27
 
