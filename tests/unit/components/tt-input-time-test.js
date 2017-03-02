@@ -52,6 +52,13 @@ test('scrollToSelectedTime should be true', function(assert) {
   assert.equal(component.get('scrollToSelectedTime'), true);
 });
 
+test('resetDate should be true', function(assert) {
+  assert.expect(1);
+  let component = this.subject();
+  this.render();
+  assert.equal(component.get('resetDate'), true);
+});
+
 test('showTimePicker should be false', function(assert) {
   assert.expect(1);
   var component = this.subject();

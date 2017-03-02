@@ -87,6 +87,13 @@ export default Ember.Component.extend(DestinationElementMixin, {
   scrollToSelectedTime: true,
 
   /**
+    @property resetDate
+    @type {Boolean}
+    @default `true`
+  */
+  resetDate: true,
+
+  /**
     @property showTimePicker
     @type {Boolean}
     @private
