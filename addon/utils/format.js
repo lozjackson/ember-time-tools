@@ -12,7 +12,7 @@ export default function format(date, format = 'date') {
 
   switch(format) {
 
-    case 'date':
+    case 'date': {
       if (inputType !== 'date') {
         if (inputType === 'instance') {
           date = convertObjectToString(date);
@@ -20,8 +20,8 @@ export default function format(date, format = 'date') {
         date = new Date(date);
       }
       break;
-
-    case 'timestamp':
+    }
+    case 'timestamp': {
       if (inputType !== 'number') {
         if (inputType === 'instance') {
           date = new Date(convertObjectToString(date));
@@ -31,8 +31,8 @@ export default function format(date, format = 'date') {
         date = date.getTime();
       }
       break;
-
-    case 'object':
+    }
+    case 'object': {
       if (inputType !== 'instance') {
         if (inputType !== 'date') {
           date = new Date(date);
@@ -47,9 +47,9 @@ export default function format(date, format = 'date') {
         });
       }
       break;
-
+    }
     // parse custom format
-    default:
+    default: {
       let _date;
       if (inputType === 'string') {
         _date = moment(date, format);
@@ -60,6 +60,7 @@ export default function format(date, format = 'date') {
         date = _date.format(format);
       }
       break;
+    }
   }
   return  date;
 }
