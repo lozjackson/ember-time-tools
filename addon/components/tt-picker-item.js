@@ -64,11 +64,11 @@ export default Ember.Component.extend({
     @private
   */
   today: computed( 'model.year', 'model.month', 'model.date', function () {
-	  let today = new Date();
+    let today = new Date();
     let model = this.get('model');
     if (!model) { return false; }
     let { year, month, date } = model.getProperties('year', 'month', 'date');
-  	return (today.getDate() === date && today.getMonth() === month && today.getFullYear() === year) ? true : false;
+    return (today.getDate() === date && today.getMonth() === month && today.getFullYear() === year) ? true : false;
   }),
 
   /**
