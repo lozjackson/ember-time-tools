@@ -7,5 +7,5 @@ moduleForComponent('tt-time-picker', 'Integration | Component | tt time picker',
 
 test('it renders', function(assert) {
   this.render(hbs`{{tt-time-picker}}`);
-  assert.equal(this.$('.tt-time-picker.container').length, 1);
+  assert.equal(this.$('.tt-time-picker.tt-container').length, 1);
 });
