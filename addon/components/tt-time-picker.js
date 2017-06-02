@@ -21,9 +21,9 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @property classNames
     @type {Array}
     @private
-    @default `['tt-time-picker', 'container']`
+    @default `['tt-time-picker', 'tt-container']`
   */
-  classNames: ['tt-time-picker', 'container'],
+  classNames: ['tt-time-picker', 'tt-container'],
 
   /**
     ### Output

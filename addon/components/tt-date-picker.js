@@ -52,9 +52,9 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @property classNames
     @type {Array}
     @private
-    @default `['tt-date-picker', 'container']`
+    @default `['tt-date-picker', 'tt-container']`
   */
-  classNames: ['tt-date-picker', 'container'],
+  classNames: ['tt-date-picker', 'tt-container'],
 
   /**
     An array of month names.
