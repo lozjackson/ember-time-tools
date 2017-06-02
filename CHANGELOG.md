@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v0.8.1 2017-05-03
+
+* [#39](https://github.com/lozjackson/ember-time-tools/pull/39) Rename container to avoid naming collisions.
+
 * [#37](https://github.com/lozjackson/ember-time-tools/pull/37) Update Ember-cli to 2.12.1
 
 ### v0.8.0 2017-03-02
