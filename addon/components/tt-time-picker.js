@@ -84,6 +84,12 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   scrollToSelectedTime: true,
 
+  defaultToday: false,
+
+  defaultTime: computed('defaultToday', function () {
+    return get(this, 'defaultToday') ? new Date().getTime() : 0;
+  }),
+
   /**
     This computed property takes the `selectedTime` property, which is a javascript
     `Date` object and returns an object with `hour` and `minute` properties.
@@ -175,7 +181,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   _selectTime(time) {
     let output = this.get('output');
-    let date = new Date(get(this, 'selectedTime') || 0);
+    let date = new Date(get(this, 'selectedTime') || get(this, 'defaultTime'));
     date.setHours(time.hour, time.minute);
 
     if (output) {
