@@ -3,7 +3,7 @@
 */
 import Component from '@ember/component';
 import layout from '../templates/components/tt-year-option';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 /**
   @class YearOptionComponent
@@ -77,6 +77,9 @@ export default Component.extend({
     @private
   */
   click() {
-    this.sendAction('action', Number(this.get('value')));
+    const setYear = get(this, 'setYear');
+    if (typeof setYear === 'function') {
+      setYear(Number(this.get('value')));
+    }
   }
 });

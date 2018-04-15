@@ -78,6 +78,6 @@ test('yearSelected', function(assert) {
 test('click calls setYear', function(assert) {
   assert.expect(1);
   this.set('actions.setYear', year => assert.equal(year, 2015));
-  this.render(hbs`{{tt-year-option decade="2010" unit="5" action="setYear"}}`);
+  this.render(hbs`{{tt-year-option decade="2010" unit="5" setYear=(action "setYear")}}`);
   this.$('.option').click();
 });

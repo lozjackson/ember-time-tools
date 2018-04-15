@@ -2,7 +2,7 @@
   @module ember-time-tools
 */
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import layout from '../templates/components/tt-month-option';
 
 const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -67,6 +67,9 @@ export default Component.extend({
     @private
   */
   click() {
-    this.sendAction('action', Number(this.get('value')));
+    const setMonth = get(this, 'setMonth');
+    if (typeof setMonth === 'function') {
+      setMonth(Number(this.get('value')));
+    }
   }
 });

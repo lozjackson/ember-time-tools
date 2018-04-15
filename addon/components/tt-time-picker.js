@@ -140,7 +140,7 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   handleClickOutside() {
     if (this.get('isDestroyed') || this.get('isDestroying')) { return; }
-    this.sendAction('close');
+    this._close();
   },
 
   /**
@@ -200,10 +200,18 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
       }
     }
 
-    if (this.get('select')) {
-      this.sendAction('select', time);
+    const select = get(this, 'select');
+    if (typeof select === 'function') {
+      select(time);
     } else {
       this.set('selectedTime', time);
+    }
+  },
+
+  _close() {
+    const close = get(this, 'close');
+    if (typeof close === 'function') {
+      close();
     }
   },
 
@@ -222,7 +230,7 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
       @method close
     */
     close() {
-      this.sendAction('close');
+      this._close();
     }
   }
 });

@@ -2,6 +2,7 @@
   @module ember-time-tools
 */
 import TextField from '@ember/component/text-field';
+import { get } from '@ember/object';
 
 /**
   A text field component for displaying dates
@@ -42,7 +43,10 @@ export default TextField.extend({
     */
     click(e) {
       e.target.blur();
-      this.sendAction('toggleDatePicker');
+      const toggleDatePicker = get(this, 'toggleDatePicker');
+      if (toggleDatePicker) {
+        toggleDatePicker();
+      }
     },
 
     /**

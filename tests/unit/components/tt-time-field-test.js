@@ -42,6 +42,20 @@ test('click() should blur the target element', function(assert) {
   component.click(event);
 });
 
+test('click() should call toggleTimePicker method', function(assert) {
+  assert.expect(1);
+  var component = this.subject({
+    toggleTimePicker: () => assert.ok(true)
+  });
+  this.render();
+  let event = {
+    target: {
+      blur: () => {}
+    }
+  };
+  component.click(event);
+});
+
 test('keyPress() should return false', function(assert) {
   assert.expect(1);
   var component = this.subject();

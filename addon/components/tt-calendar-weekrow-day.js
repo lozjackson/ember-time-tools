@@ -3,7 +3,7 @@
 */
 import Component from '@ember/component';
 import layout from '../templates/components/tt-calendar-weekrow-day';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 
 const { alias } = computed;
@@ -58,7 +58,6 @@ export default Component.extend({
     @property events
     @type {Array}
   */
-  events: [],
 
   /**
     Alias of `day.date`.
@@ -112,6 +111,10 @@ export default Component.extend({
 
   _events: computed('events.@each.start', 'date', 'month', 'year', function () {
     let day = this.getProperties('date', 'month', 'year');
+    const events = get(this, 'events');
+    if (!events) {
+      return [];
+    }
     return this.get('events').filter(event => {
       return compareDates(event.get('start'), day);
     });

@@ -2,20 +2,21 @@
   @module ember-time-tools
 */
 import Component from '@ember/component';
-import EmberObject, { get, computed } from '@ember/object';
 import layout from '../templates/components/tt-date-picker';
 import DateObject from 'ember-time-tools/utils/date';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
+import EmberObject, { get, computed } from '@ember/object';
+import { readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
-
-const { readOnly } = computed;
 
 /*
   @param daysInMonth
     The number of days in each month.
 */
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /*
   @method getDays
@@ -63,7 +64,7 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @type {Array}
     @private
   */
-  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  months,
 
   /**
     0 = Sunday, 1 = Monday
@@ -297,7 +298,7 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   handleClickOutside() {
     if (this.get('isDestroyed') || this.get('isDestroying')) { return; }
-    this.sendAction('close');
+    this._close();
   },
 
   /**
@@ -358,9 +359,9 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
           break;
       }
     }
-
-    if (this.get('select')) {
-      this.sendAction('select', day);
+    const select = get(this, 'select');
+    if (typeof select === 'function') {
+      select(day);
     } else {
       this.set('selectedDate', day);
     }
@@ -449,6 +450,13 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
     this.set('viewDate.date', `${ parseInt(decade.start) + 10 }/${ month + 1 }/1`);
   },
 
+  _close() {
+    const close = get(this, 'close');
+    if (typeof close === 'function') {
+      close();
+    }
+  },
+
   actions: {
 
     /**
@@ -509,7 +517,7 @@ export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
       @method close
     */
     close() {
-      this.sendAction('close');
+      this._close();
     }
   }
 });

@@ -7,8 +7,14 @@ import layout from '../templates/components/tt-calendar-month';
 import DateObject from 'ember-time-tools/utils/date';
 import getDaysInMonth from 'ember-time-tools/utils/get-days-in-month';
 import { A } from '@ember/array';
+import { typeOf } from '@ember/utils';
 
 const { alias, sort } = computed;
+
+const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const sortProperties = ['start:asc', 'end:asc'];
 
 const Day = EmberObject.extend({
   date: null,
@@ -46,14 +52,14 @@ export default Component.extend({
     @type {Array}
     @default `['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']`
   */
-  dayNames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  dayNames,
 
   /**
     @property monthNames
     @type {Array}
     @default `['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']`
   */
-  monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  monthNames,
 
   /**
     An array of event models.  Each event should have at least `start`, `end`
@@ -80,7 +86,7 @@ export default Component.extend({
     @default `['start:asc', 'end:asc']`
     @private
   */
-  sortProperties: ['start:asc', 'end:asc'],
+  sortProperties,
 
   /**
     Sorts the `events` array.
@@ -299,7 +305,7 @@ export default Component.extend({
     @param {Object} date (optional) a `Date` object.
   */
   setToday(date) {
-    if (!date) {
+    if (typeOf(date) !== 'date') {
       date = new Date();
     }
     this.setViewDate(date);

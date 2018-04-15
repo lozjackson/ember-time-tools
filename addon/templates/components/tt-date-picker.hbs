@@ -10,22 +10,22 @@
     <table border="0">
       <tbody class="month-list" valign="center">
         <tr>
-          {{tt-year-option decade=decade.start selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=1 selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=2 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=1 selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=2 selectedYear=year setYear=(action "setYear")}}
         </tr>
         <tr>
-          {{tt-year-option decade=decade.start unit=3 selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=4 selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=5 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=3 selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=4 selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=5 selectedYear=year setYear=(action "setYear")}}
         </tr>
         <tr>
-          {{tt-year-option decade=decade.start unit=6 selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=7 selectedYear=year action="setYear"}}
-          {{tt-year-option decade=decade.start unit=8 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=6 selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=7 selectedYear=year setYear=(action "setYear")}}
+          {{tt-year-option decade=decade.start unit=8 selectedYear=year setYear=(action "setYear")}}
         </tr>
         <tr>
-          {{tt-year-option decade=decade.start unit=9 selectedYear=year action="setYear"}}
+          {{tt-year-option decade=decade.start unit=9 selectedYear=year setYear=(action "setYear")}}
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
@@ -44,24 +44,24 @@
     <table border="0">
       <tbody class="month-list" valign="center">
         <tr>
-          {{tt-month-option value=0 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=1 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=2 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=0 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=1 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=2 selectedMonth=month setMonth=(action "setMonth")}}
         </tr>
         <tr>
-          {{tt-month-option value=3 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=4 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=5 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=3 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=4 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=5 selectedMonth=month setMonth=(action "setMonth")}}
         </tr>
         <tr>
-          {{tt-month-option value=6 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=7 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=8 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=6 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=7 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=8 selectedMonth=month setMonth=(action "setMonth")}}
         </tr>
         <tr>
-          {{tt-month-option value=9 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=10 selectedMonth=month action="setMonth"}}
-          {{tt-month-option value=11 selectedMonth=month action="setMonth"}}
+          {{tt-month-option value=9 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=10 selectedMonth=month setMonth=(action "setMonth")}}
+          {{tt-month-option value=11 selectedMonth=month setMonth=(action "setMonth")}}
         </tr>
       </tbody>
     </table>
@@ -69,7 +69,7 @@
 </div>
 <header>
   <div class="top-panel">
-    {{uic-close-button action="close"}}
+    {{uic-close-button click=(action "close")}}
     <div class="date" {{action chooseMonth}}>{{monthName}} {{year}}</div>
   	{{tt-date-navigation back=(action "prevMonth") today=(action "today") forward=(action "nextMonth")}}
   </div>
@@ -90,7 +90,7 @@
             model=day
             class="day"
             selectedDate=selectedDate
-            select="selectDay"}}
+            select=(action "selectDay")}}
         {{/each}}
       </tr>
     {{/each}}

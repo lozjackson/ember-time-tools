@@ -3,7 +3,7 @@
 */
 import Component from '@ember/component';
 import layout from '../templates/components/tt-picker-item';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 
 /**
@@ -35,7 +35,7 @@ export default Component.extend({
     @type {Boolean}
     @private
   */
-  daySelected: computed( 'selectedDate', 'model.year', 'model.month', 'model.date', function () {
+  daySelected: computed( 'selectedDate', 'model.{year,month,date}', function () {
     let selectedDate = this.get('selectedDate');
     let selectedDateType = typeOf(selectedDate);
     let selected;
@@ -63,7 +63,7 @@ export default Component.extend({
     @type {Boolean}
     @private
   */
-  today: computed( 'model.year', 'model.month', 'model.date', function () {
+  today: computed('model.{year,month,date}', function () {
     let today = new Date();
     let model = this.get('model');
     if (!model) { return false; }
@@ -76,7 +76,7 @@ export default Component.extend({
     @type {Boolean}
     @private
   */
-	weekend: computed( 'model.year', 'model.month', 'model.date', function () {
+	weekend: computed('model.{year,month,date}', function () {
     let model = this.get('model');
     if (!model) {
       return false;
@@ -91,6 +91,9 @@ export default Component.extend({
     @private
   */
   click() {
-    this.sendAction('select', this.get('model'));
+    const select = get(this, 'select');
+    if (typeof select === 'function') {
+      select(this.get('model'));
+    }
   }
 });

@@ -31,7 +31,6 @@ export default Component.extend({
     @property events
     @type {Array}
   */
-  events: [],
 
   /**
     An array of `Day` objects to display for this week (row) of the calendar.
