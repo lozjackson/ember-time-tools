@@ -1,6 +1,6 @@
 {
   "name": "ember-time-tools",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "Time and date tools for Ember applications.",
   "keywords": [
     "ember-addon",
