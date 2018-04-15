@@ -18,7 +18,7 @@ http://lozjackson.github.io/ember-time-tools/
 Create a DatePickerComponent using the following example:
 
 ```
-{{date-picker selectedDate=selectedDate select="select"}}
+{{date-picker selectedDate=selectedDate select=(action "select")}}
 ```
 
 You can use the InputDateComponent to create a html `input` element and a DatePickerComponent in one.
@@ -32,7 +32,7 @@ You can use the InputDateComponent to create a html `input` element and a DatePi
 Create a TimePickerComponent using the following example:
 
 ```
-{{time-picker selectedTime=selectedTime select="select"}}
+{{time-picker selectedTime=selectedTime select=(action "select")}}
 ```
 
 You can use the InputTimeComponent to create a html `input` element and a TimePickerComponent in one.
