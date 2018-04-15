@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function compareJson([a, b]/*, hash*/) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
-export default Ember.Helper.helper(compareJson);
+export default helper(compareJson);

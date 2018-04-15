@@ -1,10 +1,9 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/tt-month-option';
-
-const { computed } = Ember;
 
 const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -12,7 +11,7 @@ const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP
   @class MonthOptionComponent
   @namespace Date
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**

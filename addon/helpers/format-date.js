@@ -1,7 +1,7 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import moment from 'moment';
 /**
   @class FormatDateHelper
@@ -48,4 +48,4 @@ export function formatDate([date, format]) {
   return moment(date).format(formatString);
 }
 
-export default Ember.Helper.helper(formatDate);
+export default helper(formatDate);

@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { run, scheduleOnce } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-
-const { run } = Ember;
 
 moduleForComponent('tt-time-picker', 'Unit | Component | tt time picker', {
   needs: [
@@ -225,12 +224,12 @@ test('didInsertElement() method - scrollToSelectedTime=false', function(assert) 
 
 test('scrollToElement() method', function(assert) {
   assert.expect(3);
-  let _scheduleOnce = Ember.run.scheduleOnce;
+  let _scheduleOnce = scheduleOnce;
   let component = this.subject({
     didInsertElement: () => {}
   });
 
-  Ember.run.scheduleOnce = (name, context, fn) => {
+  scheduleOnce = (name, context, fn) => {
     assert.equal(name, 'afterRender');
     assert.deepEqual(context, component);
     assert.equal(typeof fn, 'function');
@@ -239,7 +238,7 @@ test('scrollToElement() method', function(assert) {
   this.render();
   component.scrollToElement();
 
-  Ember.run.scheduleOnce = _scheduleOnce;
+  scheduleOnce = _scheduleOnce;
 });
 
 test('_selectTime() method - select action', function(assert) {
@@ -308,7 +307,7 @@ test('_selectTime() method - output = object', function(assert) {
   let date = new Date(0);
   date.setHours(10);
   date.setMinutes(30);
-  let object = Ember.Object.create({
+  let object = EmberObject.create({
     hour: date.getHours(),
     minute: date.getMinutes(),
     _date: date,

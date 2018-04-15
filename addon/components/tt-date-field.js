@@ -1,7 +1,7 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import TextField from '@ember/component/text-field';
 
 /**
   A text field component for displaying dates
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @extends Arms.TextFieldComponent
   @namespace Date
 */
-export default Ember.TextField.extend({
+export default TextField.extend({
 
     /**
       @property tagName

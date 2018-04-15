@@ -1,8 +1,7 @@
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
-
-var run = Ember.run;
 
 moduleForComponent('tt-calendar-weekrow-day', 'Integration | Component | tt calendar weekrow day', {
   integration: true
@@ -18,7 +17,7 @@ test('it renders', function(assert) {
 test('correct day number displays in the template', function(assert) {
   assert.expect(2);
   var today = new Date( 2014, 3, 15 );
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -34,7 +33,7 @@ test('correct day number displays in the template', function(assert) {
 
 test('out-of-month class is applied correctly', function(assert) {
   assert.expect(3);
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     inMonth: false
   });
   this.set( 'day', day );
@@ -53,7 +52,7 @@ test('today', function(assert) {
   assert.expect(3);
 
   var today = new Date();
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -73,7 +72,7 @@ test('weekend', function(assert) {
   assert.expect(4);
 
   var date = new Date( 2014, 7, 15 );
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: date.getDate(),
     month: date.getMonth(),
     year: date.getFullYear()

@@ -1,10 +1,11 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-calendar-weekrow-day';
+import { computed } from '@ember/object';
+import { typeOf } from '@ember/utils';
 
-const { computed, typeOf } = Ember;
 const { alias } = computed;
 
 function compareDates(dateObject, { date, month, year }) {
@@ -18,7 +19,7 @@ function compareDates(dateObject, { date, month, year }) {
   @class CalendarWeekrowDayComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**

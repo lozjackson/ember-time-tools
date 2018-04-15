@@ -1,15 +1,16 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import EmberObject, { computed } from '@ember/object';
 import layout from '../templates/components/tt-calendar-month';
 import DateObject from 'ember-time-tools/utils/date';
 import getDaysInMonth from 'ember-time-tools/utils/get-days-in-month';
+import { A } from '@ember/array';
 
-const { computed } = Ember;
 const { alias, sort } = computed;
 
-const Day = Ember.Object.extend({
+const Day = EmberObject.extend({
   date: null,
   month: null,
   year: null,
@@ -20,7 +21,7 @@ const Day = Ember.Object.extend({
   @class CalendarMonthComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -184,7 +185,7 @@ export default Ember.Component.extend({
 
     const rows = 6;
     const days = 7;
-    let out = Ember.A();
+    let out = A();
     let { month, year, startDay } = this.getProperties([ 'month', 'year', 'startDay' ]);
     let lastMonth = this.getLastMonth( month );
     let daily = 0;
@@ -223,7 +224,7 @@ export default Ember.Component.extend({
     };
 
     for ( let w = 0; w < rows; w++ ) {
-      let daysArray = Ember.A();
+      let daysArray = A();
 
       for (let d = 0; d < days; d++) {
         // start the ball rolling when `d` is equal to `startDay`

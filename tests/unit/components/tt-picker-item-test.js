@@ -1,7 +1,6 @@
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { run } = Ember;
 
 moduleForComponent('tt-picker-item', 'Unit | Component | tt picker item', {
   needs: [
@@ -37,7 +36,7 @@ test('daySelected', function(assert) {
   assert.expect(4);
   var component = this.subject();
   this.render();
-  run(() => component.set('model', Ember.Object.create({
+  run(() => component.set('model', EmberObject.create({
     date: 24,
     month: 7,
     year: 1977
@@ -61,7 +60,7 @@ test('today', function(assert) {
   let today = new Date();
   assert.equal(component.get('today'), false);
 
-  run(() => component.set('model', Ember.Object.create({
+  run(() => component.set('model', EmberObject.create({
     date: today.getDate() -1,
     month: today.getMonth(),
     year: today.getFullYear()
@@ -82,7 +81,7 @@ test('weekend', function(assert) {
   let date = new Date(2016,5,17);
   assert.equal(component.get('weekend'), false);
 
-  run(() => component.set('model', Ember.Object.create({
+  run(() => component.set('model', EmberObject.create({
     date: date.getDate(),
     month: date.getMonth(),
     year: date.getFullYear()

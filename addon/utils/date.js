@@ -1,12 +1,11 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
-
-const { computed } = Ember;
+import EmberObject, { computed } from '@ember/object';
+import { typeOf } from '@ember/utils';
 
 /**
-  
+
   ```js
   let dateObject = DateObject.create();
   dateObject.setDate('2017/1/27');
@@ -21,7 +20,7 @@ const { computed } = Ember;
   @class DateObject
   @namespace Utils
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   /**
     javascript `Date()` object
@@ -115,9 +114,9 @@ export default Ember.Object.extend({
     @return {Object} A javascript `Date` object
   */
   setDate(date) {
-    if (Ember.typeOf(date) === 'string') {
+    if (typeOf(date) === 'string') {
       date = date.replace(/-/g, '/');
-    } else if (Ember.typeOf(date) === 'instance') {
+    } else if (typeOf(date) === 'instance') {
       date = new Date(date.get('year'), date.get('month'), date.get('date'));
     }
     return this.set('_date', new Date(date));

@@ -1,13 +1,14 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import EmberObject, { get, computed } from '@ember/object';
 import layout from '../templates/components/tt-date-picker';
 import DateObject from 'ember-time-tools/utils/date';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
+import { A } from '@ember/array';
 
-const { computed, get } = Ember;
 const { readOnly } = computed;
 
 /*
@@ -44,7 +45,7 @@ function getDays(date) {
   @uses Mixins.SetPositionMixin
   @namespace Date
 */
-export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
+export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
 
   layout,
 
@@ -161,7 +162,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   daysOfWeek: computed('weekStart', function() {
-    let array = Ember.A(),
+    let array = A(),
       weekStart = this.get('weekStart'),
       daysArray = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -215,13 +216,13 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     let dayObj, date, intWeek, intDay, week,
       daily = 0,
       dailyNextMonth = 1,
-      weeksArray = Ember.A(),
+      weeksArray = A(),
       daysOfWeek = this.get('daysOfWeek.length'),
       { month, year, numberOfWeeks, startDay } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
       daysInMonth = getDays({ year, month });
 
     for (intWeek = 0; intWeek < numberOfWeeks;  intWeek++) {
-      week = Ember.A();
+      week = A();
 
       for (intDay = 0;intDay < daysOfWeek; intDay++) {
         // start the ball rolling when intDay is equal to startDay
@@ -251,7 +252,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
             inRange: false
           };
         }
-        week.pushObject(Ember.Object.create(dayObj));
+        week.pushObject(EmberObject.create(dayObj));
       }
       weeksArray.pushObject(week);
     }
@@ -338,7 +339,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           day = date.getTime();
           break;
         case 'object':
-          day = Ember.Object.create({
+          day = EmberObject.create({
             year: day.year,
             month: day.month,
             date: day.date,
@@ -347,7 +348,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           });
           break;
         default:
-          day = Ember.Object.create({
+          day = EmberObject.create({
             year: day.year,
             month: day.month,
             date: day.date,

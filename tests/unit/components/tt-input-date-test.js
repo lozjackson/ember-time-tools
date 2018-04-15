@@ -1,7 +1,5 @@
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { run } = Ember;
 
 moduleForComponent('tt-input-date', 'Unit | Component | tt input date', {
   // Specify the other units that are required for this test

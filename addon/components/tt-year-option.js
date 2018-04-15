@@ -1,16 +1,15 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-year-option';
-
-const { computed } = Ember;
+import { computed } from '@ember/object';
 
 /**
   @class YearOptionComponent
   @namespace Date
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
