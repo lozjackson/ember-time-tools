@@ -1,7 +1,7 @@
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { run } = Ember;
+import { A } from '@ember/array';
 
 moduleForComponent('tt-calendar-month', 'Unit | Component | tt calendar month', {
   needs: [
@@ -53,11 +53,11 @@ test('sortProperties', function(assert) {
 
 test('sortedEvents', function (assert) {
   assert.expect(2);
-  let model1 = Ember.Object.create({ id:1, start: 3 });
-  let model2 = Ember.Object.create({ id:2, start: 1 });
-  let model3 = Ember.Object.create({ id:3, start: 2 });
+  let model1 = EmberObject.create({ id:1, start: 3 });
+  let model2 = EmberObject.create({ id:2, start: 1 });
+  let model3 = EmberObject.create({ id:3, start: 2 });
   let component = this.subject();
-  component.set('events', Ember.A([ model1, model2, model3 ]));
+  component.set('events', A([ model1, model2, model3 ]));
   this.render();
   assert.equal(component.get('sortedEvents.firstObject.id'), 2, `'sortedEvents.firstObject.id' should be 2` );
 
@@ -162,7 +162,7 @@ test('getLastMonth', function(assert) {
 
 test('select', function(assert) {
   assert.expect(1);
-  let model = Ember.Object.create({ id:1 });
+  let model = EmberObject.create({ id:1 });
   let component = this.subject();
   this.render();
   run(() => component.select(model));

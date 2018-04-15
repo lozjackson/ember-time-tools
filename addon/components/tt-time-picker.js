@@ -1,19 +1,21 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import EmberObject, { get, computed } from '@ember/object';
 import layout from '../templates/components/tt-time-picker';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
-
-const { computed, get, run } = Ember;
+import { run } from '@ember/runloop';
+import { typeOf } from '@ember/utils';
+import $ from 'jquery';
 
 /**
   @class TimePickerComponent
   @uses Mixins.SetPositionMixin
   @namespace Time
 */
-export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
+export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
 
   layout,
 
@@ -95,7 +97,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   _selectedTime: computed('selectedTime', function () {
     let selectedTime = this.get('selectedTime');
     if (!selectedTime) { return selectedTime; }
-    if (Ember.typeOf(selectedTime) !== 'date') {
+    if (typeOf(selectedTime) !== 'date') {
       selectedTime = new Date(selectedTime);
     }
     return { hour: selectedTime.getHours(), minute: selectedTime.getMinutes() };
@@ -138,7 +140,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   handleClickOutside() {
     if (this.get('isDestroyed') || this.get('isDestroying')) { return; }
-    this.sendAction('close');
+    this._close();
   },
 
   /**
@@ -161,7 +163,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
 	*/
 	scrollToElement(selector) {
 		run.scheduleOnce('afterRender', this, function () {
-			let items = Ember.$(selector);
+			let items = $(selector);
 			if (items.length > 0) {
 				items[0].scrollIntoView();
 			}
@@ -188,7 +190,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           time = date.getTime();
           break;
         case 'object':
-          time = Ember.Object.create({
+          time = EmberObject.create({
             hour: date.getHours(),
             minute: date.getMinutes(),
             _date: date,
@@ -198,10 +200,18 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
       }
     }
 
-    if (this.get('select')) {
-      this.sendAction('select', time);
+    const select = get(this, 'select');
+    if (typeof select === 'function') {
+      select(time);
     } else {
       this.set('selectedTime', time);
+    }
+  },
+
+  _close() {
+    const close = get(this, 'close');
+    if (typeof close === 'function') {
+      close();
     }
   },
 
@@ -220,7 +230,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
       @method close
     */
     close() {
-      this.sendAction('close');
+      this._close();
     }
   }
 });

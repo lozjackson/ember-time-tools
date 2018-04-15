@@ -1,7 +1,7 @@
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { run } = Ember;
+import { A } from '@ember/array';
 
 moduleForComponent('tt-calendar-weekrow-day', 'Unit | Component | tt calendar weekrow day', {
   // Specify the other units that are required for this test
@@ -26,7 +26,7 @@ test('date', function(assert) {
   this.render();
 
   var today = new Date(2014, 2, 18);
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -43,7 +43,7 @@ test('month', function(assert) {
   this.render();
 
   var today = new Date(2014, 2, 18);
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -59,7 +59,7 @@ test('year', function(assert) {
   this.render();
 
   var today = new Date(2014, 2, 18);
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -81,7 +81,7 @@ test('today is correct', function(assert) {
   var component = this.subject();
   this.render();
   var today = new Date();
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: today.getDate(),
     month: today.getMonth(),
     year: today.getFullYear()
@@ -100,7 +100,7 @@ test('weekend is correct', function(assert) {
   var component = this.subject();
   this.render();
   var date = new Date( 2014, 7, 15 );
-  var day = Ember.Object.create({
+  var day = EmberObject.create({
     date: date.getDate(),
     month: date.getMonth(),
     year: date.getFullYear()
@@ -120,16 +120,16 @@ test('weekend is correct', function(assert) {
 
 test('_events', function(assert) {
   assert.expect(3);
-  let day = Ember.Object.create({
+  let day = EmberObject.create({
     date: 3,
     month: 1,
     year: 2016
   });
-  let event = Ember.Object.create({ start: new Date(2016,1,3).getTime() });
-  let events = Ember.A([
-    Ember.Object.create({ start: new Date(2016,1,2).getTime() }),
-    Ember.Object.create({ start: new Date(2016,1,3).getTime() }),
-    Ember.Object.create({ start: new Date(2016,1,4).getTime() })
+  let event = EmberObject.create({ start: new Date(2016,1,3).getTime() });
+  let events = A([
+    EmberObject.create({ start: new Date(2016,1,2).getTime() }),
+    EmberObject.create({ start: new Date(2016,1,3).getTime() }),
+    EmberObject.create({ start: new Date(2016,1,4).getTime() })
   ]);
   let component = this.subject({ day, events });
   this.render();

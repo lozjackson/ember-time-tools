@@ -1,7 +1,7 @@
 /**
   @module ember-ui-components
 */
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import getMousePosition from 'ember-ui-components/utils/get-mouse-position';
 import setPosition from 'ember-ui-components/utils/set-position';
 
@@ -9,7 +9,7 @@ import setPosition from 'ember-ui-components/utils/set-position';
   @class SetPositionMixin
   @namespace Mixins
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     @property classNameBindings

@@ -5,15 +5,15 @@
     value=(format-date value displayFormat)
     disabled=disabled
     placeholder=placeholder
-    toggleDatePicker="toggleDatePicker"}}
+    toggleDatePicker=(action "toggleDatePicker")}}
   {{#if showDatePicker}}
     {{#ember-wormhole to=destinationElementId renderInPlace=(unless destinationElementId true)}}
       {{tt-date-picker
         selectedDate=value
         setPositionByCursor=setPositionByCursor
         inputDateElement=this.element
-        select="selectDate"
-        close="closeDatePicker"}}
+        select=(action "selectDate")
+        close=(action "closeDatePicker")}}
     {{/ember-wormhole}}
   {{/if}}
 {{/if}}

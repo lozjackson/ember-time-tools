@@ -1,14 +1,14 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-event-container';
 
 /**
   @class EventContainerComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   /**

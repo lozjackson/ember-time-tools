@@ -5,7 +5,7 @@
     value=(format-date value displayFormat)
     disabled=disabled
     placeholder=placeholder
-    toggleTimePicker="toggleTimePicker"}}
+    toggleTimePicker=(action "toggleTimePicker")}}
   {{#if showTimePicker}}
     {{#ember-wormhole to=destinationElementId renderInPlace=(unless destinationElementId true)}}
       {{tt-time-picker
@@ -15,8 +15,8 @@
         setPositionByCursor=setPositionByCursor
         scrollToSelectedTime=scrollToSelectedTime
         inputTimeElement=this.element
-        select="selectTime"
-        close="closeTimePicker"}}
+        select=(action "selectTime")
+        close=(action "closeTimePicker")}}
     {{/ember-wormhole}}
   {{/if}}
 {{/if}}

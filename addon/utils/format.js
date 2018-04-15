@@ -1,14 +1,13 @@
-import Ember from 'ember';
+import EmberObject, { get } from '@ember/object';
 import moment from 'moment';
-
-const { get } = Ember;
+import { typeOf } from '@ember/utils';
 
 function convertObjectToString(date) {
   return `${ get(date, 'year') }/${ get(date, 'month')+1 }/${ get(date, 'date') }`;
 }
 
 export default function format(date, format = 'date') {
-  let inputType = Ember.typeOf(date);
+  let inputType = typeOf(date);
 
   switch(format) {
 
@@ -37,7 +36,7 @@ export default function format(date, format = 'date') {
         if (inputType !== 'date') {
           date = new Date(date);
         }
-        date = Ember.Object.create({
+        date = EmberObject.create({
           year: date.getFullYear(),
           month: date.getMonth(),
           date: date.getDate(),

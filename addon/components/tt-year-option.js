@@ -1,16 +1,15 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-year-option';
-
-const { computed } = Ember;
+import { computed, get } from '@ember/object';
 
 /**
   @class YearOptionComponent
   @namespace Date
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -78,6 +77,9 @@ export default Ember.Component.extend({
     @private
   */
   click() {
-    this.sendAction('action', Number(this.get('value')));
+    const setYear = get(this, 'setYear');
+    if (typeof setYear === 'function') {
+      setYear(Number(this.get('value')));
+    }
   }
 });

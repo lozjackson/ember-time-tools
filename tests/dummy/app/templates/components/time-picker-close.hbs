@@ -10,14 +10,14 @@
 
   {{! BEGIN-SNIPPET time-picker-close }}
   {{#if showTimePicker}}
-    {{time-picker close="toggleTimePicker"}}
+    {{time-picker close=(action "toggleTimePicker")}}
   {{/if}}
   {{! END-SNIPPET }}
 
 
   {{#unless showTimePicker}}
-    {{#uic-button action="toggleTimePicker"}}
-      action="toggleTimePicker"
+    {{#uic-button click=(action "toggleTimePicker")}}
+      click=(action "toggleTimePicker")
     {{/uic-button}}
   {{/unless}}
 </div>

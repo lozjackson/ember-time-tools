@@ -1,20 +1,22 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-date-picker';
 import DateObject from 'ember-time-tools/utils/date';
 import ClickOutsideMixin from 'ember-ui-components/mixins/click-outside';
 import SetPositionMixin from 'ember-time-tools/mixins/set-position';
-
-const { computed, get } = Ember;
-const { readOnly } = computed;
+import EmberObject, { get, computed } from '@ember/object';
+import { readOnly } from '@ember/object/computed';
+import { A } from '@ember/array';
 
 /*
   @param daysInMonth
     The number of days in each month.
 */
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /*
   @method getDays
@@ -44,7 +46,7 @@ function getDays(date) {
   @uses Mixins.SetPositionMixin
   @namespace Date
 */
-export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
+export default Component.extend(ClickOutsideMixin, SetPositionMixin, {
 
   layout,
 
@@ -62,7 +64,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @type {Array}
     @private
   */
-  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  months,
 
   /**
     0 = Sunday, 1 = Monday
@@ -161,7 +163,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     @private
   */
   daysOfWeek: computed('weekStart', function() {
-    let array = Ember.A(),
+    let array = A(),
       weekStart = this.get('weekStart'),
       daysArray = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -215,13 +217,13 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     let dayObj, date, intWeek, intDay, week,
       daily = 0,
       dailyNextMonth = 1,
-      weeksArray = Ember.A(),
+      weeksArray = A(),
       daysOfWeek = this.get('daysOfWeek.length'),
       { month, year, numberOfWeeks, startDay } = this.getProperties('month', 'year', 'numberOfWeeks', 'startDay'),
       daysInMonth = getDays({ year, month });
 
     for (intWeek = 0; intWeek < numberOfWeeks;  intWeek++) {
-      week = Ember.A();
+      week = A();
 
       for (intDay = 0;intDay < daysOfWeek; intDay++) {
         // start the ball rolling when intDay is equal to startDay
@@ -251,7 +253,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
             inRange: false
           };
         }
-        week.pushObject(Ember.Object.create(dayObj));
+        week.pushObject(EmberObject.create(dayObj));
       }
       weeksArray.pushObject(week);
     }
@@ -296,7 +298,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
   */
   handleClickOutside() {
     if (this.get('isDestroyed') || this.get('isDestroying')) { return; }
-    this.sendAction('close');
+    this._close();
   },
 
   /**
@@ -338,7 +340,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           day = date.getTime();
           break;
         case 'object':
-          day = Ember.Object.create({
+          day = EmberObject.create({
             year: day.year,
             month: day.month,
             date: day.date,
@@ -347,7 +349,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           });
           break;
         default:
-          day = Ember.Object.create({
+          day = EmberObject.create({
             year: day.year,
             month: day.month,
             date: day.date,
@@ -357,9 +359,9 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
           break;
       }
     }
-
-    if (this.get('select')) {
-      this.sendAction('select', day);
+    const select = get(this, 'select');
+    if (typeof select === 'function') {
+      select(day);
     } else {
       this.set('selectedDate', day);
     }
@@ -448,6 +450,13 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
     this.set('viewDate.date', `${ parseInt(decade.start) + 10 }/${ month + 1 }/1`);
   },
 
+  _close() {
+    const close = get(this, 'close');
+    if (typeof close === 'function') {
+      close();
+    }
+  },
+
   actions: {
 
     /**
@@ -508,7 +517,7 @@ export default Ember.Component.extend(ClickOutsideMixin, SetPositionMixin, {
       @method close
     */
     close() {
-      this.sendAction('close');
+      this._close();
     }
   }
 });

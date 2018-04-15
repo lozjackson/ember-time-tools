@@ -1,14 +1,14 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-calendar-week-row';
 
 /**
   @class CalendarWeekRowComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
 
   /**
     @property layout
@@ -31,7 +31,6 @@ export default Ember.Component.extend({
     @property events
     @type {Array}
   */
-  events: [],
 
   /**
     An array of `Day` objects to display for this week (row) of the calendar.

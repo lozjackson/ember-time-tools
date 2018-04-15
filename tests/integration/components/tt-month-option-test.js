@@ -47,6 +47,6 @@ test('monthSelected', function(assert) {
 test('click calls setMonth', function(assert) {
   assert.expect(1);
   this.set('actions.setMonth', year => assert.equal(year, 5));
-  this.render(hbs`{{tt-month-option value="5" action="setMonth"}}`);
+  this.render(hbs`{{tt-month-option value="5" setMonth=(action "setMonth")}}`);
   this.$('.option').click();
 });

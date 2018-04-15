@@ -1,7 +1,6 @@
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { run } = Ember;
 
 moduleForComponent('tt-date-picker', 'Unit | Component | tt date picker', {
   needs: [
@@ -289,7 +288,7 @@ test('_selectTime() method - output = timestamp', function(assert) {
 test('_selectDate() method - output = object', function(assert) {
   assert.expect(1);
   let date = new Date(1977,7,24);
-  let object = Ember.Object.create({
+  let object = EmberObject.create({
     year: date.getFullYear(),
     month: date.getMonth(),
     date: date.getDate(),

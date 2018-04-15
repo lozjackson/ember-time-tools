@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import InViewportMixin from 'ember-in-viewport';
 
-export default Ember.Component.extend(InViewportMixin, {
+export default Component.extend(InViewportMixin, {
 
   showContent: false,
 

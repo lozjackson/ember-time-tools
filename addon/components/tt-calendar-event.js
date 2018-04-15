@@ -1,17 +1,17 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/tt-calendar-event';
 
-const { computed } = Ember;
 const { alias } = computed;
 
 /**
   @class CalendarEventComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   /**

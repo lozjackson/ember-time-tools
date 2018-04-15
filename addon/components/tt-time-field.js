@@ -1,7 +1,8 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import TextField from '@ember/component/text-field';
+import { get } from '@ember/object';
 
 /**
   A read-only text field component for displaying a time
@@ -9,7 +10,7 @@ import Ember from 'ember';
   @class TimeFieldComponent
   @namespace Time
 */
-export default Ember.TextField.extend({
+export default TextField.extend({
 
   /**
     @property tagName
@@ -40,7 +41,10 @@ export default Ember.TextField.extend({
   */
   click(e) {
     e.target.blur();
-    this.sendAction('toggleTimePicker');
+    const toggleTimePicker = get(this, 'toggleTimePicker');
+    if (typeof toggleTimePicker === 'function') {
+      toggleTimePicker();
+    }
   },
 
   /**

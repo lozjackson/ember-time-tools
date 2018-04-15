@@ -1,7 +1,7 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/tt-input-time';
 import format from 'ember-time-tools/utils/format';
 import DestinationElementMixin from 'ember-ui-components/mixins/destination-element';
@@ -12,7 +12,7 @@ import DestinationElementMixin from 'ember-ui-components/mixins/destination-elem
   @class InputTimeComponent
   @namespace Time
 */
-export default Ember.Component.extend(DestinationElementMixin, {
+export default Component.extend(DestinationElementMixin, {
 
   layout: layout,
 

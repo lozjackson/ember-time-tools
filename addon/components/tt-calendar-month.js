@@ -1,15 +1,22 @@
 /**
   @module ember-time-tools
 */
-import Ember from 'ember';
+import Component from '@ember/component';
+import EmberObject, { computed } from '@ember/object';
 import layout from '../templates/components/tt-calendar-month';
 import DateObject from 'ember-time-tools/utils/date';
 import getDaysInMonth from 'ember-time-tools/utils/get-days-in-month';
+import { A } from '@ember/array';
+import { typeOf } from '@ember/utils';
 
-const { computed } = Ember;
 const { alias, sort } = computed;
 
-const Day = Ember.Object.extend({
+const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const sortProperties = ['start:asc', 'end:asc'];
+
+const Day = EmberObject.extend({
   date: null,
   month: null,
   year: null,
@@ -20,7 +27,7 @@ const Day = Ember.Object.extend({
   @class CalendarMonthComponent
   @namespace Calendar
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -45,14 +52,14 @@ export default Ember.Component.extend({
     @type {Array}
     @default `['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']`
   */
-  dayNames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  dayNames,
 
   /**
     @property monthNames
     @type {Array}
     @default `['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']`
   */
-  monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  monthNames,
 
   /**
     An array of event models.  Each event should have at least `start`, `end`
@@ -79,7 +86,7 @@ export default Ember.Component.extend({
     @default `['start:asc', 'end:asc']`
     @private
   */
-  sortProperties: ['start:asc', 'end:asc'],
+  sortProperties,
 
   /**
     Sorts the `events` array.
@@ -184,7 +191,7 @@ export default Ember.Component.extend({
 
     const rows = 6;
     const days = 7;
-    let out = Ember.A();
+    let out = A();
     let { month, year, startDay } = this.getProperties([ 'month', 'year', 'startDay' ]);
     let lastMonth = this.getLastMonth( month );
     let daily = 0;
@@ -223,7 +230,7 @@ export default Ember.Component.extend({
     };
 
     for ( let w = 0; w < rows; w++ ) {
-      let daysArray = Ember.A();
+      let daysArray = A();
 
       for (let d = 0; d < days; d++) {
         // start the ball rolling when `d` is equal to `startDay`
@@ -298,7 +305,7 @@ export default Ember.Component.extend({
     @param {Object} date (optional) a `Date` object.
   */
   setToday(date) {
-    if (!date) {
+    if (typeOf(date) !== 'date') {
       date = new Date();
     }
     this.setViewDate(date);
