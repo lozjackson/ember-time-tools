@@ -47,7 +47,7 @@
 <div class="time-picker-container">
   {{#lazy-load}}
     {{! BEGIN-SNIPPET time-picker-select }}
-    {{time-picker select="selectTime"}}
+    {{time-picker select=(action "selectTime")}}
     {{! END-SNIPPET }}
   {{/lazy-load}}
 </div>
@@ -67,7 +67,7 @@
 <div class="time-picker-container">
   {{#lazy-load}}
     {{! BEGIN-SNIPPET time-picker-selected-time }}
-    {{time-picker selectedTime=selection select="selectTime"}}
+    {{time-picker selectedTime=selection select=(action "selectTime")}}
     {{! END-SNIPPET }}
   {{/lazy-load}}
 </div>
@@ -92,7 +92,7 @@
     <div class="time-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET time-picker-output-date }}
-        {{time-picker output="date" select="selectTime"}}
+        {{time-picker output="date" select=(action "selectTime")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>
@@ -107,7 +107,7 @@
     <div class="time-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET time-picker-output-timestamp }}
-        {{time-picker output="timestamp" select="selectTime"}}
+        {{time-picker output="timestamp" select=(action "selectTime")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>
@@ -122,7 +122,7 @@
     <div class="time-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET time-picker-output-object }}
-        {{time-picker output="object" select="selectTime"}}
+        {{time-picker output="object" select=(action "selectTime")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>

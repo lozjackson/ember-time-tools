@@ -43,7 +43,7 @@
 <div class="date-picker-container">
   {{#lazy-load}}
     {{! BEGIN-SNIPPET date-picker-select }}
-    {{date-picker select="selectDate"}}
+    {{date-picker select=(action "selectDate")}}
     {{! END-SNIPPET }}
   {{/lazy-load}}
 </div>
@@ -63,7 +63,7 @@
 <div class="date-picker-container">
   {{#lazy-load}}
     {{! BEGIN-SNIPPET date-picker-selected-date }}
-    {{date-picker selectedDate=selection select="selectDate"}}
+    {{date-picker selectedDate=selection select=(action "selectDate")}}
     {{! END-SNIPPET }}
   {{/lazy-load}}
 </div>
@@ -88,7 +88,7 @@
     <div class="date-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET date-picker-output-date }}
-        {{date-picker output="date" select="selectDate"}}
+        {{date-picker output="date" select=(action "selectDate")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>
@@ -103,7 +103,7 @@
     <div class="date-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET date-picker-output-timestamp }}
-        {{date-picker output="timestamp" select="selectDate"}}
+        {{date-picker output="timestamp" select=(action "selectDate")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>
@@ -119,7 +119,7 @@
     <div class="date-picker-container">
       {{#lazy-load}}
         {{! BEGIN-SNIPPET date-picker-output-object }}
-        {{date-picker output="object" select="selectDate"}}
+        {{date-picker output="object" select=(action "selectDate")}}
         {{! END-SNIPPET }}
       {{/lazy-load}}
     </div>

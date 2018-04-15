@@ -10,14 +10,14 @@
 
   {{! BEGIN-SNIPPET date-picker-close }}
   {{#if showDatePicker}}
-    {{date-picker close="toggleDatePicker"}}
+    {{date-picker close=(action "toggleDatePicker")}}
   {{/if}}
   {{! END-SNIPPET }}
 
 
   {{#unless showDatePicker}}
-    {{#uic-button action="toggleDatePicker"}}
-      action="toggleDatePicker"
+    {{#uic-button click=(action "toggleDatePicker")}}
+      click=(action "toggleDatePicker")
     {{/uic-button}}
   {{/unless}}
 </div>
