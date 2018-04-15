@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import { run, scheduleOnce } from '@ember/runloop';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('tt-time-picker', 'Unit | Component | tt time picker', {
@@ -224,12 +224,12 @@ test('didInsertElement() method - scrollToSelectedTime=false', function(assert) 
 
 test('scrollToElement() method', function(assert) {
   assert.expect(3);
-  let _scheduleOnce = scheduleOnce;
+  const scheduleOnce = run.scheduleOnce;
   let component = this.subject({
     didInsertElement: () => {}
   });
 
-  scheduleOnce = (name, context, fn) => {
+  run.scheduleOnce = (name, context, fn) => {
     assert.equal(name, 'afterRender');
     assert.deepEqual(context, component);
     assert.equal(typeof fn, 'function');
@@ -238,7 +238,7 @@ test('scrollToElement() method', function(assert) {
   this.render();
   component.scrollToElement();
 
-  scheduleOnce = _scheduleOnce;
+  run.scheduleOnce = scheduleOnce;
 });
 
 test('_selectTime() method - select action', function(assert) {
